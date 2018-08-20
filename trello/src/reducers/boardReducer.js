@@ -1,4 +1,4 @@
-import { FETCH_BOARDS, BOARD_FETCH_SUCCESS } from '../actions/boardActions'
+import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS } from '../actions/boardActions'
 
 const initialState = {
   fetchingBoards: false,
@@ -25,6 +25,17 @@ export const boardReducer = (state = initialState, action) => {
         ],
         fetchingBoards: false,
         fetchingBoardsSuccess: true
+      };
+    case ADD_BOARD:
+      return {
+        ...state,
+        addingBoard: true
+      };
+    case BOARD_ADD_SUCCESS:
+      return {
+        ...state,
+        addingBoard: false,
+        addingBoardSuccess: true
       }
     default: 
       return state;

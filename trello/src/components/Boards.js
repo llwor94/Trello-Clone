@@ -1,27 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-const BoardWrapper = styled.div`
-  width: 790px;
-  margin: 10px auto;
-`
-const BoardCard = styled.div`
-  width: 23%;
-  margin: 0 2% 8px 0;
-  height: 112px;
-  background: #026aa7;
-`
+import BoardCard from './BoardCard';
 
 const Boards = ({ boards }) => (
-  <BoardWrapper>
+  <Fragment>
     <h4>Personal Boards:</h4>
-    {boards.map(board => (
-      <Link key={board.id} to={`/board/${board.id}`}>
-        <BoardCard>{board.name}</BoardCard>
-      </Link>
+    {boards.map((board, index) => (
+      <Link key={index} to={`/board/${board.name}`}>
+        <BoardCard text={board.name} createNew={false}/>
+      </Link> 
     ))}
-  </BoardWrapper>
+  </Fragment>
 )
 
 export default Boards;
