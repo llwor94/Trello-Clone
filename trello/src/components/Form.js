@@ -29,8 +29,9 @@ const Input = styled.input`
   border-color: #298fca;
   padding: 6px 8px;
   border-radius: 3px;
+  outline: none;
+  box-shadow: 0 0 2px #298fca;
 `
-
 const Button = styled.input`
   background: #5aac44;
   color: #fff;

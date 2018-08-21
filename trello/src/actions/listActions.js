@@ -11,6 +11,7 @@ export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS'
 export const fetchLists = name => dispatch => {
   dispatch({ type: FETCH_LISTS });
   db.collection('lists').where('board', '==', name)
+    .orderBy('timestamp')
     .get()
     .then(querySnapshot => {
       dispatch({
@@ -33,9 +34,13 @@ export const addItem = (item, list) => dispatch  => {
 }
 
 export const addList = name => (dispatch, getState) => {
-  let board = getState().boardReducer.currentBoard.name
+  let board = getState().boardReducer.currentBoard
   dispatch({ type: ADD_LIST });
-  db.collection('lists').doc(name).set ({name: name, board: board})
+  console.log(name, board)
+  db.collection('lists').doc(name).set ({
+    name: name, 
+    board: board, 
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()})
     .then(() => {
       dispatch({ type: ADD_LIST_SUCCESS })
     })

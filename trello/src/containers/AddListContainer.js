@@ -9,6 +9,12 @@ class AddListContainer extends Component {
     value: "",
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.listAdded !== prevProps.listAdded && this.props.listAdded) {
+      this.setState({selected: false, value: ''})
+    }
+  }
+
   addNewList = e => {
     e.preventDefault();
     this.props.addList(this.state.value);
@@ -16,7 +22,7 @@ class AddListContainer extends Component {
 
   render() {
     if (!this.state.selected) {
-      return <h2 onClick={() => this.setState({selected: true})}>+ Add another list</h2>;
+      return <h2 style={{paddingLeft: '6px'}} onClick={() => this.setState({selected: true})}>+ Add another list</h2>;
     }
 
     return (
@@ -32,4 +38,8 @@ class AddListContainer extends Component {
   }
 }
 
-export default connect(null, { addList })(AddListContainer);
+const mapStateToProps = state => ({
+  listAdded: state.listReducer.listAdded
+});
+
+export default connect(mapStateToProps, { addList })(AddListContainer);

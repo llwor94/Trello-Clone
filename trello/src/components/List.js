@@ -9,7 +9,6 @@ const ListWrapper = styled.div`
   max-height: 100%;
   margin: 0 8px;
   border-radius: 3px;
-  opacity: ${props => props.add ? '.7' : '1'};
   cursor: pointer;
 
   &:hover {
@@ -19,7 +18,7 @@ const ListWrapper = styled.div`
 const ListHeader = styled.div`
   font-size: 10px;
   line-height: 24px;
-  margin: ${props => props.add ? '0 0 3px' : '0 12px 3px'};
+  margin: ${props => props.add ? '0' : '0 12px 3px'};
   padding: 10px 0 8px;
   
   h2 {
