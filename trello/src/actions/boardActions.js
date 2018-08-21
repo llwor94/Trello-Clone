@@ -35,8 +35,7 @@ export const getCurrentBoard = name => dispatch => {
   docRef.get()
     .then(doc => {
       if (doc.exists) {
-        console.log(doc.data())
-        dispatch({ type: CURRENT_BOARD_FETCHED })
+        dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() })
       }
     })
 }
