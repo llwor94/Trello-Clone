@@ -1,14 +1,23 @@
 import React from "react";
+import logo from '../assets/trello-logo-white.png'
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   background: #026aa7;
-  height: 32px;
+  padding: 4px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 21px;
+    opacity: .5;
+  }
 `
 
 const Header = () => (
   <HeaderWrapper>
-    <h2> Trello </h2>
+    <img src={logo} />
   </HeaderWrapper>
 )
 

@@ -8,16 +8,10 @@ import Modal from "../components/Modal";
 
 const BoardWrapper = styled.div`
   width: 790px;
-  margin: 10px auto;
-`;
-const StyledModal = styled(Modal)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 40px auto;
 `;
 
-class BoardContainer extends React.Component {
+class HomeContainer extends React.Component {
   state = {
     showingModal: false,
     title: "",
@@ -27,6 +21,11 @@ class BoardContainer extends React.Component {
     this.props.fetchBoards();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.boardAdded !== prevProps.boardAdded) {
+      this.setState({showingModal: false, title: ''})
+    }
+  }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -58,7 +57,7 @@ class BoardContainer extends React.Component {
           createNew={true}
         />
         </div>
-        <StyledModal
+        <Modal
           show={this.state.showingModal}
           handleClose={this.hideModal}
           handleChange={this.handleChange}
@@ -73,9 +72,10 @@ class BoardContainer extends React.Component {
 const mapStateToProps = state => ({
   boards: state.boardReducer.boards,
   fetchingBoards: state.boardReducer.fetchingBoards,
+  boardAdded: state.boardReducer.addingBoardSuccess
 });
 
 export default connect(
   mapStateToProps,
   { fetchBoards, addBoard }
-)(BoardContainer);
+)(HomeContainer);

@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { injectGlobal } from 'styled-components';
 import Header from './components/Header';
-import BoardsContainer from './containers/BoardsContainer';
+import HomeContainer from './containers/HomeContainer';
+import BoardContainer from './containers/BoardContainer';
 
 injectGlobal` 
   * {
@@ -23,8 +24,8 @@ const AppRouter = () => (
     <div>
       <Header />
       <Switch>
-       <Route exact path='/' component={BoardsContainer} />
-        
+        <Route exact path='/' component={HomeContainer} />
+        <Route exact path='/board/:name' component={BoardContainer} />
       </Switch>
     </div>
   </Router>
