@@ -45,6 +45,7 @@ class BoardContainer extends React.Component {
           {this.props.lists.map((list, index) => (
             <List key={index} list={list} />
           ))}
+          <List list={null} />
         </ListWrapper>
       </div>
     );

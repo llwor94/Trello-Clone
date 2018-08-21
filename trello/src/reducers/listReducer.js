@@ -1,10 +1,12 @@
-import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_ITEM_SUCCESS, ADD_ITEM } from '../actions/listActions';
+import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_ITEM_SUCCESS, ADD_ITEM, ADD_LIST, ADD_LIST_SUCCESS } from '../actions/listActions';
 
 const initialState = {
   fetchingLists: false,
   fetchingListsSuccess: false,
   addingItem: false,
   itemAdded: false,
+  addingList: false,
+  listAdded: false,
   lists: []
 }
 
@@ -24,6 +26,7 @@ export const listReducer = (state = initialState, action) => {
         fetchingListsSuccess: true,
         fetchingLists: false, 
         itemAdded: false,
+        listAdded: false
       };
     case ADD_ITEM:
       return {
@@ -35,6 +38,17 @@ export const listReducer = (state = initialState, action) => {
         ...state,
         addingItem: false,
         itemAdded: true
+      }
+    case ADD_LIST:
+      return {
+        ...state,
+        addingList: true
+      }
+    case ADD_LIST_SUCCESS:
+      return {
+        ...state,
+        addingList: false,
+        listAdded: true
       }
     default:
       return state;

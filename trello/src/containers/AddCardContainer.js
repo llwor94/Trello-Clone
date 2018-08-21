@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import { addItem } from "../actions/listActions";
-import AddCard from "../components/AddCard";
+import Form from "../components/Form";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const AddCardSelect = styled.div`
+  padding: 8px;
+  color: #8c8c8c;
+  font-size: 14px;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    background-color: #cbcdcf;
+  }
+`;
 
 class AddCardContainer extends Component {
   state = {
@@ -22,17 +36,22 @@ class AddCardContainer extends Component {
 
 
   render() {
+    if (!this.state.selected) {
+      return (
+        <AddCardSelect onClick={() => this.setState({ selected: true })}>
+          {this.props.list.items ? "+ Add another card" : "+ Add a card"}
+        </AddCardSelect>
+      );
+    }
     return (
-      <div>
-        <AddCard
-          itemsExist={this.props.list.items}
-          addSelected={this.state.selected}
+        <Form
           handleChange={e => this.setState({ value: e.target.value })}
-          handleClick={() => this.setState({ selected: true })}
+          handleClose={() => this.setState({ selected: false })}
           handleSubmit={this.addNewCard}
           inputValue={this.state.value}
+          placeholder='Enter a title for this card...'
+          type='Card'
         />
-      </div>
     );
   }
 }
