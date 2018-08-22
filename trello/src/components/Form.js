@@ -18,7 +18,8 @@ const TextArea = styled.textarea`
   border-radius: 3px;
   box-shadow: 0 1px 0 #ccc;
   border: none;
-  resize: none;
+  resize: vertical;
+  max-height: 162px;
 `
 
 const Input = TextArea.withComponent('input').extend`

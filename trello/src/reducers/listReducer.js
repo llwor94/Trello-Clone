@@ -1,5 +1,5 @@
-import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_ITEM_SUCCESS, ADD_ITEM, ADD_LIST, ADD_LIST_SUCCESS, FETCH_LIST, SINGLE_LIST_FETCHED, FETCHING_COMPLETE, DELETING_LIST, LIST_DELETED, } from '../actions/listActions';
-
+import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_LIST, ADD_LIST_SUCCESS, FETCH_LIST, SINGLE_LIST_FETCHED, FETCHING_COMPLETE, DELETING_LIST, LIST_DELETED, } from '../actions/listActions';
+import { NEW_ITEM_SUCCESS, ADD_ITEM } from '../actions/itemActions'
 const initialState = {
   fetchingLists: false,
   fetchingListsSuccess: false,
@@ -39,7 +39,7 @@ export const listReducer = (state = initialState, action) => {
         ...state,
         addingItem: true,
       }
-    case ADD_ITEM_SUCCESS:
+    case NEW_ITEM_SUCCESS:
       return {
         ...state,
         addingItem: false,

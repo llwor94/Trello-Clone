@@ -10,14 +10,15 @@ const StyledItem = styled.div`
   padding: 6px;
   color: black;
   cursor: pointer;
+  white-space: normal;
 
   &:hover {
     background-color: #edeff0;
   }
 `
 
-const ListItem = ({item}) => (
-  <StyledItem>
+const ListItem = ({item, handleClick}) => (
+  <StyledItem onClick={handleClick}>
     {item}
   </StyledItem>
 )
