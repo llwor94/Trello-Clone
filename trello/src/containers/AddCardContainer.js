@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 const AddCardSelect = styled.div`
-  padding: 8px;
+  padding: 10px;
   color: #8c8c8c;
-  font-size: 14px;
   border-radius: 0 0 3px 3px;
   cursor: pointer;
 

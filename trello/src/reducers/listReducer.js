@@ -1,4 +1,4 @@
-import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_ITEM_SUCCESS, ADD_ITEM, ADD_LIST, ADD_LIST_SUCCESS } from '../actions/listActions';
+import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_ITEM_SUCCESS, ADD_ITEM, ADD_LIST, ADD_LIST_SUCCESS, FETCH_LIST, SINGLE_LIST_FETCHED, FETCHING_COMPLETE, DELETING_LIST, LIST_DELETED, } from '../actions/listActions';
 
 const initialState = {
   fetchingLists: false,
@@ -7,7 +7,12 @@ const initialState = {
   itemAdded: false,
   addingList: false,
   listAdded: false,
-  lists: []
+  fetchingSingleList: false,
+  singleListFetched: false,
+  deletingList: false,
+  listDeleted: false,
+  lists: [],
+  currentList: null,
 }
 
 export const listReducer = (state = initialState, action) => {
@@ -26,7 +31,8 @@ export const listReducer = (state = initialState, action) => {
         fetchingListsSuccess: true,
         fetchingLists: false, 
         itemAdded: false,
-        listAdded: false
+        listAdded: false,
+        listDeleted: false,
       };
     case ADD_ITEM:
       return {
@@ -50,6 +56,39 @@ export const listReducer = (state = initialState, action) => {
         addingList: false,
         listAdded: true
       }
+    case DELETING_LIST:
+      return {
+        ...state,
+        deletingList: true,
+      }
+    case LIST_DELETED:
+      return {
+        ...state,
+        listDeleted: true,
+        deletingList: false,
+      }
+    // case FETCH_LIST:
+    //   return {
+    //     ...state,
+    //     fetchingSingleList: true,
+    //   }
+    // case SINGLE_LIST_FETCHED:
+    //   return {
+    //     ...state,
+    //     fetchingSingleList: false,
+    //     singleListFetched: true,
+    //     currentList: {...action.payload}
+    //   }
+    // case FETCHING_COMPLETE:
+    //   return {
+    //     ...state,
+    //     singleListFetched: false,
+    //     lists: [
+    //       ...state.lists,
+    //       ...state.currentList
+    //     ]
+    //   }
+    
     default:
       return state;
   }

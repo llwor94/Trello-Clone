@@ -8,7 +8,7 @@ import Modal from "../components/Modal";
 
 const BoardWrapper = styled.div`
   width: 790px;
-  margin: 40px auto;
+  margin: 80px auto 40px;
 `;
 
 class HomeContainer extends React.Component {

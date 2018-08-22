@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { addList } from "../actions/listActions";
-import Form from '../components/Form';
+import Form from "../components/Form";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const AddListSelect = styled.div`
+  line-height: 24px;
+  padding: 8px 0;
+  font-weight: normal;
+  color: #8c8c8c;
+`;
 
 class AddListContainer extends Component {
   state = {
@@ -11,7 +19,7 @@ class AddListContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.listAdded !== prevProps.listAdded && this.props.listAdded) {
-      this.setState({selected: false, value: ''})
+      this.setState({ selected: false, value: "" });
     }
   }
 
@@ -22,24 +30,35 @@ class AddListContainer extends Component {
 
   render() {
     if (!this.state.selected) {
-      return <h2 style={{paddingLeft: '6px'}} onClick={() => this.setState({selected: true})}>+ Add another list</h2>;
+      return (
+        <AddListSelect
+          style={{ paddingLeft: "6px" }}
+          onClick={() => this.setState({ selected: true })}
+        >
+          {" "}
+          &#x0002B; Add another list
+        </AddListSelect>
+      );
     }
 
     return (
-        <Form
-          handleChange={e => this.setState({ value: e.target.value })}
-          handleClose={() => this.setState({ selected: false })}
-          handleSubmit={this.addNewList}
-          inputValue={this.state.value}
-          placeholder='Enter list title...'
-          type='List'
-        />
+      <Form
+        handleChange={e => this.setState({ value: e.target.value })}
+        handleClose={() => this.setState({ selected: false })}
+        handleSubmit={this.addNewList}
+        inputValue={this.state.value}
+        placeholder="Enter list title..."
+        type="List"
+      />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  listAdded: state.listReducer.listAdded
+  listAdded: state.listReducer.listAdded,
 });
 
-export default connect(mapStateToProps, { addList })(AddListContainer);
+export default connect(
+  mapStateToProps,
+  { addList }
+)(AddListContainer);

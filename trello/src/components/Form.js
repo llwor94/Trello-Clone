@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ButtonWrapper = styled.div`
   display: flex;
-  padding: 8px 0;
+  padding: ${props => props.type === 'Card' ? '8px 0' : '5px 0'};
 `;
 
 const StyledForm = styled.form`
@@ -18,27 +18,22 @@ const TextArea = styled.textarea`
   border-radius: 3px;
   box-shadow: 0 1px 0 #ccc;
   border: none;
-  font-size: 14px;
   resize: none;
 `
 
-const Input = styled.input`
-  width: 100%;
-  display: block;
-  font-size: 14px;
+const Input = TextArea.withComponent('input').extend`
   border-color: #298fca;
-  padding: 6px 8px;
-  border-radius: 3px;
-  outline: none;
+  height: initial;
   box-shadow: 0 0 2px #298fca;
+  margin-top: 7px;
 `
+
 const Button = styled.input`
   background: #5aac44;
   color: #fff;
   padding: 8px 16px;
   border-radius: 3px;
   outline: none;
-  font-size: 14px;
   font-weight: bold;
 `
 
@@ -56,9 +51,9 @@ const Form = ({handleChange, handleSubmit, inputValue, type, handleClose }) => {
         <TextArea type="text" onChange={handleChange} value={inputValue} placeholder='Enter a title for this card...' />
         : <Input type="text" onChange={handleChange} value={inputValue} placeholder='Enter list title...' />
         }
-        <ButtonWrapper>
-        <Button type="submit" value={`Add ${type}`} />
-        <Close onClick={handleClose}> &times; </Close>
+        <ButtonWrapper type={type}>
+          <Button type="submit" value={`Add ${type}`} />
+          <Close onClick={handleClose}> &times; </Close>
         </ButtonWrapper>
       </StyledForm>
       

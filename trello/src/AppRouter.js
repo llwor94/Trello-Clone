@@ -13,9 +13,13 @@ injectGlobal`
     color: black;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    font-size: 14px;
   }
   body {
     background-color: white;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
   }
 `
 
