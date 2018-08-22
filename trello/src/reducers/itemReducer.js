@@ -28,17 +28,7 @@ export const itemReducer = (state = initialState, action) => {
         itemFetched: false,
         currentItem: null
       }
-    //   case ADD_ITEM:
-    //   return {
-    //      ...state,
-    //     addingItem: true,
-    //   }
-    // case ADD_ITEM_SUCCESS:
-    //   return {
-    //     ...state,
-    //     addingItem: false,
-    //     itemAdded: true
-    //   }
+
     default: 
       return state;
   }

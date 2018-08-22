@@ -27,18 +27,6 @@ export const fetchLists = () => (dispatch, getState) => {
     })
 }
 
-// export const addItem = (item, list) => dispatch  => {
-//   const listRef = db.collection('lists').doc(list.name);
-//   dispatch({ type: ADD_ITEM });
-//   listRef.update({
-//     items: firebase.firestore.FieldValue.arrayUnion(item)
-//   })
-//   .then(() => {
-//     console.log(listRef)
-//     dispatch({ type: ADD_ITEM_SUCCESS })
-//   })
-// }
-
 export const addList = name => (dispatch, getState) => {
   let board = getState().boardReducer.currentBoard
   dispatch({ type: ADD_LIST });
@@ -69,14 +57,13 @@ export const fetchList = name => dispatch => {
     })
 }
 
-export const deleteList = name => (dispatch, getState) => {
-  let board = getState().boardReducer.currentBoard;
+export const deleteList = name => dispatch => {
   dispatch({ type: DELETING_LIST})
   db.collection('lists').doc(name).delete()
     .then(() => {
       dispatch({ type: LIST_DELETED })
     })
     .then(() => {
-      dispatch((fetchLists(board)))
+      dispatch((fetchLists()))
     })
 }

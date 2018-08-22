@@ -19,7 +19,6 @@ const ModalContent = styled.section`
   width: 768px;
   min-height: 600px;
   text-align: left;
-  border: 1px solid #92a7a9;
   background-color: #eaecee;
   border-radius: 3px;
   padding: 16px 6px 16px 16px;
