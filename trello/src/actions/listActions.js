@@ -3,13 +3,8 @@ import firebase from 'firebase/app';
 
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
-// export const ADD_ITEM = 'ADD_ITEM';
-// export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
 export const ADD_LIST = 'ADD_LIST';
 export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS'
-export const FETCH_LIST = 'FETCH_LIST';
-export const SINGLE_LIST_FETCHED = 'SINGLE_LIST_FETCHED';
-export const FETCHING_COMPLETE = 'FETCHING_COMPLETE';
 export const DELETING_LIST = 'DELETING_LIST';
 export const LIST_DELETED = 'LIST_DELETED';
 export const CLEAR_LIST = 'CLEAR_LIST';

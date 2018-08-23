@@ -4,7 +4,6 @@ import { fetchLists, deleteList } from "../actions/listActions";
 import styled from "styled-components";
 import List from "../components/List";
 import ListHeader from '../components/ListHeader';
-import AddListContainer from "../containers/AddListContainer";
 
 const ListWrapper = styled.div`
   width: 272px;
@@ -17,35 +16,20 @@ const ListWrapper = styled.div`
 `;
 
 class ListContainer extends Component {
-  //refresh single list if add something
-  componentDidUpdate(prevProps) {
-    if (this.props.itemAdded !== prevProps.itemAdded) {
-      this.props.fetchLists();
-    }
-  }
-
-  
-
   render() {
     return (
       <ListWrapper>
-      
         <Fragment>
           <ListHeader name={this.props.list.name} handleDelete={() => this.props.deleteList(this.props.list.name)} />
           <List list={this.props.list} />
         </Fragment>
-        
       </ListWrapper>
     );
   }
 }
-//need current list
-const mapStateToProps = state => ({
-  itemAdded: state.listReducer.itemAdded,
-  listDeleted: state.listReducer.listDeleted
-});
+
 
 export default connect(
-  mapStateToProps,
+  null,
   { fetchLists, deleteList }
 )(ListContainer);

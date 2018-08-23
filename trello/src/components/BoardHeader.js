@@ -25,12 +25,21 @@ class BoardHeader extends Component {
     showingModal: false
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.board !== prevProps.board) {
+      this.setState({showingModal: false})
+    }
+  }
+
   handleClose = e => {
     e.stopPropagation();
     this.setState({ showingModal: false });
   }; 
 
-
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.changeName(this.state.value)
+  }
 
   render() {
     return (
@@ -39,9 +48,7 @@ class BoardHeader extends Component {
         {this.state.showingModal && (
           <ListModal
             handleClose={this.handleClose}
-            handleSubmit={e => {
-              e.preventDefault(); this.props.changeName(this.state.value)
-            }}
+            handleSubmit={this.handleSubmit}
             value={this.state.value}
             handleChange={e => this.setState({ value: e.target.value })}
             title="Rename Board"

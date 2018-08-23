@@ -21,17 +21,7 @@ class BoardContainer extends React.Component {
   componentDidMount() {
     console.log('mounted');
     this.props.getBoardIfNeeded(this.props.match.params.id);
-    // window.addEventListener("beforeunload", this.componentCleanUp);
   }
-
-  // componentWillUnmount() {
-  //   this.props.clearList();
-  //   window.removeEventListener("beforeunload", this.componentCleanUp);
-  // }
-
-  // componentCleanUp = () => {
-  //   this.props.clearList();
-  // };
 
   handleChangeBoardName = value => {
     this.props.updateBoardName(value);
