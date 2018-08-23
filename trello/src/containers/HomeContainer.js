@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchBoards, addBoard, getCurrentBoard } from "../actions/boardActions";
 import { fetchLists } from '../actions/listActions';
-import Boards from "../components/Boards";
-import BoardCard from "../components/BoardCard";
+import Boards from "../components/Board-Page/Boards";
+import BoardCard from "../components/Board-Page/BoardCard";
 import styled from "styled-components";
-import Modal from "../components/Modal";
+import Modal from "../components/Board-Page/Modal";
 
 const BoardWrapper = styled.div`
   width: 790px;
@@ -15,7 +15,7 @@ const BoardWrapper = styled.div`
 class HomeContainer extends React.Component {
   state = {
     showingModal: false,
-    title: "",
+    title: '',
   };
 
   componentDidMount() {
@@ -23,22 +23,12 @@ class HomeContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.boardAdded !== prevProps.boardAdded) {
+    if (this.props.boards !== prevProps.boards) {
       this.setState({showingModal: false, title: ''})
     }
-    if (this.props.currentBoard !== prevProps.currentBoard && this.props.currentBoard) {
-      this.props.fetchLists();
-    }
-    if (this.props.listsFetched !== prevProps.listsFetched && this.props.listsFetched) {
+    if (this.props.listsFetched !== prevProps.listsFetched) {
       this.props.history.push(`/board/${this.props.currentBoard}`)
     }
-  }
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleRoute = (name) => {
-    this.props.getCurrentBoard(name);
   }
 
   handleSubmit = e => {
@@ -46,35 +36,29 @@ class HomeContainer extends React.Component {
     this.props.addBoard(this.state.title)
   }
 
-  showModal = () => {
-    this.setState({ showingModal: true });
-  };
-
-  hideModal = () => {
-    this.setState({ showingModal: false });
-  };
-
   render() {
     return (
       <BoardWrapper>
         {this.props.fetchingBoards ? (
           <p> ur boards b coming </p>
         ) : (
-          <Boards handleRoute={this.handleRoute} boards={this.props.boards} />
+          <Boards 
+            handleRoute={id => this.props.getCurrentBoard(id)} 
+            boards={this.props.boards} 
+          />
         )}
-        <div onClick={this.showModal}>
+        <div onClick={() => this.setState({ showingModal: true })}>
         <BoardCard
           text={"Create a new board..."}
           createNew={true}
         />
         </div>
-        <Modal
-          show={this.state.showingModal}
-          handleClose={this.hideModal}
-          handleChange={this.handleChange}
+        {this.state.showingModal && <Modal
+          handleClose={() => this.setState({ showingModal: false })}
+          handleChange={e => this.setState({ title: e.target.value })}
           title={this.state.title}
           handleSubmit={this.handleSubmit}
-        />
+        />}
       </BoardWrapper>
     );
   }

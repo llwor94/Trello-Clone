@@ -1,14 +1,10 @@
-import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS, FETCH_CURRENT_BOARD, CURRENT_BOARD_FETCHED } from '../actions/boardActions'
+import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS, FETCH_CURRENT_BOARD, CURRENT_BOARD_FETCHED, DISMOUNT_CURRENT_BOARD } from '../actions/boardActions'
 
 const initialState = {
   fetchingBoards: false,
-  fetchingBoardsSuccess: false,
   addingBoard: false,
-  addingBoardSuccess: false,
   fetchingCurrentBoard: false,
-  fetchingCurrentBoardSuccess: false,
   boards: [],
-  error: null,
   currentBoard: null
 }
 
@@ -26,9 +22,7 @@ export const boardReducer = (state = initialState, action) => {
           ...action.payload
         ],
         fetchingBoards: false,
-        fetchingBoardsSuccess: true,
-        currentBoard: null,
-      };
+      }
     case ADD_BOARD:
       return {
         ...state,
@@ -38,7 +32,6 @@ export const boardReducer = (state = initialState, action) => {
       return {
         ...state,
         addingBoard: false,
-        addingBoardSuccess: true
       };
     case FETCH_CURRENT_BOARD:
       return {
@@ -49,8 +42,12 @@ export const boardReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCurrentBoard: false,
-        fetchingCurrentBoardSuccess: true,
-        currentBoard: action.payload.name
+        currentBoard: action.payload
+      }
+    case DISMOUNT_CURRENT_BOARD:
+      return {
+        ...state,
+        currentBoard: null
       }
     default: 
       return state;

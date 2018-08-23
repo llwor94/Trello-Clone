@@ -11,6 +11,7 @@ const BoardCardWrapper = styled.div`
   color: ${props => props.createNew ? '#8c8c8c' : 'white'};
   font-weight: bold;
   padding: 8px;
+  cursor: pointer;
 `
 
 const BoardCard = ({ text, createNew, handleClick }) => (

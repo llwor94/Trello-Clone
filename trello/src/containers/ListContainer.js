@@ -29,12 +29,12 @@ class ListContainer extends Component {
   render() {
     return (
       <ListWrapper>
-      {this.props.list ?
+      
         <Fragment>
           <ListHeader name={this.props.list.name} handleDelete={() => this.props.deleteList(this.props.list.name)} />
           <List list={this.props.list} />
         </Fragment>
-        : <AddListContainer /> }
+        
       </ListWrapper>
     );
   }

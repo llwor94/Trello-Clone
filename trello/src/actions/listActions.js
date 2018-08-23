@@ -16,21 +16,21 @@ export const CLEAR_LIST = 'CLEAR_LIST';
 
 export const fetchLists = () => (dispatch, getState) => {
   dispatch({ type: FETCH_LISTS });
-  let board = getState().boardReducer.currentBoard
+  let board = getState().boardReducer.currentBoard.id
   db.collection('lists').where('board', '==', board)
     .orderBy('timestamp')
-    .get()
-    .then(querySnapshot => {
+    .onSnapshot(querySnapshot => {
       dispatch({
         type: LIST_FETCH_SUCCESS,
-        payload: querySnapshot.docs.map((doc) => {return {...doc.data()}})
+        payload: querySnapshot.docs.map((doc) => {
+          return {...doc.data()}})
       })
     })
 }
 
 export const addList = name => (dispatch, getState) => {
   dispatch({ type: ADD_LIST });
-  let board = getState().boardReducer.currentBoard
+  let board = getState().boardReducer.currentBoard.id
   db.collection('lists').doc(name).set ({
     name: name, 
     board: board, 

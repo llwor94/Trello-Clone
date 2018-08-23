@@ -1,5 +1,5 @@
-import React from 'react';
-import ListModal from '../components/ListModal';
+import React from "react";
+import ListModal from "../components/ListModal";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -34,34 +34,38 @@ const Actions = styled.div`
 
 export default class ListHeader extends React.Component {
   state = {
-    showingModal: false
-  }
+    showingModal: false,
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.handleDelete !== prevProps.handleDelete) {
-      this.setState({ showingModal: false })
+      this.setState({ showingModal: false });
     }
   }
 
   handleClose = e => {
     e.stopPropagation();
-    this.setState({showingModal: false})
-  }
+    this.setState({ showingModal: false });
+  };
 
   handleDelete = () => {
     this.props.handleDelete();
-  }
- 
+  };
 
   render() {
     return (
       <Header>
         <h2>{this.props.name}</h2>
-        <Actions onClick={() => this.setState({showingModal: true})}>
-        ...
-          <ListModal showing={this.state.showingModal} handleClose={this.handleClose} handleDelete={this.handleDelete}/>
+        <Actions onClick={() => this.setState({ showingModal: true })}>
+          ...
+          <ListModal
+            title='List Actions'
+            showing={this.state.showingModal}
+            handleClose={this.handleClose}
+            handleDelete={this.handleDelete}
+          />
         </Actions>
       </Header>
-    )
+    );
   }
 }

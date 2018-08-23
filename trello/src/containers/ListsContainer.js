@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchLists } from "../actions/listActions";
-import ListContainer from "../containers/ListContainer";
+import ListContainer from "./ListContainer";
 import styled from "styled-components";
+import AddListContainer from "./AddListContainer";
 
 const ListWrapper = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ class ListsContainer extends React.Component {
             {this.props.lists.map((list, index) => (
               <ListContainer key={index} list={list} />
             ))}
-            <ListContainer list={null} />
+            <AddListContainer />
           </ListWrapper>
         )}
       </Fragment>

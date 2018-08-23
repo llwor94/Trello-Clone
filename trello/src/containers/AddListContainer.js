@@ -8,7 +8,13 @@ const AddListSelect = styled.div`
   line-height: 24px;
   padding: 8px 0;
   font-weight: normal;
-  color: #8c8c8c;
+  color: hsla(0,0%,100%,.7);
+  width: 272px;
+  flex-shrink: 0;
+  background-color: rgba(0,0,0,.12);
+  margin: 0 5px;
+  border-radius: 3px;
+  cursor: pointer;
 `;
 
 class AddListContainer extends Component {
