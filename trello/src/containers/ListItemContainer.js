@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchItem, deselectItem } from "../actions/itemActions";
+import { listByItem, moveItem } from '../reducers/itemReducer'
 import ListItem from "../components/ListItem";
 import ItemModal from "../components/ItemModal";
 import QuickEditModal from '../components/QuickEditModal'
@@ -9,44 +9,44 @@ class ListItemContainer extends Component {
   state = {
     isHovering: false,
     editModalShowing: false,
+    largeModalShowing: false
   };
 
   componentDidMount() {
     console.log(this.props.list, this.props.item);
   }
 
-  handleLargeModal = () => {
-    this.props.fetchItem(this.props.list.name, this.props.item);
-  };
-
   render() {
     return (
-      <div>
+      <div style={{position: 'relative'}}>
         <ListItem
           item={this.props.item}
-          handleMainClick={this.handleLargeModal}
+          handleMainClick={() => this.setState({ largeModalShowing: true })}
           hovered={this.state.isHovering}
           toggleHover={() => this.setState(prevState => ({isHovering: !prevState.isHovering}))}
           handleEditClick={() => this.setState({editModalShowing: true})}
         />
-        {this.props.currentItem && (
+        
+        
+        {this.state.largeModalShowing && (
           <ItemModal
-            item={this.props.currentItem}
-            handleClose={() => this.props.deselectItem()}
+            handleMove={list => this.props.moveItem(this.props.item, list)}
+            item={this.props.item}
+            list={this.props.list}
+            handleClose={() => this.setState({largeModalShowing: false})}
           />
         )}
         {this.state.editModalShowing &&
-          <QuickEditModal item={this.props.currentItem}/>}
+          <QuickEditModal item={this.props.item}/>}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentItem: state.itemReducer.currentItem,
+const mapStateToProps = (state, ownProps) => ({
+  list: listByItem(state, ownProps.item)
 });
 
 export default connect(
   mapStateToProps,
-  { fetchItem, deselectItem }
 )(ListItemContainer);

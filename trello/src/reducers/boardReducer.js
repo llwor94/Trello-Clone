@@ -1,11 +1,12 @@
-import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS, FETCH_CURRENT_BOARD, CURRENT_BOARD_FETCHED, DISMOUNT_CURRENT_BOARD } from '../actions/boardActions'
+import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS, FETCH_CURRENT_BOARD, CURRENT_BOARD_FETCHED, DISMOUNT_CURRENT_BOARD, FETCHING_COMPLETE } from '../actions/boardActions'
 
 const initialState = {
   fetchingBoards: false,
   addingBoard: false,
   fetchingCurrentBoard: false,
   boards: [],
-  currentBoard: null
+  currentBoard: null,
+  fetchingComplete: false
 }
 
 export const boardReducer = (state = initialState, action) => {
@@ -47,8 +48,10 @@ export const boardReducer = (state = initialState, action) => {
     case DISMOUNT_CURRENT_BOARD:
       return {
         ...state,
-        currentBoard: null
+        currentBoard: null,
+        fetchingComplete: false
       }
+    
     default: 
       return state;
   }

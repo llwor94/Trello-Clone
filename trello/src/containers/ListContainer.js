@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteList } from "../actions/listActions";
+import { filteredItems } from '../reducers/itemReducer'
 import styled from "styled-components";
 import List from "../components/List";
 import ListHeader from '../components/ListHeader';
@@ -21,15 +22,18 @@ class ListContainer extends Component {
       <ListWrapper>
         <Fragment>
           <ListHeader name={this.props.list.name} handleDelete={() => this.props.deleteList(this.props.list.id)} />
-          <List list={this.props.list} />
+          <List items={this.props.items} list={this.props.list} />
         </Fragment>
       </ListWrapper>
     );
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {items: filteredItems(state, ownProps.list)}
+}
 
 export default connect(
-  null,
+  mapStateToProps,
   { deleteList }
 )(ListContainer);

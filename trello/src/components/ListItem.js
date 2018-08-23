@@ -3,6 +3,8 @@ import styled from "styled-components";
 import edit from '../assets/edit.svg'
 
 const StyledItem = styled.div`
+  
+  position: relative;
   min-height: 32px;
   background-color: ${props => (props.hovered ? "#edeff0" : "white")};
   border-radius: 3px;
@@ -18,6 +20,9 @@ const StyledItem = styled.div`
 `;
 
 const Edit = styled.img`
+  position: absolute;
+  top: 2px;
+  right: 2px;
   width: 28px;
   height: 28px;
   padding: 5px;
@@ -34,7 +39,7 @@ const ListItem = ({ item, handleMainClick, hovered, toggleHover, handleEditClick
     onMouseEnter={toggleHover}
     onMouseLeave={toggleHover}
   >
-    <div onClick={handleMainClick} style={{width: '200px'}}>{item}</div>
+    <div onClick={handleMainClick} style={{width: '235px', margin: '5px 0', lineHeight: '17px'}}>{item.name}</div>
     {hovered && <Edit src={edit} onClick={handleEditClick}/> }
   </StyledItem>
 );

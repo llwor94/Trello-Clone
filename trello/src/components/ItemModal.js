@@ -4,6 +4,7 @@ import card from '../assets/card.svg';
 import close from '../assets/close.svg'
 
 const ModalWrapper = styled.div`
+
   position: fixed;
   top: 0;
   left: 0;
@@ -50,12 +51,12 @@ const Title = styled.div`
   }
 `
 
-const ItemModal = ({item, handleClose}) => (
+const ItemModal = ({list, item, handleClose}) => (
   <ModalWrapper>
     <ModalContent>
     <Close src={close} onClick={handleClose}/>
       <ModalHeader>
-      <Icon src={card} /><Title><h2>{item.name}</h2><p>in list {item.list}</p></Title>
+      <Icon src={card} /><Title><h2>{item.name}</h2><p>in list <u>{list.name}</u></p></Title>
       </ModalHeader>
     </ModalContent>
   </ModalWrapper>

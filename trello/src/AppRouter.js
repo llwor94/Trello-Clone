@@ -24,13 +24,14 @@ injectGlobal`
   }
 `
 const AppWrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  background-image: ${props => props.background ? 'url(' + background +')' : 'none'};
   
+  height: 100%;
+  min-width: 100%;
+  background-image: ${props => props.background ? 'url(' + background +')' : 'none'};
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-origin: border-box;
+  
 `
  class AppRouter extends React.Component { 
   render() {

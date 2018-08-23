@@ -67,7 +67,7 @@ const Form = ({handleChange, handleSubmit, inputValue, type, handleClose }) => {
 
       <StyledForm type={type} onSubmit={handleSubmit}>
         { type === 'Card' ? 
-        <TextArea ><textarea style={{display: 'block', width: '100%', border: 'none', minHeight: '54px', marginBottom: '4px'}}type="text" onChange={handleChange} value={inputValue} placeholder='Enter a title for this card...' /></TextArea>
+        <TextArea ><textarea style={{display: 'block', width: '100%', border: 'none', minHeight: '54px', marginBottom: '4px', outline: 'none'}}type="text" onChange={handleChange} value={inputValue} placeholder='Enter a title for this card...' /></TextArea>
         : <Input type="text" onChange={handleChange} value={inputValue} placeholder='Enter list title...' />
         }
         <ButtonWrapper type={type}>

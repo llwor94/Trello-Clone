@@ -12,7 +12,7 @@ export const CLEAR_LIST = 'CLEAR_LIST';
 export const fetchLists = () => (dispatch, getState) => {
   dispatch({ type: FETCH_LISTS });
   let board = getState().boardReducer.currentBoard.id
-  db.collection('lists').where('board', '==', board)
+  db.collection('lists').where('board', '==', board.toString())
     .orderBy('timestamp')
     .onSnapshot(querySnapshot => {
       dispatch({

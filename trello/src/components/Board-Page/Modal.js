@@ -49,7 +49,8 @@ const Close = styled.img`
   float: right;
   cursor: pointer;
   color: white;
-  height: 20px;
+  height: 23px;
+  fill: white;
 `;
 
 const Button = styled.input`

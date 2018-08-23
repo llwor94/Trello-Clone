@@ -1,5 +1,6 @@
 import db from '../firebase'
 import { fetchLists } from './listActions'
+import { fetchItems } from './itemActions'
 
 export const FETCH_BOARDS = 'FETCH_BOARDS';
 export const BOARD_FETCH_SUCCESS = 'BOARD_FETCH_SUCCESS';
@@ -8,7 +9,8 @@ export const BOARD_ADD_SUCCESS = 'BOARD_ADD_SUCCESS';
 export const FETCH_CURRENT_BOARD = 'FETCH_CURRENT_BOARD';
 export const CURRENT_BOARD_FETCHED = 'CURRENT_BOARD_FETCHED';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
-export const DISMOUNT_CURRENT_BOARD = 'DISMOUNT_CURRENT_BOARD'
+export const DISMOUNT_CURRENT_BOARD = 'DISMOUNT_CURRENT_BOARD';
+export const FETCHING_COMPLETE = 'FETCHING_COMPLETE';
 
 export const fetchBoards = () => dispatch => {
   dispatch({ type: FETCH_BOARDS });
@@ -45,6 +47,7 @@ export const getCurrentBoard = id => dispatch => {
       console.log('current board', doc.data())
       dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() })
       dispatch(fetchLists())
+      dispatch(fetchItems())
     })
 }
 

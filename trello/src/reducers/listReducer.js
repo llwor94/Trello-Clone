@@ -1,4 +1,5 @@
 import { FETCH_LISTS, LIST_FETCH_SUCCESS, ADD_LIST, ADD_LIST_SUCCESS, CLEAR_LIST, DELETING_LIST, LIST_DELETED, } from '../actions/listActions';
+import {DISMOUNT_CURRENT_BOARD} from '../actions/boardActions'
 
 const initialState = {
   fetchingLists: false,
@@ -49,12 +50,11 @@ export const listReducer = (state = initialState, action) => {
         listDeleted: true,
         deletingList: false,
       }
-    case CLEAR_LIST:
+    case DISMOUNT_CURRENT_BOARD:
       return {
         ...state,
-        lists: [],
+        lists: []
       }
-    
     default:
       return state;
   }

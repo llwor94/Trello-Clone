@@ -3,12 +3,12 @@ import ListItemContainer from "../containers/ListItemContainer";
 import AddCardContainer from "../containers/AddCardContainer";
 
 
-const List = ({ list }) => {
+const List = ({ items, list }) => {
   return (
     <Fragment>
-      {list.items &&
-        list.items.map((item, index) => <ListItemContainer key={index} item={item} list={list}/>)}
-      <AddCardContainer list={list} />
+      
+        {items.map(item => <ListItemContainer key={item.id} item={item}/>)}
+      <AddCardContainer items={items} list={list} />
     </Fragment>
   );
 };

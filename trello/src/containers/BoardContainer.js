@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { getBoardIfNeeded, updateBoardName } from "../actions/boardActions";
 import { clearList, getListsIfNeeded } from "../actions/listActions";
+import { dismountCurrentBoard } from '../actions/boardActions'
 import ListsContainer from "../containers/ListsContainer";
 import BoardHeader from "../components/BoardHeader";
 import styled from "styled-components";
@@ -22,6 +23,10 @@ class BoardContainer extends React.Component {
     console.log('mounted');
     this.props.getBoardIfNeeded(this.props.match.params.id);
   }
+
+  // componentWillUnmount() {
+  //   this.props.dismountCurrentBoard();
+  // }
 
   handleChangeBoardName = value => {
     this.props.updateBoardName(value);
@@ -51,5 +56,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBoardIfNeeded, clearList, updateBoardName, getListsIfNeeded }
+  { getBoardIfNeeded, clearList, updateBoardName, getListsIfNeeded, dismountCurrentBoard }
 )(BoardContainer);

@@ -23,14 +23,15 @@ class AddCardContainer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.itemAdded !== prevProps.itemAdded && this.props.itemAdded) {
+    if (this.props.items !== prevProps.items) {
       this.setState({selected: false, value: ''})
     }
   }
 
   addNewCard = e => {
     e.preventDefault();
-    this.props.addItem(this.state.value, this.props.list);
+    console.log(this.props.list.name, this.state.value)
+    this.props.addItem(this.props.list.id, this.state.value);
   };
 
 
@@ -38,7 +39,7 @@ class AddCardContainer extends Component {
     if (!this.state.selected) {
       return (
         <AddCardSelect onClick={() => this.setState({ selected: true })}>
-          {this.props.list.items ? "+ Add another card" : "+ Add a card"}
+          {this.props.items ? "+ Add another card" : "+ Add a card"}
         </AddCardSelect>
       );
     }
@@ -56,7 +57,7 @@ class AddCardContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  itemAdded: state.listReducer.itemAdded
+  items: state.itemReducer.items
 });
 
 export default connect(

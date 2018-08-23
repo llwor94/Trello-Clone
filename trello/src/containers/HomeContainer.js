@@ -26,7 +26,7 @@ class HomeContainer extends React.Component {
     if (this.props.boards !== prevProps.boards) {
       this.setState({showingModal: false, title: ''})
     }
-    if (this.props.listsFetched !== prevProps.listsFetched) {
+    if (this.props.fetchingItems !== prevProps.fetchingItems && !this.props.fetchingItems) {
       this.props.history.push(`/board/${this.props.currentBoard.id}`)
     }
   }
@@ -69,7 +69,7 @@ const mapStateToProps = state => ({
   fetchingBoards: state.boardReducer.fetchingBoards,
   boardAdded: state.boardReducer.addingBoardSuccess,
   currentBoard: state.boardReducer.currentBoard,
-  listsFetched: state.listReducer.fetchingListsSuccess
+  fetchingItems: state.itemReducer.fetchingItems
 });
 
 export default connect(
