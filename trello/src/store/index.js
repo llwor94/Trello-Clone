@@ -12,7 +12,7 @@ export default () => {
       listReducer,
       itemReducer
     }),
-    applyMiddleware(logger, thunk)
+    applyMiddleware(thunk, logger)
   )
   return store;
 }

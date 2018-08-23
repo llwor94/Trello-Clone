@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import { Link } from 'react-router-dom';
 import BoardCard from './BoardCard';
 import user from '../assets/user-regular.svg';
 import styled from 'styled-components';
@@ -18,16 +17,16 @@ const BoardsWrapper = styled.div`
   width: 100%;
 `
 
-const Boards = ({ boards }) => (
+const Boards = ({ boards, handleRoute }) => (
   <Fragment>
   <BoardHeader>
     <StyledIcon src= {user} /><h4>Personal Boards</h4>
     </BoardHeader>
     <BoardsWrapper>
     {boards.map((board, index) => (
-      <Link key={index} to={`/board/${board.name}`}>
-        <BoardCard text={board.name} createNew={false}/>
-      </Link> 
+      
+        <BoardCard key={index} handleClick={() => handleRoute(board.name)} text={board.name} createNew={false}/>
+      
     ))}
     </BoardsWrapper>
   </Fragment>

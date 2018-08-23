@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchLists } from "../actions/listActions";
 import ListContainer from "../containers/ListContainer";
@@ -13,24 +13,29 @@ const ListWrapper = styled.div`
 `;
 
 class ListsContainer extends React.Component {
-  componentDidMount() {
-    this.props.fetchLists();
-  }
+  // componentDidMount() {
+  //   this.props.fetchLists();
+  // }
 
   render() {
     return (
-      <ListWrapper>
-        {this.props.lists.map((list, index) => (
-          <ListContainer key={index} list={list} />
-        ))}
-        <ListContainer list={null} />
-      </ListWrapper>
+      <Fragment>
+        {this.props.listsFetched && (
+          <ListWrapper>
+            {this.props.lists.map((list, index) => (
+              <ListContainer key={index} list={list} />
+            ))}
+            <ListContainer list={null} />
+          </ListWrapper>
+        )}
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
   lists: state.listReducer.lists,
+  listsFetched: state.listReducer.fetchingListsSuccess,
 });
 
 export default connect(

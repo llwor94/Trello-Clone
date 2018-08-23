@@ -26,7 +26,8 @@ export const boardReducer = (state = initialState, action) => {
           ...action.payload
         ],
         fetchingBoards: false,
-        fetchingBoardsSuccess: true
+        fetchingBoardsSuccess: true,
+        currentBoard: null,
       };
     case ADD_BOARD:
       return {

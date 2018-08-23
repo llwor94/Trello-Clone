@@ -13,8 +13,8 @@ const BoardCardWrapper = styled.div`
   padding: 8px;
 `
 
-const BoardCard = ({ text, createNew }) => (
-  <BoardCardWrapper createNew={createNew}>
+const BoardCard = ({ text, createNew, handleClick }) => (
+  <BoardCardWrapper onClick={handleClick} createNew={createNew}>
     {text}
   </BoardCardWrapper>
 )

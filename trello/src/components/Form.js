@@ -27,6 +27,7 @@ const Input = TextArea.withComponent('input').extend`
   height: initial;
   box-shadow: 0 0 2px #298fca;
   margin-top: 7px;
+  padding: 9px 8px;
 `
 
 const Button = styled.input`

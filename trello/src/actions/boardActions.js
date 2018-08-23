@@ -29,13 +29,26 @@ export const addBoard = title => dispatch => {
     })
 }
 
-export const getCurrentBoard = name => dispatch => {
+export const getCurrentBoard = name => dispatch => { 
+  dispatch({ type: FETCH_CURRENT_BOARD })
   let docRef = db.collection('boards').doc(name);
-  dispatch({ type: FETCH_BOARDS })
   docRef.get()
     .then(doc => {
       if (doc.exists) {
         dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() })
       }
     })
+}
+
+export const getBoardIfNeeded = (name) => (dispatch, getState) => {
+  if (shouldFetchBoard(getState())) {
+    return dispatch(getCurrentBoard(name))
+  }
+}
+
+const shouldFetchBoard = (state) => {
+  const board = state.boardReducer.currentBoard;
+  if (!board) {
+    return true;
+  } else return false
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchBoards, addBoard } from "../actions/boardActions";
+import { fetchBoards, addBoard, getCurrentBoard } from "../actions/boardActions";
+import { fetchLists } from '../actions/listActions';
 import Boards from "../components/Boards";
 import BoardCard from "../components/BoardCard";
 import styled from "styled-components";
@@ -25,10 +26,20 @@ class HomeContainer extends React.Component {
     if (this.props.boardAdded !== prevProps.boardAdded) {
       this.setState({showingModal: false, title: ''})
     }
+    if (this.props.currentBoard !== prevProps.currentBoard && this.props.currentBoard) {
+      this.props.fetchLists();
+    }
+    if (this.props.listsFetched !== prevProps.listsFetched && this.props.listsFetched) {
+      this.props.history.push(`/board/${this.props.currentBoard}`)
+    }
   }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  handleRoute = (name) => {
+    this.props.getCurrentBoard(name);
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -49,7 +60,7 @@ class HomeContainer extends React.Component {
         {this.props.fetchingBoards ? (
           <p> ur boards b coming </p>
         ) : (
-          <Boards boards={this.props.boards} />
+          <Boards handleRoute={this.handleRoute} boards={this.props.boards} />
         )}
         <div onClick={this.showModal}>
         <BoardCard
@@ -72,10 +83,12 @@ class HomeContainer extends React.Component {
 const mapStateToProps = state => ({
   boards: state.boardReducer.boards,
   fetchingBoards: state.boardReducer.fetchingBoards,
-  boardAdded: state.boardReducer.addingBoardSuccess
+  boardAdded: state.boardReducer.addingBoardSuccess,
+  currentBoard: state.boardReducer.currentBoard,
+  listsFetched: state.listReducer.fetchingListsSuccess
 });
 
 export default connect(
   mapStateToProps,
-  { fetchBoards, addBoard }
+  { fetchBoards, addBoard, getCurrentBoard, fetchLists }
 )(HomeContainer);

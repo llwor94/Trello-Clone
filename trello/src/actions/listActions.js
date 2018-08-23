@@ -12,10 +12,11 @@ export const SINGLE_LIST_FETCHED = 'SINGLE_LIST_FETCHED';
 export const FETCHING_COMPLETE = 'FETCHING_COMPLETE';
 export const DELETING_LIST = 'DELETING_LIST';
 export const LIST_DELETED = 'LIST_DELETED';
+export const CLEAR_LIST = 'CLEAR_LIST';
 
 export const fetchLists = () => (dispatch, getState) => {
-  let board = getState().boardReducer.currentBoard
   dispatch({ type: FETCH_LISTS });
+  let board = getState().boardReducer.currentBoard
   db.collection('lists').where('board', '==', board)
     .orderBy('timestamp')
     .get()
@@ -28,9 +29,8 @@ export const fetchLists = () => (dispatch, getState) => {
 }
 
 export const addList = name => (dispatch, getState) => {
-  let board = getState().boardReducer.currentBoard
   dispatch({ type: ADD_LIST });
-  console.log(name, board)
+  let board = getState().boardReducer.currentBoard
   db.collection('lists').doc(name).set ({
     name: name, 
     board: board, 
@@ -44,8 +44,8 @@ export const addList = name => (dispatch, getState) => {
 }
  
 export const fetchList = name => dispatch => {
-  let docRef = db.collection('lists').doc(name);
   dispatch({ type: FETCH_LIST })
+  let docRef = db.collection('lists').doc(name);
   docRef.get()
     .then(doc => {
       if (doc.exists) {
@@ -66,4 +66,21 @@ export const deleteList = name => dispatch => {
     .then(() => {
       dispatch((fetchLists()))
     })
+}
+
+export const clearList = () => ({
+  type: CLEAR_LIST
+})
+
+export const getListsIfNeeded = () => (dispatch, getState) => {
+  if (shouldFetchLists(getState())) {
+    return dispatch(fetchLists())
+  }
+}
+
+const shouldFetchLists = (state) => {
+  const listsFetched = state.listReducer.fetchingListsSuccess;
+  if (!listsFetched) {
+    return true;
+  } else return false
 }
