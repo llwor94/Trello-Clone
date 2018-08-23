@@ -14,6 +14,7 @@ const BoardHeader = styled.div`
 `;
 const BoardsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 `;
 

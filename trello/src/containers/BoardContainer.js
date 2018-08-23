@@ -1,11 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { getBoardIfNeeded } from "../actions/boardActions";
-import {
-  clearList,
-  fetchLists,
-  getListsIfNeeded,
-} from "../actions/listActions";
+import { getBoardIfNeeded, updateBoardName } from "../actions/boardActions";
+import { clearList, getListsIfNeeded } from "../actions/listActions";
 import ListsContainer from "../containers/ListsContainer";
 import BoardHeader from "../components/BoardHeader";
 import styled from "styled-components";
@@ -23,42 +19,33 @@ class BoardContainer extends React.Component {
     showingModal: false,
   };
   componentDidMount() {
-    this.props.getBoardIfNeeded(this.props.match.params.name);
-    this.props.getListsIfNeeded();
-    window.addEventListener("beforeunload", this.componentCleanUp);
+    console.log('mounted');
+    this.props.getBoardIfNeeded(this.props.match.params.id);
+    // window.addEventListener("beforeunload", this.componentCleanUp);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.boardFetched !== prevProps.boardFetched &&
-      this.props.boardFetched
-    ) {
-      this.props.getListsIfNeeded();
-    }
-  }
+  // componentWillUnmount() {
+  //   this.props.clearList();
+  //   window.removeEventListener("beforeunload", this.componentCleanUp);
+  // }
 
-  componentWillUnmount() {
-    this.props.clearList();
-    window.removeEventListener("beforeunload", this.componentCleanUp);
-  }
+  // componentCleanUp = () => {
+  //   this.props.clearList();
+  // };
 
-  componentCleanUp = () => {
-    this.props.clearList();
+  handleChangeBoardName = value => {
+    this.props.updateBoardName(value);
   };
 
-  handleChangeBoardName = () => {
-
-  }
-
   render() {
+    console.log("rendered");
     return (
       <Fragment>
-        {this.props.boardFetched &&
-          this.props.listsFetched && (
+        {this.props.board && (
             <BoardWrapper>
               <BoardHeader
                 changeName={this.handleChangeBoardName}
-                board={this.props.board}
+                board={this.props.board.name}
               />
               <ListsContainer />
             </BoardWrapper>
@@ -70,11 +57,9 @@ class BoardContainer extends React.Component {
 
 const mapStateToProps = state => ({
   board: state.boardReducer.currentBoard,
-  boardFetched: state.boardReducer.fetchingCurrentBoardSuccess,
-  listsFetched: state.listReducer.fetchingListsSuccess,
 });
 
 export default connect(
   mapStateToProps,
-  { getBoardIfNeeded, clearList, fetchLists, getListsIfNeeded }
+  { getBoardIfNeeded, clearList, updateBoardName, getListsIfNeeded }
 )(BoardContainer);

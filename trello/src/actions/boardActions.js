@@ -7,6 +7,7 @@ export const ADD_BOARD = 'ADD_BOARD';
 export const BOARD_ADD_SUCCESS = 'BOARD_ADD_SUCCESS';
 export const FETCH_CURRENT_BOARD = 'FETCH_CURRENT_BOARD';
 export const CURRENT_BOARD_FETCHED = 'CURRENT_BOARD_FETCHED';
+export const UPDATE_BOARD = 'UPDATE_BOARD';
 export const DISMOUNT_CURRENT_BOARD = 'DISMOUNT_CURRENT_BOARD'
 
 export const fetchBoards = () => dispatch => {
@@ -38,30 +39,23 @@ export const addBoard = title => dispatch => {
 }
 
 export const getCurrentBoard = id => dispatch => { 
-  dispatch({ type: FETCH_CURRENT_BOARD })
-  let docRef = db.collection('boards').doc(id);
-  docRef.get()
-    .then(doc => {
-      if (doc.exists) {
-        console.log('current board', doc.id)
-        dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() })
-      }
-    })
-    .then(() => dispatch(fetchLists()))
-    .catch(error => {
-      console.log('Error getting documents', error)
+  dispatch({ type: FETCH_CURRENT_BOARD });
+  let query = db.collection('boards').doc(id);
+    query.onSnapshot(doc => {
+      console.log('current board', doc.data())
+      dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() })
+      dispatch(fetchLists())
     })
 }
 
-// export const updateBoardName = newName => (dispatch, getState) => {
-//   dispatch({ type: UPDATE_BOARD })
-//   let board = getState().boardReducer.currentBoard;
-//   let boardRef = db.collection('boards').doc(board);
-//   boardRef.get()
-//   .then(doc => {
-//     let data = doc.data();
-//     db.collection('lists').doc(newName)
-//   }) }
+export const updateBoardName = newName => (dispatch, getState) => {
+  dispatch({ type: UPDATE_BOARD })
+  let board = getState().boardReducer.currentBoard.id;
+  let boardRef = db.collection('boards').doc(board);
+  boardRef
+    .update({ name: newName })
+    .then(() => console.log(boardRef))
+   }
 
 export const getBoardIfNeeded = id => (dispatch, getState) => {
   if (shouldFetchBoard(getState())) {

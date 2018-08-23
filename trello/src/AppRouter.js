@@ -35,8 +35,8 @@ const AppWrapper = styled.div`
  class AppRouter extends React.Component { 
   render() {
   let boardPage = false;
-   if (matchPath(this.props.location.pathname, { path: '/board/:name' })) {
-    matchPath(this.props.location.pathname, { path: '/board/:name' }).isExact && (boardPage = true);
+   if (matchPath(this.props.location.pathname, { path: '/board/:id' })) {
+    matchPath(this.props.location.pathname, { path: '/board/:id' }).isExact && (boardPage = true);
    }
   return (
   
@@ -44,7 +44,7 @@ const AppWrapper = styled.div`
       <Header transparent={boardPage}/>
       <Switch>
         <Route exact path='/' component={HomeContainer} />
-        <Route exact path='/board/:name' component={BoardContainer} />
+        <Route exact path='/board/:id' component={BoardContainer} />
       </Switch>
     </AppWrapper>
   

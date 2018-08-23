@@ -21,14 +21,14 @@ class ListsContainer extends React.Component {
   render() {
     return (
       <Fragment>
-        {this.props.listsFetched && (
+        {/* {this.props.listsFetched && ( */}
           <ListWrapper>
             {this.props.lists.map((list, index) => (
               <ListContainer key={index} list={list} />
             ))}
             <AddListContainer />
           </ListWrapper>
-        )}
+        {/* )} */}
       </Fragment>
     );
   }
@@ -36,7 +36,6 @@ class ListsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   lists: state.listReducer.lists,
-  listsFetched: state.listReducer.fetchingListsSuccess,
 });
 
 export default connect(

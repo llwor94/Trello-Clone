@@ -27,7 +27,7 @@ class HomeContainer extends React.Component {
       this.setState({showingModal: false, title: ''})
     }
     if (this.props.listsFetched !== prevProps.listsFetched) {
-      this.props.history.push(`/board/${this.props.currentBoard}`)
+      this.props.history.push(`/board/${this.props.currentBoard.id}`)
     }
   }
 

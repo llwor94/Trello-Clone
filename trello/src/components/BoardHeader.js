@@ -30,6 +30,8 @@ class BoardHeader extends Component {
     this.setState({ showingModal: false });
   }; 
 
+
+
   render() {
     return (
       <Header onClick={() => this.setState({ showingModal: true })}>
@@ -37,9 +39,9 @@ class BoardHeader extends Component {
         {this.state.showingModal && (
           <ListModal
             handleClose={this.handleClose}
-            handleSubmit={e => (
-              e.preventDefault(), this.props.changeName(this.state.value)
-            )}
+            handleSubmit={e => {
+              e.preventDefault(); this.props.changeName(this.state.value)
+            }}
             value={this.state.value}
             handleChange={e => this.setState({ value: e.target.value })}
             title="Rename Board"

@@ -31,40 +31,23 @@ export const fetchLists = () => (dispatch, getState) => {
 export const addList = name => (dispatch, getState) => {
   dispatch({ type: ADD_LIST });
   let board = getState().boardReducer.currentBoard.id
-  db.collection('lists').doc(name).set ({
+  let listRef = db.collection('lists').doc();
+  listRef
+    .set({
+    id: listRef.id,
     name: name, 
     board: board, 
     timestamp: firebase.firestore.FieldValue.serverTimestamp()})
     .then(() => {
       dispatch({ type: ADD_LIST_SUCCESS })
     })
-    .then(() => {
-      dispatch(fetchLists(board))
-    })
 }
  
-export const fetchList = name => dispatch => {
-  dispatch({ type: FETCH_LIST })
-  let docRef = db.collection('lists').doc(name);
-  docRef.get()
-    .then(doc => {
-      if (doc.exists) {
-        dispatch({ type: SINGLE_LIST_FETCHED, payload: doc.data() })
-      }
-    })
-    .then(() => {
-      dispatch({ type: FETCHING_COMPLETE })
-    })
-}
-
-export const deleteList = name => dispatch => {
+export const deleteList = id => dispatch => {
   dispatch({ type: DELETING_LIST})
-  db.collection('lists').doc(name).delete()
+  db.collection('lists').doc(id).delete()
     .then(() => {
       dispatch({ type: LIST_DELETED })
-    })
-    .then(() => {
-      dispatch((fetchLists()))
     })
 }
 
@@ -79,8 +62,8 @@ export const getListsIfNeeded = () => (dispatch, getState) => {
 }
 
 const shouldFetchLists = (state) => {
-  const listsFetched = state.listReducer.fetchingListsSuccess;
-  if (!listsFetched) {
+  const lists = state.listReducer.fetchingLists;
+  if (!lists.length) {
     return true;
   } else return false
 }
