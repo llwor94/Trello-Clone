@@ -18,8 +18,8 @@ class ListsContainer extends React.Component {
     return (
       <Fragment>
         <ListWrapper>
-          {this.props.lists.map((list, index) => (
-            <ListContainer key={index} list={list} />
+          {this.props.lists.map(list => (
+            <ListContainer key={list.id} list={list} />
           ))}
           <AddListContainer />
         </ListWrapper>

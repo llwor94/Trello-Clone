@@ -3,6 +3,7 @@ import { addList } from "../actions/listActions";
 import Form from "../components/Form";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import create from '../assets/create.svg';
 
 const AddListSelect = styled.div`
   line-height: 24px;
@@ -17,6 +18,12 @@ const AddListSelect = styled.div`
   cursor: pointer;
 `;
 
+const Img = styled.img`
+  display: inline;
+  height: 17px;
+  padding-top: 5px;
+`
+
 class AddListContainer extends Component {
   state = {
     selected: false,
@@ -24,7 +31,7 @@ class AddListContainer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.listAdded !== prevProps.listAdded && this.props.listAdded) {
+    if (this.props.lists !== prevProps.lists) {
       this.setState({ selected: false, value: "" });
     }
   }
@@ -38,11 +45,10 @@ class AddListContainer extends Component {
     if (!this.state.selected) {
       return (
         <AddListSelect
-          style={{ paddingLeft: "6px" }}
+          style={{ paddingLeft: "10px" }}
           onClick={() => this.setState({ selected: true })}
         >
-          {" "}
-          &#x0002B; Add another list
+          <Img src={create} /> Add another list
         </AddListSelect>
       );
     }
@@ -61,7 +67,7 @@ class AddListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  listAdded: state.listReducer.listAdded,
+  lists: state.listReducer.lists,
 });
 
 export default connect(
