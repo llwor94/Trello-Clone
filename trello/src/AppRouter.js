@@ -42,14 +42,15 @@ const AppWrapper = styled.div`
     matchPath(this.props.location.pathname, { path: '/board/:id' }).isExact && (boardPage = true);
    }
   return (
-  
+    <div>
+    <Header transparent={boardPage}/>
     <AppWrapper background={boardPage}>
-      <Header transparent={boardPage}/>
       <Switch>
         <Route exact path='/' component={HomeContainer} />
         <Route exact path='/board/:id' component={BoardContainer} />
       </Switch>
     </AppWrapper>
+    </div>
   
   
 )}};

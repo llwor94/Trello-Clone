@@ -1,45 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
 import card from '../assets/card.svg';
-import close from '../assets/close.svg'
+import close from '../assets/close.svg';
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: flex-start;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
-  background: rgba(73, 73, 73, 0.418);
+  background: rgba(0,0,0,.6);
   cursor: default;
   z-index: 1000
-`
+`;
 const ModalContent = styled.section`
-  position: absolute;
-  top:30px;
-  left:50vw;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  top: 30px;
+  margin: 0;
   width: 768px;
-  min-height: 600px;
+  height: 600px;
   text-align: left;
   background-color: #eaecee;
   border-radius: 3px;
   padding: 16px 6px 16px 16px;
-  z-index: 1000;
-`
+`;
 
 const ModalHeader = styled.div`
   display: flex;
-`
+`;
 
 const Icon = styled.img`
   height: 24px;
   color: #999;
   padding-right: 13px;
-`
+`;
 const Close = Icon.extend`
   float: right;
   height: 30px;
   cursor: pointer;
-`
+`;
 
 const Title = styled.div`
   h2 {
@@ -50,7 +56,7 @@ const Title = styled.div`
   p {
     color: #8c8c8c;
   }
-`
+`;
 
 const ItemModal = ({list, item, handleClose}) => (
   <ModalWrapper>
