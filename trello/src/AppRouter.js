@@ -31,6 +31,8 @@ const AppWrapper = styled.div`
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  will-change: transform;
+  position: absolute;
   
 `
  class AppRouter extends React.Component { 

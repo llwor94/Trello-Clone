@@ -5,6 +5,7 @@ import edit from '../assets/edit.svg'
 const StyledItem = styled.div`
   
   position: relative;
+  z-index: 0;
   min-height: 32px;
   background-color: ${props => (props.hovered ? "#edeff0" : "white")};
   border-radius: 3px;

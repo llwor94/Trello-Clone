@@ -4,25 +4,26 @@ import card from '../assets/card.svg';
 import close from '../assets/close.svg'
 
 const ModalWrapper = styled.div`
-
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width:100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(73, 73, 73, 0.418);
   cursor: default;
+  z-index: 1000
 `
 const ModalContent = styled.section`
   position: absolute;
   top:30px;
-  left:29%;
+  left:50vw;
   width: 768px;
   min-height: 600px;
   text-align: left;
   background-color: #eaecee;
   border-radius: 3px;
   padding: 16px 6px 16px 16px;
+  z-index: 1000;
 `
 
 const ModalHeader = styled.div`

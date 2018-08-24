@@ -18,7 +18,7 @@ class ListItemContainer extends Component {
 
   render() {
     return (
-      <div style={{position: 'relative'}}>
+      <div>
         <ListItem
           item={this.props.item}
           handleMainClick={() => this.setState({ largeModalShowing: true })}
