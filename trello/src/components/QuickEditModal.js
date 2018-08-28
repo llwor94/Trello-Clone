@@ -1,5 +1,7 @@
 import React from "react";
 import close from "../assets/close.svg";
+import garbage from "../assets/garbage.svg";
+import arrow from "../assets/arrow.svg";
 import styled from "styled-components";
 
 const ContentContainer = styled.div`
@@ -79,6 +81,12 @@ const QuickEditItem = styled.div`
   float: left;
   margin-bottom: 4px;
   padding: 6px 12px 6px 8px;
+  img {
+    height: 15px;
+    color: white;
+    padding: 0 5px 0 0;
+    display: inline-block;
+  }
 `;
 class QuickEditModal extends React.Component {
   componentDidMount() {
@@ -99,9 +107,9 @@ class QuickEditModal extends React.Component {
             <Button type="submit" value="Save" />
           </Form>
           <QuickEdit>
-            <QuickEditItem>Move</QuickEditItem>
+            <QuickEditItem> <img src={arrow} /><span style={{paddingBottom: '5px', color: 'white'}}>Move</span></QuickEditItem>
             <QuickEditItem onClick={this.props.handleDelete}>
-              Delete
+              <img src={garbage} /> <span style={{paddingBottom: '5px', color: 'white'}}>Delete</span>
             </QuickEditItem>
           </QuickEdit>
         </Content>

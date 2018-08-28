@@ -30,10 +30,11 @@ class ListItemContainer extends Component {
 
   onDragStart = (e, id) => {
     e.dataTransfer.setData('id', id);
+    this.setState({isDragging: true})
   }
 
-  onDrag = () => {
-
+  onDrop = () => {
+    this.setState({isDragging: false})
   }
 
   render() {
@@ -46,7 +47,7 @@ class ListItemContainer extends Component {
             handleMainClick={() => this.largeModalShowing}
             handleEditClick={this.handleItemClick}
             onDragStart={this.onDragStart}
-            onDrag={this.onDrag}
+            onDrop={this.onDrop}
           />
 
           {this.state.largeModalShowing && (

@@ -6,7 +6,7 @@ const StyledItem = styled.div`
   position: relative;
   z-index: 0;
   min-height: 32px;
-  background-color: ${props => props.isDragging ? '#8c8c8c' : 'white'};
+  background-color: white; 
   border-radius: 3px;
   box-shadow: 0 1px 0 #ccc;
   margin: 0 8px 8px;
@@ -19,9 +19,9 @@ const StyledItem = styled.div`
   justify-content: space-between;
 
   &:hover {
-    background-color: #edeff0;
+    background-color: ${props => props.isDragging ? '#8c8c8c' : '#edeff0'};
     img {
-      opacity: 1;
+      opacity: ${props => props.isDragging ? '0' : '1'};
     }
   }
 `;
@@ -42,8 +42,8 @@ const Edit = styled.img`
   }
 `
 
-const ListItem = ({ item, handleMainClick, handleEditClick, onDragStart, onDrag, isDragging }) => (
-  <StyledItem isDragging={isDragging} draggable onDrag={onDrag} onDragStart={e => onDragStart(e, item.id)}>
+const ListItem = ({ item, handleMainClick, handleEditClick, onDragStart, onDrop, isDragging }) => (
+  <StyledItem isDragging={isDragging} draggable onDrop={onDrop} onDragStart={e => onDragStart(e, item.id)}>
     <div onClick={handleMainClick} style={{width: '235px', margin: '5px 0', lineHeight: '17px'}}>{item.name}</div>
      <Edit src={edit} onClick={handleEditClick}/> 
   </StyledItem>
