@@ -8,12 +8,12 @@ import QuickEditModal from "../components/QuickEditModal";
 
 class ListItemContainer extends Component {
   state = {
-    isHovering: false,
     editModalShowing: false,
     largeModalShowing: false,
     top: "",
     left: "",
   };
+
 
   handleItemClick = () => {
     let position = this.node.getBoundingClientRect();
@@ -34,12 +34,6 @@ class ListItemContainer extends Component {
           <ListItem
             item={this.props.item}
             handleMainClick={() => this.largeModalShowing}
-            hovered={this.state.isHovering}
-            toggleHover={() =>
-              this.setState(prevState => ({
-                isHovering: !prevState.isHovering,
-              }))
-            }
             handleEditClick={this.handleItemClick}
           />
 

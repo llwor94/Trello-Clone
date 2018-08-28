@@ -6,7 +6,7 @@ const StyledItem = styled.div`
   position: relative;
   z-index: 0;
   min-height: 32px;
-  background-color: ${props => (props.hovered ? "#edeff0" : "white")};
+  background-color: white;
   border-radius: 3px;
   box-shadow: 0 1px 0 #ccc;
   margin: 0 8px 8px;
@@ -17,9 +17,18 @@ const StyledItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &:hover {
+    background-color: #edeff0;
+    img {
+      opacity: 1;
+    }
+  }
 `;
 
 const Edit = styled.img`
+  transition: all .3s;
+  opacity: 0;
   position: absolute;
   top: 2px;
   right: 2px;
@@ -33,14 +42,10 @@ const Edit = styled.img`
   }
 `
 
-const ListItem = ({ item, handleMainClick, hovered, toggleHover, handleEditClick }) => (
-  <StyledItem
-    hovered={hovered}
-    onMouseEnter={toggleHover}
-    onMouseLeave={toggleHover}
-  >
+const ListItem = ({ item, handleMainClick, handleEditClick }) => (
+  <StyledItem>
     <div onClick={handleMainClick} style={{width: '235px', margin: '5px 0', lineHeight: '17px'}}>{item.name}</div>
-    {hovered && <Edit src={edit} onClick={handleEditClick}/> }
+     <Edit src={edit} onClick={handleEditClick}/> 
   </StyledItem>
 );
 

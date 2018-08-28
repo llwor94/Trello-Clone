@@ -70,38 +70,54 @@ const QuickEdit = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 8px;
-`
+`;
 
 const QuickEditItem = styled.div`
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   color: #e6e6e6;
   float: left;
   margin-bottom: 4px;
   padding: 6px 12px 6px 8px;
-`
-const QuickEditModal = ({ item, top, left, handleClick, handleDelete }) => (
-  <ContentContainer>
-    <Content top={`${top}px`} left={`${left}px`}>
-      <Form>
-        <Input>
-          <TextArea value={item.name}/>
-        </Input>
-        <Button type="submit" value="Save" />
-      </Form>
-      <QuickEdit>
-        <QuickEditItem>Move</QuickEditItem>
-        <QuickEditItem onClick={handleDelete}>Delete</QuickEditItem>
-      </QuickEdit>
-    </Content>
-    <img
-      src={close}
-      style={{ float: "right", height: "30px", cursor: "pointer", marginTop: '45px' }}
-      onClick={handleClick}
-    />
-      
-    
-  </ContentContainer>
-);
+`;
+class QuickEditModal extends React.Component {
+  componentDidMount() {
+    this.ref.focus();
+  }
+  render() {
+    return (
+      <ContentContainer onClick={this.props.handleClick}>
+        <Content onClick={e => e.stopPropagation()} top={`${this.props.top}px`} left={`${this.props.left}px`}>
+          <Form>
+            <Input>
+              <TextArea
+                innerRef={ref => (this.ref = ref)}
+                value={this.props.item.name}
+                
+              />
+            </Input>
+            <Button type="submit" value="Save" />
+          </Form>
+          <QuickEdit>
+            <QuickEditItem>Move</QuickEditItem>
+            <QuickEditItem onClick={this.props.handleDelete}>
+              Delete
+            </QuickEditItem>
+          </QuickEdit>
+        </Content>
+        <img
+          src={close}
+          style={{
+            float: "right",
+            height: "30px",
+            cursor: "pointer",
+            marginTop: "45px",
+          }}
+          onClick={this.props.handleClick}
+        />
+      </ContentContainer>
+    );
+  }
+}
 
 export default QuickEditModal;
