@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Switch, withRouter, matchPath } from "react-router-dom";
 import styled, { injectGlobal } from 'styled-components';
 import Header from './components/Header';
@@ -31,6 +31,8 @@ const AppWrapper = styled.div`
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  will-change: transform;
+  position: absolute;
   
 `
  class AppRouter extends React.Component { 
@@ -40,15 +42,15 @@ const AppWrapper = styled.div`
     matchPath(this.props.location.pathname, { path: '/board/:id' }).isExact && (boardPage = true);
    }
   return (
-  
+  <Fragment>
+    <Header transparent={boardPage}/>
     <AppWrapper background={boardPage}>
-      <Header transparent={boardPage}/>
       <Switch>
         <Route exact path='/' component={HomeContainer} />
         <Route exact path='/board/:id' component={BoardContainer} />
       </Switch>
     </AppWrapper>
-  
+  </Fragment>
   
 )}};
 

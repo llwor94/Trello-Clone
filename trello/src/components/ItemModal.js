@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import card from '../assets/card.svg';
-import close from '../assets/close.svg'
+import close from '../assets/close.svg';
 
 const ModalWrapper = styled.div`
-
   position: fixed;
   top: 0;
   left: 0;
