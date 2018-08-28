@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteList } from "../actions/listActions";
+import { moveItem } from '../actions/itemActions';
 import { filteredItems } from '../reducers/itemReducer'
 import styled from "styled-components";
 import List from "../components/List";
@@ -17,9 +18,16 @@ const ListWrapper = styled.div`
 `;
 
 class ListContainer extends Component {
+  handleDragOver = e => {
+    e.preventDefault();
+  }
+
+  handleDrop = e => {
+    this.props.moveItem(e.dataTransfer.getData('id'), this.props.list.id)
+  }
   render() {
     return (
-      <ListWrapper>
+      <ListWrapper onDragOver={this.handleDragOver} onDrop={this.handleDrop}>
         <Fragment>
           <ListHeader name={this.props.list.name} handleDelete={() => this.props.deleteList(this.props.list.id)} />
           <List items={this.props.items} list={this.props.list} />
@@ -35,5 +43,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { deleteList }
+  { deleteList, moveItem }
 )(ListContainer);

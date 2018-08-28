@@ -48,8 +48,8 @@ export const clearCurrentItem = () => ({
 
 export const moveItem = (item, list) => dispatch => {
   dispatch({ type: MOVE_ITEM });
-  let itemRef = db.collection('listItems').doc(item.id)
-  itemRef.update({list: list.id })
+  let itemRef = db.collection('listItems').doc(item)
+  itemRef.update({list: list })
     .then(() => {
       dispatch({ type: ITEM_MOVED })
     })

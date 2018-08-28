@@ -8,6 +8,7 @@ import QuickEditModal from "../components/QuickEditModal";
 
 class ListItemContainer extends Component {
   state = {
+    isDragging: false,
     editModalShowing: false,
     largeModalShowing: false,
     top: "",
@@ -27,14 +28,25 @@ class ListItemContainer extends Component {
     this.setState({ top: '', left: '', editModalShowing: false})
   }
 
+  onDragStart = (e, id) => {
+    e.dataTransfer.setData('id', id);
+  }
+
+  onDrag = () => {
+
+  }
+
   render() {
     return (
       <Fragment>
         <div ref={node => (this.node = node)}>
           <ListItem
             item={this.props.item}
+            isDragging={this.state.isDragging}
             handleMainClick={() => this.largeModalShowing}
             handleEditClick={this.handleItemClick}
+            onDragStart={this.onDragStart}
+            onDrag={this.onDrag}
           />
 
           {this.state.largeModalShowing && (
