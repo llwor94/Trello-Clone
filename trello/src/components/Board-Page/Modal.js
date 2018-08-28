@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import close from "../../assets/close.svg";
+import close from "../../assets/close.svg"
 
 const ModalWrapper = styled.div`
   position: fixed;

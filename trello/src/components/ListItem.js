@@ -3,7 +3,6 @@ import styled from "styled-components";
 import edit from '../assets/edit.svg'
 
 const StyledItem = styled.div`
-  
   position: relative;
   z-index: 0;
   min-height: 32px;

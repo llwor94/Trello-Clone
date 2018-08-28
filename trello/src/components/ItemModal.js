@@ -16,16 +16,14 @@ const ModalWrapper = styled.div`
   height: 100%;
   background: rgba(0,0,0,.6);
   cursor: default;
-  z-index: 1000
+  z-index: 1000;
 `;
 const ModalContent = styled.section`
   position: relative;
   overflow: hidden;
   display: block;
-  top: 30px;
-  margin: 0;
+  margin: 48px 0 80px;
   width: 768px;
-  height: 600px;
   text-align: left;
   background-color: #eaecee;
   border-radius: 3px;

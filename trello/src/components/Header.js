@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../assets/trello-logo-white.png";
 import icon from "../assets/trello-icon.png";
 import styled from "styled-components";
-import { Link, matchPath } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   width: 100vw;

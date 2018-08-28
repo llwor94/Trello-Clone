@@ -1,4 +1,4 @@
-import {FETCH_LIST_ITEM, DESELECT_ITEM, FETCH_ITEMS, ITEMS_FETCHED, MOVE_ITEM, ITEM_MOVED} from '../actions/itemActions';
+import {FETCH_LIST_ITEM, DESELECT_ITEM, FETCH_ITEMS, ITEMS_FETCHED, MOVE_ITEM, ITEM_MOVED, ITEM_FETCHED} from '../actions/itemActions';
 import {DISMOUNT_CURRENT_BOARD} from '../actions/boardActions'
 
 const initialState = {
@@ -18,6 +18,12 @@ export const itemReducer = (state = initialState, action) => {
         ...state,
         fetchingItem: true,
       };
+    case ITEM_FETCHED:
+      return {
+        ...state,
+        fetchingItem: false,
+        currentItem: action.payload
+      }
     case DESELECT_ITEM:
       return {
         ...state,
@@ -36,6 +42,11 @@ export const itemReducer = (state = initialState, action) => {
         items: [
           ...action.payload
         ]
+      }
+    case DESELECT_ITEM:
+      return {
+        ...state,
+        currentItem: null
       }
     case DISMOUNT_CURRENT_BOARD:
       return {
@@ -63,4 +74,8 @@ export const filteredItems = (state, list) => {
 
 export const listByItem = (state, item) => {
   return state.listReducer.lists.find(list => list.id === item.list)
+}
+
+export const getCurrentItem = (state, id) => {
+  return state.itemReducer.items.find(item => item.id === id)
 }
