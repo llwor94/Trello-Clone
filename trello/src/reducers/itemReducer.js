@@ -8,7 +8,7 @@ const initialState = {
   itemAddComplete: false,
   movingItem: false,
   items: [],
-  currentItem: null,
+  currentItem: {name: ''},
 }
 
 export const itemReducer = (state = initialState, action) => {
@@ -23,12 +23,6 @@ export const itemReducer = (state = initialState, action) => {
         ...state,
         fetchingItem: false,
         currentItem: action.payload
-      }
-    case DESELECT_ITEM:
-      return {
-        ...state,
-        itemFetched: false,
-        currentItem: null
       }
     case FETCH_ITEMS:
       return {
@@ -46,7 +40,7 @@ export const itemReducer = (state = initialState, action) => {
     case DESELECT_ITEM:
       return {
         ...state,
-        currentItem: null
+        currentItem: {name: ''}
       }
     case DISMOUNT_CURRENT_BOARD:
       return {

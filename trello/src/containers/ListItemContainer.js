@@ -15,21 +15,16 @@ class ListItemContainer extends Component {
     left: "",
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.currentItem !== prevProps.currentItem) {
-      let position = this.node.getBoundingClientRect();
-      this.setState({ top: position.top, left: position.left });
-    }
-  }
-
   handleItemClick = () => {
-    this.props.fetchCurrentItem(this.props.item.id);
-    console.log(this.node);
+    let position = this.node.getBoundingClientRect();
+    this.setState({ top: position.top, left: position.left, editModalShowing: true });
+    this.props.fetchCurrentItem(this.props.item.id); 
   };
 
   handleClick = e => {
     e.stopPropagation();
     this.props.clearCurrentItem();
+    this.setState({ top: '', left: '', editModalShowing: false})
   }
 
   render() {
@@ -56,7 +51,7 @@ class ListItemContainer extends Component {
               handleClose={() => this.setState({ largeModalShowing: false })}
             />
           )}
-          {this.props.currentItem !== null && (
+          {this.state.editModalShowing && (
             <QuickEditModal
               handleDelete={() => this.props.deleteItem(this.props.currentItem.id)}
               item={this.props.currentItem}
