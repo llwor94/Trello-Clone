@@ -5,14 +5,15 @@ import styled from "styled-components";
 import { Link, matchPath } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
-  width: 100%;
-  position: absolute;
+  width: 100vw;
+  position: fixed;
   top: 0;
   background: ${props => props.transparent ? 'rgba(0,0,0,.15)' : '#026aa7'};
   padding: 4px;
   height: 40px;
   display: flex;
   align-items: center;
+  z-index: 100;
 `;
 const Logo = styled.img`
   position: absolute;

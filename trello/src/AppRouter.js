@@ -31,6 +31,8 @@ const AppWrapper = styled.div`
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  will-change: transform;
+  position: absolute;
   
 `
  class AppRouter extends React.Component { 
@@ -40,14 +42,15 @@ const AppWrapper = styled.div`
     matchPath(this.props.location.pathname, { path: '/board/:id' }).isExact && (boardPage = true);
    }
   return (
-  
+    <div>
+    <Header transparent={boardPage}/>
     <AppWrapper background={boardPage}>
-      <Header transparent={boardPage}/>
       <Switch>
         <Route exact path='/' component={HomeContainer} />
         <Route exact path='/board/:id' component={BoardContainer} />
       </Switch>
     </AppWrapper>
+    </div>
   
   
 )}};
