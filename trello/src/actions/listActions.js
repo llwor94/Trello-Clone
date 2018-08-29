@@ -8,6 +8,8 @@ export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS'
 export const DELETING_LIST = 'DELETING_LIST';
 export const LIST_DELETED = 'LIST_DELETED';
 export const CLEAR_LIST = 'CLEAR_LIST';
+export const FETCH_ALL_LISTS = 'FETCH_ALL_LISTS';
+export const FETCH_ALL_LISTS_SUCCESS = 'FETCH_ALL_LISTS_SUCCESS'
 
 export const fetchLists = () => (dispatch, getState) => {
   dispatch({ type: FETCH_LISTS });
@@ -19,6 +21,19 @@ export const fetchLists = () => (dispatch, getState) => {
         type: LIST_FETCH_SUCCESS,
         payload: querySnapshot.docs.map((doc) => {
           return {...doc.data()}})
+      })
+    })
+}
+
+export const fetchAllLists = () => dispatch => {
+  dispatch({ type: FETCH_ALL_LISTS });
+  db.collection('lists')
+    .onSnapshot(querySnapshot => {
+      dispatch({
+        type: FETCH_ALL_LISTS_SUCCESS,
+        payload: querySnapshot.docs.map(doc => {
+          return {...doc.data()}
+        })
       })
     })
 }
@@ -61,4 +76,8 @@ const shouldFetchLists = (state) => {
   if (!lists.length) {
     return true;
   } else return false
+}
+
+export const listByBoard = (state, board) => {
+  return state.listReducer.lists.find(list => list.board === board.id)
 }

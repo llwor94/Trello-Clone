@@ -58,7 +58,13 @@ export const updateBoardName = newName => (dispatch, getState) => {
   boardRef
     .update({ name: newName })
     .then(() => console.log(boardRef))
-   }
+}
+
+export const getBoardsIfNeeded = () => (dispatch, getState) => {
+  if (shouldFetchBoards(getState())) {
+    return dispatch(fetchBoards())
+  }
+}
 
 export const getBoardIfNeeded = id => (dispatch, getState) => {
   if (shouldFetchBoard(getState())) {
@@ -66,8 +72,15 @@ export const getBoardIfNeeded = id => (dispatch, getState) => {
   }
 }
 
-const shouldFetchBoard = (state) => {
-  const board = state.boardReducer.currentBoard;
+const shouldFetchBoards = state => {
+  const boards = state.boardReducer.boards;
+  if (boards.length < 1) {
+    return true;
+  } else return false
+}
+
+const shouldFetchBoard = state => {
+  const board = state.boardReducer.currentBoard; 
   if (!board) {
     return true;
   } else return false

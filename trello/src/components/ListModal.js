@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import MoveModalContainer from "../containers/MoveModalContainer";
 import close from "../assets/close.svg";
 
 const ModalWrapper = styled.div`
   position: absolute;
   left: 0;
-  bottom: ${props => props.board ? '-173px' : '-90px'};
+  bottom: ${props => (props.board ? "-173px" : props.move ? "-101px" : "-90px")};
   width: 300px;
   display: ${props => (props.show ? "block" : "none")};
   background: white;
@@ -16,6 +17,7 @@ const ModalWrapper = styled.div`
 `;
 const ModalHeader = styled.div`
   z-index: 100;
+  position: relative;
   display: flex;
   justify-content: flex-end;
   border-bottom: 1px solid #d6dadc;
@@ -25,7 +27,7 @@ const ModalHeader = styled.div`
   p {
     color: #8c8c8c;
     line-height: 24px;
-    left: ${ props => props.board ? '32%' : '38%'};
+    left: ${props => (props.board ? "32%" : "38%")};
     position: absolute;
     font-weight: normal;
   }
@@ -52,7 +54,7 @@ const ModalOptions = styled.div`
 const Form = styled.form`
   width: 100%;
   padding: 0 12px 12px;
-`
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -61,7 +63,7 @@ const Input = styled.input`
   border-radius: 3px;
   padding: 6px 8px;
   margin: 0 0 12px;
-`
+`;
 
 const Button = styled.input`
   background: #5aac44;
@@ -73,15 +75,14 @@ const Button = styled.input`
   font-weight: bold;
   border: none;
   margin-top: 8px;
-
-`
+`;
 
 const Label = styled.label`
   color: #8c8c8c;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
-`
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+`;
 
 const ListModal = ({
   handleSubmit,
@@ -91,18 +92,21 @@ const ListModal = ({
   showing,
   handleClose,
   handleDelete,
-  value
+  value,
+  move,
 }) => (
-  <ModalWrapper board={board} show={showing}>
+  <ModalWrapper board={board} move={move} show={showing}>
     <ModalHeader board={board}>
       <p>{title}</p> <img src={close} onClick={handleClose} />
     </ModalHeader>
     {board ? (
       <Form onSubmit={handleSubmit}>
         <Label>Name</Label>
-        <Input type='text' value={value} onChange={handleChange} />
-        <Button type='submit' value='Rename'/>
+        <Input type="text" value={value} onChange={handleChange} />
+        <Button type="submit" value="Rename" />
       </Form>
+    ) : move ? (
+      <MoveModalContainer />
     ) : (
       <ModalOptions onClick={handleDelete}>Delete List</ModalOptions>
     )}

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { getBoardIfNeeded, updateBoardName } from "../actions/boardActions";
-import { clearList, getListsIfNeeded } from "../actions/listActions";
+import { getBoardIfNeeded, updateBoardName, getBoardsIfNeeded } from "../actions/boardActions";
+import { clearList, getListsIfNeeded,fetchAllLists } from "../actions/listActions";
 import { dismountCurrentBoard } from '../actions/boardActions'
 import ListsContainer from "../containers/ListsContainer";
 import BoardHeader from "../components/BoardHeader";
@@ -21,6 +21,8 @@ class BoardContainer extends React.Component {
   };
   componentDidMount() {
     console.log('mounted');
+    this.props.fetchAllLists();
+    this.props.getBoardsIfNeeded();
     this.props.getBoardIfNeeded(this.props.match.params.id);
   }
 
@@ -56,5 +58,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBoardIfNeeded, clearList, updateBoardName, getListsIfNeeded, dismountCurrentBoard }
+  { getBoardIfNeeded, clearList, updateBoardName, getListsIfNeeded, dismountCurrentBoard, getBoardsIfNeeded, fetchAllLists }
 )(BoardContainer);

@@ -139,14 +139,7 @@ class QuickEditModal extends React.Component {
             <QuickEditItem onClick={() => this.setState({showingModal: true})}>
               <img src={arrow} />
               <span style={{ paddingBottom: "5px", color: "white" }}>Move</span>
-              {this.state.showingModal && (
-                <ListModal
-                  handleClose={this.handleClose}
-                  handleSubmit={this.handleSubmit}
-                  title='Move Card'
-                  showing={this.state.showingModal}
-                />
-              )}
+              
             </QuickEditItem>
             <QuickEditItem onClick={this.props.handleDelete}>
               <img src={garbage} />{" "}
@@ -154,6 +147,15 @@ class QuickEditModal extends React.Component {
                 Delete
               </span>
             </QuickEditItem>
+            {this.state.showingModal && (
+                <ListModal
+                  handleClose={this.handleClose}
+                  handleSubmit={this.handleSubmit}
+                  title='Move Card'
+                  showing={this.state.showingModal}
+                  move={true}
+                />
+              )}
           </QuickEdit>
         </Content>
         <img

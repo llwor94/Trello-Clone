@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteList } from "../actions/listActions";
-import { moveItem } from '../actions/itemActions';
+import { moveItemToNewList } from '../actions/itemActions';
 import { filteredItems } from '../reducers/itemReducer'
 import styled from "styled-components";
 import List from "../components/List";
@@ -23,7 +23,7 @@ class ListContainer extends Component {
   }
 
   handleDrop = e => {
-    this.props.moveItem(e.dataTransfer.getData('id'), this.props.list.id)
+    this.props.moveItemToNewList(e.dataTransfer.getData('id'), this.props.list.id)
   }
   render() {
     return (
@@ -43,5 +43,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { deleteList, moveItem }
+  { deleteList, moveItemToNewList }
 )(ListContainer);

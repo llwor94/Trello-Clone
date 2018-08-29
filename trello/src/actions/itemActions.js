@@ -14,6 +14,8 @@ export const MOVE_ITEM = 'MOVE_ITEM';
 export const ITEM_MOVED = 'ITEM_MOVED';
 export const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
 export const ADD_DESCRIPTION_SUCCESS = 'ADD_DESCRIPTION_SUCCESS';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const ITEM_UPDATED = 'ITEM_UPDATED';
 
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: FETCH_ITEMS });
@@ -48,12 +50,22 @@ export const clearCurrentItem = () => ({
   type: DESELECT_ITEM
 })
 
-export const moveItem = (item, list) => dispatch => {
+export const moveItemToNewList = (item, list) => dispatch => {
   dispatch({ type: MOVE_ITEM });
   let itemRef = db.collection('listItems').doc(item)
   itemRef.update({list: list })
     .then(() => {
       dispatch({ type: ITEM_MOVED })
+    })
+}
+
+export const updateItem = (item, list, board) => dispatch => {
+  console.log(item, list, board)
+  dispatch({ type: UPDATE_ITEM });
+  let itemRef = db.collection('listItems').doc(item)
+  itemRef.update({ list: list.id, board: board.id })
+    .then(() => {
+      dispatch({ type: ITEM_UPDATED })
     })
 }
 
