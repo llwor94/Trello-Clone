@@ -1,4 +1,5 @@
 import React from "react";
+import ListModal from './ListModal';
 import close from "../assets/close.svg";
 import garbage from "../assets/garbage.svg";
 import arrow from "../assets/arrow.svg";
@@ -70,12 +71,16 @@ const Button = styled.input`
 `;
 
 const QuickEdit = styled.div`
+  z-index: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 8px;
 `;
 
 const QuickEditItem = styled.div`
+  z-index: 1;
+  position: relative;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   color: #e6e6e6;
@@ -96,9 +101,23 @@ const QuickEditItem = styled.div`
   }
 `;
 class QuickEditModal extends React.Component {
+  state = {
+    showingModal: false
+  }
+
   componentDidMount() {
     this.ref.focus();
   }
+
+  handleClose = e => {
+    e.stopPropagation();
+    this.setState({ showingModal: false });
+  }; 
+
+  handleSubmit = e => {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <ContentContainer onClick={this.props.handleClick}>
@@ -117,10 +136,17 @@ class QuickEditModal extends React.Component {
             <Button type="submit" value="Save" />
           </Form>
           <QuickEdit>
-            <QuickEditItem>
-              {" "}
+            <QuickEditItem onClick={() => this.setState({showingModal: true})}>
               <img src={arrow} />
               <span style={{ paddingBottom: "5px", color: "white" }}>Move</span>
+              {this.state.showingModal && (
+                <ListModal
+                  handleClose={this.handleClose}
+                  handleSubmit={this.handleSubmit}
+                  title='Move Card'
+                  showing={this.state.showingModal}
+                />
+              )}
             </QuickEditItem>
             <QuickEditItem onClick={this.props.handleDelete}>
               <img src={garbage} />{" "}

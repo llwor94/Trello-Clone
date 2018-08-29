@@ -132,6 +132,7 @@ class ItemModal extends React.Component {
               </p>
             </Title>
           </Wrapper>
+          <ModalSidebar/>
           <MainContent>
             <Wrapper>
               <Icon src={descript} />
@@ -152,8 +153,9 @@ class ItemModal extends React.Component {
                 />
               </Description>
             </Wrapper>
-            <ModalSidebar/>
+            
           </MainContent>
+          
         </ModalContent>
       </ModalWrapper>
     );

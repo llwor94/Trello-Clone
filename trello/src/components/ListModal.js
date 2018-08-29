@@ -12,9 +12,10 @@ const ModalWrapper = styled.div`
   border: 1px solid #d6dadc;
   border-radius: 3px;
   cursor: auto;
-  z-index: 100;
+  z-index: 1000;
 `;
 const ModalHeader = styled.div`
+  z-index: 100;
   display: flex;
   justify-content: flex-end;
   border-bottom: 1px solid #d6dadc;
