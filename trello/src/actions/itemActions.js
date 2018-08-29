@@ -12,6 +12,8 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const ITEM_DELETED = 'ITEM_DELETED';
 export const MOVE_ITEM = 'MOVE_ITEM';
 export const ITEM_MOVED = 'ITEM_MOVED';
+export const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
+export const ADD_DESCRIPTION_SUCCESS = 'ADD_DESCRIPTION_SUCCESS';
 
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: FETCH_ITEMS });
@@ -70,6 +72,18 @@ export const addItem = (list, item) => (dispatch, getState)  => {
   .then(() => {
     dispatch({ type: ADD_ITEM_SUCCESS })
   })
+}
+
+export const addDescription = (id, description) => dispatch => {
+  dispatch({ type: ADD_DESCRIPTION });
+  let itemRef = db.collection('listItems').doc(id);
+  itemRef.update({ description: description })
+    .then(() => {
+      dispatch({ type: ADD_DESCRIPTION_SUCCESS })
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 export const addTag = (item, tags) => {

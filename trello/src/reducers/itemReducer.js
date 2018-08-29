@@ -1,4 +1,4 @@
-import {FETCH_LIST_ITEM, DESELECT_ITEM, FETCH_ITEMS, ITEMS_FETCHED, MOVE_ITEM, ITEM_MOVED, ITEM_FETCHED} from '../actions/itemActions';
+import {FETCH_LIST_ITEM, DESELECT_ITEM, FETCH_ITEMS, ITEMS_FETCHED, MOVE_ITEM, ITEM_MOVED, ITEM_FETCHED, ADD_DESCRIPTION, ADD_DESCRIPTION_SUCCESS } from '../actions/itemActions';
 import {DISMOUNT_CURRENT_BOARD} from '../actions/boardActions'
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   addingItem: false,
   itemAddComplete: false,
   movingItem: false,
+  addingDescription: false,
   items: [],
   currentItem: {name: ''},
 }
@@ -52,10 +53,20 @@ export const itemReducer = (state = initialState, action) => {
         ...state,
         movingItem: true
       }
-    case MOVE_ITEM:
+    case ITEM_MOVED:
       return {
         ...state,
         movingItem: false
+      }
+    case ADD_DESCRIPTION:
+      return {
+        ...state,
+        addingDescription: true
+      }
+    case ADD_DESCRIPTION_SUCCESS:
+      return {
+        ...state,
+        addingDescription: false
       }
     default: 
       return state;

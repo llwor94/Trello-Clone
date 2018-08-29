@@ -1,7 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import card from '../assets/card.svg';
-import close from '../assets/close.svg';
+import React, { Fragment } from "react";
+import styled from "styled-components";
+import EditDescription from "./EditDescription";
+import ModalSidebar from './ModalSidebar';
+import card from "../assets/card.svg";
+import close from "../assets/close.svg";
+import descript from "../assets/description.svg";
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -14,7 +17,7 @@ const ModalWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 0, 0, 0.6);
   cursor: default;
   z-index: 1000;
 `;
@@ -27,11 +30,12 @@ const ModalContent = styled.section`
   text-align: left;
   background-color: #eaecee;
   border-radius: 3px;
-  padding: 16px 6px 16px 16px;
+  padding: 6px 6px 16px 16px;
 `;
 
-const ModalHeader = styled.div`
+const Wrapper = styled.div`
   display: flex;
+  margin: 10px 0;
 `;
 
 const Icon = styled.img`
@@ -50,21 +54,110 @@ const Title = styled.div`
     font-size: 21px;
     line-height: 24px;
     padding-bottom: 5px;
-  };
+  }
   p {
     color: #8c8c8c;
   }
 `;
 
-const ItemModal = ({list, item, handleClose}) => (
-  <ModalWrapper>
-    <ModalContent>
-    <Close src={close} onClick={handleClose}/>
-      <ModalHeader>
-      <Icon src={card} /><Title><h2>{item.name}</h2><p>in list <u>{list.name}</u></p></Title>
-      </ModalHeader>
-    </ModalContent>
-  </ModalWrapper>
-)
+const Description = styled.form`
+  width: 100%;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  span {
+    text-decoration: underline;
+    color: #8c8c8c;
+    cursor: pointer;
+  }
+`;
+
+const MainContent = styled.div`
+  margin: 30px 0 10px;
+  width: 560px;
+`;
+
+class ItemModal extends React.Component {
+  state = {
+    isDescription: false,
+    editDescription: false,
+    description: "",
+  };
+
+  componentDidMount() {
+    this.props.item.description &&
+      this.setState({
+        description: this.props.item.description,
+        isDescription: true,
+      });
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.editDescription !== prevState.editDescription && this.state.editDescription) {
+      this.inputRef.focus();
+    }
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({ editDescription: false, isDescription: true });
+    this.props.handleSubmit(this.state.description);
+  };
+
+  handleFocus = () => {
+    this.setState({ editDescription: true })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      editDescription: false,
+      description: "",
+      isDescription: false,
+    });
+  }
+  render() {
+    return (
+      <ModalWrapper>
+        <ModalContent>
+          <Close src={close} onClick={this.props.handleClose} />
+          <Wrapper>
+            <Icon src={card} />
+            <Title>
+              <h2>{this.props.item.name}</h2>
+              <p>
+                in list <u>{this.props.list.name}</u>
+              </p>
+            </Title>
+          </Wrapper>
+          <MainContent>
+            <Wrapper>
+              <Icon src={descript} />
+              <Description onSubmit={this.handleSubmit}>
+                <h3>Description</h3>
+                {!this.state.editDescription &&
+                  this.state.description && <span onClick={this.handleFocus}>Edit</span>}
+                <EditDescription
+                  inputRef={el => this.inputRef = el}
+                  isDescription={this.state.isDescription}
+                  handleFocus={this.handleFocus}
+                  edit={this.state.editDescription}
+                  description={this.state.description}
+                  handleChange={e =>
+                    this.setState({ description: e.target.value })
+                  }
+                  handleClick={() => this.setState({ editDescription: false })}
+                />
+              </Description>
+            </Wrapper>
+            <ModalSidebar/>
+          </MainContent>
+        </ModalContent>
+      </ModalWrapper>
+    );
+  }
+}
 
 export default ItemModal;

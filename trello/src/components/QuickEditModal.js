@@ -58,6 +58,7 @@ const Button = styled.input`
   margin-top: 8px;
   font-weight: bold;
   border: none;
+  cursor: pointer;
 
   &:hover {
     background: #519839;
@@ -81,11 +82,17 @@ const QuickEditItem = styled.div`
   float: left;
   margin-bottom: 4px;
   padding: 6px 12px 6px 8px;
+  cursor: pointer;
+  transition: transform 85ms ease-in;
   img {
     height: 15px;
     color: white;
     padding: 0 5px 0 0;
     display: inline-block;
+  }
+
+  &:hover {
+    transform: translateX(5px);
   }
 `;
 class QuickEditModal extends React.Component {
@@ -95,21 +102,31 @@ class QuickEditModal extends React.Component {
   render() {
     return (
       <ContentContainer onClick={this.props.handleClick}>
-        <Content onClick={e => e.stopPropagation()} top={`${this.props.top}px`} left={`${this.props.left}px`}>
+        <Content
+          onClick={e => e.stopPropagation()}
+          top={`${this.props.top}px`}
+          left={`${this.props.left}px`}
+        >
           <Form>
             <Input>
               <TextArea
                 innerRef={ref => (this.ref = ref)}
                 value={this.props.item.name}
-                
               />
             </Input>
             <Button type="submit" value="Save" />
           </Form>
           <QuickEdit>
-            <QuickEditItem> <img src={arrow} /><span style={{paddingBottom: '5px', color: 'white'}}>Move</span></QuickEditItem>
+            <QuickEditItem>
+              {" "}
+              <img src={arrow} />
+              <span style={{ paddingBottom: "5px", color: "white" }}>Move</span>
+            </QuickEditItem>
             <QuickEditItem onClick={this.props.handleDelete}>
-              <img src={garbage} /> <span style={{paddingBottom: '5px', color: 'white'}}>Delete</span>
+              <img src={garbage} />{" "}
+              <span style={{ paddingBottom: "5px", color: "white" }}>
+                Delete
+              </span>
             </QuickEditItem>
           </QuickEdit>
         </Content>

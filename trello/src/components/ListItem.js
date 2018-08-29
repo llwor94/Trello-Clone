@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import edit from '../assets/edit.svg'
+import description from '../assets/description.svg';
 
 const StyledItem = styled.div`
   position: relative;
@@ -15,8 +16,9 @@ const StyledItem = styled.div`
   white-space: normal;
   padding: 0 2px 0 5px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  
+  align-items: flex-start;
 
   &:hover {
     background-color: ${props => props.isDragging ? '#8c8c8c' : '#edeff0'};
@@ -25,6 +27,12 @@ const StyledItem = styled.div`
     }
   }
 `;
+
+const Name = styled.p`
+  width: 235px;
+  margin: 5px 0;
+  line-height: 17px;
+`
 
 const Edit = styled.img`
   transition: all .3s;
@@ -41,10 +49,16 @@ const Edit = styled.img`
     border-radius: 3px;
   }
 `
+const Icon = styled.img`
+  height: 18px;
+  display: inline-block;
+  margin: 0 4px 4px 0;
+`
 
 const ListItem = ({ item, handleMainClick, handleEditClick, onDragStart, onDrop, isDragging }) => (
   <StyledItem isDragging={isDragging} draggable onDrop={onDrop} onDragStart={e => onDragStart(e, item.id)}>
-    <div onClick={handleMainClick} style={{width: '235px', margin: '5px 0', lineHeight: '17px'}}>{item.name}</div>
+    <Name onClick={handleMainClick}>{item.name}</Name>
+    {item.description && <Icon src={description}/>}
      <Edit src={edit} onClick={handleEditClick}/> 
   </StyledItem>
 );

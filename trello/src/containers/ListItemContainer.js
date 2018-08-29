@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { fetchCurrentItem, clearCurrentItem, deleteItem } from "../actions/itemActions";
+import {
+  fetchCurrentItem,
+  clearCurrentItem,
+  deleteItem,
+  addDescription
+} from "../actions/itemActions";
 import { listByItem } from "../reducers/itemReducer";
 import ListItem from "../components/ListItem";
 import ItemModal from "../components/ItemModal";
@@ -15,27 +20,45 @@ class ListItemContainer extends Component {
     left: "",
   };
 
-
-  handleItemClick = () => {
+  handleEditClick = () => {
     let position = this.node.getBoundingClientRect();
-    this.setState({ top: position.top, left: position.left, editModalShowing: true });
-    this.props.fetchCurrentItem(this.props.item.id); 
+    this.setState({
+      top: position.top,
+      left: position.left,
+      editModalShowing: true,
+    });
+    this.props.fetchCurrentItem(this.props.item.id);
+  };
+
+  handleMainClick = () => {
+    let position = this.node.getBoundingClientRect();
+    this.setState({
+      top: position.top,
+      left: position.left,
+      largeModalShowing: true,
+    });
+    this.props.fetchCurrentItem(this.props.item.id);
   };
 
   handleClick = e => {
     e.stopPropagation();
     this.props.clearCurrentItem();
-    this.setState({ top: '', left: '', editModalShowing: false})
-  }
+    this.setState({
+      top: "",
+      left: "",
+      editModalShowing: false,
+      largeModalShowing: false,
+    });
+  };
 
   onDragStart = (e, id) => {
-    e.dataTransfer.setData('id', id);
-    this.setState({isDragging: true})
-  }
+    e.dataTransfer.setData("id", id);
+    this.setState({ isDragging: true });
+  };
 
   onDrop = () => {
-    this.setState({isDragging: false})
-  }
+    this.setState({ isDragging: false });
+  };
 
   render() {
     return (
@@ -44,23 +67,26 @@ class ListItemContainer extends Component {
           <ListItem
             item={this.props.item}
             isDragging={this.state.isDragging}
-            handleMainClick={() => this.largeModalShowing}
-            handleEditClick={this.handleItemClick}
+            handleMainClick={this.handleMainClick}
+            handleEditClick={this.handleEditClick}
             onDragStart={this.onDragStart}
             onDrop={this.onDrop}
           />
 
-          {this.state.largeModalShowing && (
+          {(this.state.largeModalShowing && this.props.currentItem.id) && (
             <ItemModal
               handleMove={list => this.props.moveItem(this.props.item, list)}
+              handleSubmit={description => this.props.addDescription(this.props.currentItem.id, description)}
               item={this.props.currentItem}
               list={this.props.list}
-              handleClose={() => this.setState({ largeModalShowing: false })}
+              handleClose={this.handleClick}
             />
           )}
           {this.state.editModalShowing && (
             <QuickEditModal
-              handleDelete={() => this.props.deleteItem(this.props.currentItem.id)}
+              handleDelete={() =>
+                this.props.deleteItem(this.props.currentItem.id)
+              }
               item={this.props.currentItem}
               top={this.state.top}
               left={this.state.left}
@@ -80,5 +106,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCurrentItem, clearCurrentItem, deleteItem }
+  { fetchCurrentItem, clearCurrentItem, deleteItem, addDescription }
 )(ListItemContainer);
