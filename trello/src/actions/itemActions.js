@@ -16,6 +16,8 @@ export const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
 export const ADD_DESCRIPTION_SUCCESS = 'ADD_DESCRIPTION_SUCCESS';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const ITEM_UPDATED = 'ITEM_UPDATED';
+export const UPDATE_NAME = 'UPDATE_NAME';
+export const NAME_UPDATED = 'NAME_UPDATED'
 
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: FETCH_ITEMS });
@@ -66,6 +68,15 @@ export const updateItem = (item, list, board) => dispatch => {
   itemRef.update({ list: list.id, board: board.id })
     .then(() => {
       dispatch({ type: ITEM_UPDATED })
+    })
+}
+
+export const updateName = (item, name) => dispatch => {
+  dispatch({ type: UPDATE_NAME });
+  let itemRef = db.collection('listItems').doc(item.id)
+  itemRef.update({name: name})
+    .then(() => {
+      dispatch({ type: NAME_UPDATED })
     })
 }
 

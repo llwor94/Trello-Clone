@@ -1,23 +1,24 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import {
   fetchCurrentItem,
   clearCurrentItem,
   deleteItem,
-  addDescription
-} from "../actions/itemActions";
-import { listByItem } from "../reducers/itemReducer";
-import ListItem from "../components/ListItem";
-import ItemModal from "../components/ItemModal";
-import QuickEditModal from "../components/QuickEditModal";
+  addDescription,
+  updateName,
+} from '../actions/itemActions';
+import { listByItem } from '../reducers/itemReducer';
+import ListItem from '../components/ListItem';
+import ItemModal from '../components/ItemModal';
+import QuickEditModal from '../components/QuickEditModal';
 
 class ListItemContainer extends Component {
   state = {
     isDragging: false,
     editModalShowing: false,
     largeModalShowing: false,
-    top: "",
-    left: "",
+    top: '',
+    left: '',
   };
 
   handleEditClick = () => {
@@ -42,17 +43,21 @@ class ListItemContainer extends Component {
 
   handleClick = e => {
     e.stopPropagation();
+    this.handleClose();
+  };
+
+  handleClose = () => {
     this.props.clearCurrentItem();
     this.setState({
-      top: "",
-      left: "",
+      top: '',
+      left: '',
       editModalShowing: false,
       largeModalShowing: false,
     });
   };
 
   onDragStart = (e, id) => {
-    e.dataTransfer.setData("id", id);
+    e.dataTransfer.setData('id', id);
     this.setState({ isDragging: true });
   };
 
@@ -73,26 +78,37 @@ class ListItemContainer extends Component {
             onDrop={this.onDrop}
           />
 
-          {(this.state.largeModalShowing && this.props.currentItem.id) && (
-            <ItemModal
-              handleMove={list => this.props.moveItem(this.props.item, list)}
-              handleSubmit={description => this.props.addDescription(this.props.currentItem.id, description)}
-              item={this.props.currentItem}
-              list={this.props.list}
-              handleClose={this.handleClick}
-            />
-          )}
-          {this.state.editModalShowing && (
-            <QuickEditModal
-              handleDelete={() =>
-                this.props.deleteItem(this.props.currentItem.id)
-              }
-              item={this.props.currentItem}
-              top={this.state.top}
-              left={this.state.left}
-              handleClick={this.handleClick}
-            />
-          )}
+          {this.state.largeModalShowing &&
+            this.props.currentItem.id && (
+              <ItemModal
+                handleMove={list => this.props.moveItem(this.props.item, list)}
+                handleSubmit={description =>
+                  this.props.addDescription(
+                    this.props.currentItem.id,
+                    description,
+                  )
+                }
+                item={this.props.currentItem}
+                list={this.props.list}
+                handleClose={this.handleClick}
+              />
+            )}
+          {this.state.editModalShowing &&
+            this.props.currentItem.id && (
+              <QuickEditModal
+                handleDelete={() =>
+                  this.props.deleteItem(this.props.currentItem.id)
+                }
+                item={this.props.currentItem}
+                top={this.state.top}
+                left={this.state.left}
+                handleClick={this.handleClick}
+                handleEdit={name => {
+                  this.props.updateName(this.props.currentItem, name);
+                  this.handleClose();
+                }}
+              />
+            )}
         </div>
       </Fragment>
     );
@@ -106,5 +122,11 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCurrentItem, clearCurrentItem, deleteItem, addDescription }
+  {
+    fetchCurrentItem,
+    clearCurrentItem,
+    deleteItem,
+    addDescription,
+    updateName,
+  },
 )(ListItemContainer);

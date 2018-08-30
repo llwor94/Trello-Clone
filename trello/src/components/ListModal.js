@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from './Button';
 import MoveModalContainer from "../containers/MoveModalContainer";
 import close from "../assets/close.svg";
 
@@ -65,18 +66,6 @@ const Input = styled.input`
   margin: 0 0 12px;
 `;
 
-const Button = styled.input`
-  background: #5aac44;
-  box-shadow: 0 1px 0 #519839;
-  color: #fff;
-  padding: 8px 24px;
-  border-radius: 3px;
-  outline: none;
-  font-weight: bold;
-  border: none;
-  margin-top: 8px;
-`;
-
 const Label = styled.label`
   color: #8c8c8c;
   font-size: 12px;
@@ -103,7 +92,7 @@ const ListModal = ({
       <Form onSubmit={handleSubmit}>
         <Label>Name</Label>
         <Input type="text" value={value} onChange={handleChange} />
-        <Button type="submit" value="Rename" />
+        <Button value="Rename" />
       </Form>
     ) : move ? (
       <MoveModalContainer />
