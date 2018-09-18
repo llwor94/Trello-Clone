@@ -10,11 +10,7 @@ import Boards from '../components/Board-Page/Boards';
 import BoardCard from '../components/Board-Page/BoardCard';
 import styled from 'styled-components';
 import Modal from '../components/Board-Page/Modal';
-
-const BoardWrapper = styled.div`
-  width: 790px;
-  margin: 80px auto 40px;
-`;
+import BoardWrapper from '../components/Board-Page/BoardWrapper';
 
 class BoardsPage extends React.Component {
   state = {

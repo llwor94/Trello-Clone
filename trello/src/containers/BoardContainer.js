@@ -15,7 +15,7 @@ import ListsContainer from '../containers/ListsContainer';
 import ListModal from '../components/ListModal';
 import BoardHeader from '../components/BoardHeader';
 import styled from 'styled-components';
-import Button from '../components/Button';
+import UpdateBoardName from '../components/UpdateBoardName';
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -88,16 +88,13 @@ class BoardContainer extends React.Component {
                   handleClose={this.handleClose}
                   title="Rename Board"
                   showing={this.state.showingModal}
+                  board={true}
                 >
-                  <Form onSubmit={this.handleChangeName}>
-                    <Label>Name</Label>
-                    <Input
-                      type="text"
-                      value={this.state.value}
-                      onChange={e => this.setState({ value: e.target.value })}
-                    />
-                    <Button value="Rename" />
-                  </Form>
+                  <UpdateBoardName
+                    handleSubmit={this.handleChangeName}
+                    value={this.state.value}
+                    handleChange={e => this.setState({ value: e.target.value })}
+                  />
                 </ListModal>
               )}
             </BoardHeader>

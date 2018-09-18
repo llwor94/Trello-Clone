@@ -75,22 +75,21 @@ const Label = styled.label`
 `;
 
 const ListModal = ({
-  handleSubmit,
-  handleChange,
+  children,
   board,
   title,
   showing,
   handleClose,
   handleDelete,
-  value,
   move,
 }) => (
   <ModalWrapper board={board} move={move} show={showing}>
     <ModalHeader board={board}>
       <p>{title}</p> <img src={close} onClick={handleClose} />
     </ModalHeader>
-
-    {move ? (
+    {children ? (
+      children
+    ) : move ? (
       <MoveModalContainer />
     ) : (
       <ModalOptions onClick={handleDelete}>Delete List</ModalOptions>
