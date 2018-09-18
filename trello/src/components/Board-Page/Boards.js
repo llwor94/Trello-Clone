@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import BoardCard from "./BoardCard";
-import user from "../../assets/user-regular.svg";
-import styled from "styled-components";
+import React, { Fragment } from 'react';
+import BoardCard from './BoardCard';
+import user from '../../assets/user-regular.svg';
+import styled from 'styled-components';
 
 const StyledIcon = styled.img`
   height: 15px;
@@ -25,13 +25,14 @@ const Boards = ({ boards, handleRoute }) => (
       <h4>Personal Boards</h4>
     </BoardHeader>
     <BoardsWrapper>
-      {boards.map((board, index) => (
+      {boards.map(board => (
         <BoardCard
-          key={index}
+          key={board.id}
           handleClick={() => handleRoute(board.id)}
-          text={board.name}
           createNew={false}
-        />
+        >
+          {board.name}
+        </BoardCard>
       ))}
     </BoardsWrapper>
   </Fragment>

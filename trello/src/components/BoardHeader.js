@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import ListModal from './ListModal'
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Header = styled.div`
   position: relative;
@@ -19,46 +18,8 @@ const Header = styled.div`
   }
 `;
 
-class BoardHeader extends Component {
-  state = {
-    value: this.props.board,
-    showingModal: false
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.board !== prevProps.board) {
-      this.setState({showingModal: false})
-    }
-  }
-
-  handleClose = e => {
-    e.stopPropagation();
-    this.setState({ showingModal: false });
-  }; 
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.changeName(this.state.value)
-  }
-
-  render() {
-    return (
-      <Header onClick={() => this.setState({ showingModal: true })}>
-        {this.props.board}
-        {this.state.showingModal && (
-          <ListModal
-            handleClose={this.handleClose}
-            handleSubmit={this.handleSubmit}
-            value={this.state.value}
-            handleChange={e => this.setState({ value: e.target.value })}
-            title="Rename Board"
-            board={true}
-            showing={this.state.showingModal}
-          />
-        )}
-      </Header>
-    );
-  }
-}
+const BoardHeader = ({ children, handleClick }) => (
+  <Header onClick={handleClick}>{children}</Header>
+);
 
 export default BoardHeader;

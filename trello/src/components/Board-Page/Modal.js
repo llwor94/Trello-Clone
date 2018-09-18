@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import close from "../../assets/close.svg"
+import React from 'react';
+import styled from 'styled-components';
+import close from '../../assets/close.svg';
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -17,7 +17,7 @@ const Form = styled.form`
   margin-top: 24px;
   padding: 24px;
   width: auto;
-`
+`;
 
 const ModalContent = styled.section`
   width: 300px;
@@ -39,12 +39,14 @@ const Input = styled.input`
   border-radius: 3px;
   ::placeholder {
     color: #bfe8ff;
-  };
-  &:hover, &:active, &:focus {
+  }
+  &:hover,
+  &:active,
+  &:focus {
     outline: none;
-    background: hsla(0,0%,100%,.15);
-  };
-`
+    background: hsla(0, 0%, 100%, 0.15);
+  }
+`;
 const Close = styled.img`
   float: right;
   cursor: pointer;
@@ -62,6 +64,7 @@ const Button = styled.input`
   background: #5aac44;
   box-shadow: 0 1px 0 #519839;
   color: #fff;
+  cursor: pointer;
   border: none;
   &:focus {
     outline: none;
@@ -73,7 +76,7 @@ const Button = styled.input`
     color: #b6bbbf;
     cursor: default;
   }
-`
+`;
 
 const Modal = ({ show, handleClose, handleChange, title, handleSubmit }) => {
   return (
@@ -88,11 +91,15 @@ const Modal = ({ show, handleClose, handleChange, title, handleSubmit }) => {
             onChange={handleChange}
             placeholder="Add board title"
             value={title}
-            autoComplete='off'
+            autoComplete="off"
             required
           />
         </ModalContent>
-        <Button type="submit" value="Create Board" disabled={title.length === 0}/>
+        <Button
+          type="submit"
+          value="Create Board"
+          disabled={title.length === 0}
+        />
       </Form>
     </ModalWrapper>
   );

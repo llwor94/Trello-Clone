@@ -1,11 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { fetchBoards, addBoard, getCurrentBoard } from "../actions/boardActions";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import {
+  fetchBoards,
+  addBoard,
+  getCurrentBoard,
+} from '../actions/boardActions';
 import { fetchLists } from '../actions/listActions';
-import Boards from "../components/Board-Page/Boards";
-import BoardCard from "../components/Board-Page/BoardCard";
-import styled from "styled-components";
-import Modal from "../components/Board-Page/Modal";
+import Boards from '../components/Board-Page/Boards';
+import BoardCard from '../components/Board-Page/BoardCard';
+import styled from 'styled-components';
+import Modal from '../components/Board-Page/Modal';
 
 const BoardWrapper = styled.div`
   width: 790px;
@@ -24,17 +28,20 @@ class HomeContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.boards !== prevProps.boards) {
-      this.setState({showingModal: false, title: ''})
+      this.setState({ showingModal: false, title: '' });
     }
-    if (this.props.fetchingItems !== prevProps.fetchingItems && !this.props.fetchingItems) {
-      this.props.history.push(`/board/${this.props.currentBoard.id}`)
+    if (
+      this.props.fetchingItems !== prevProps.fetchingItems &&
+      !this.props.fetchingItems
+    ) {
+      this.props.history.push(`/board/${this.props.currentBoard.id}`);
     }
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addBoard(this.state.title)
-  }
+    this.props.addBoard(this.state.title);
+  };
 
   render() {
     return (
@@ -42,23 +49,27 @@ class HomeContainer extends React.Component {
         {this.props.fetchingBoards ? (
           <p> ur boards b coming </p>
         ) : (
-          <Boards 
-            handleRoute={id => this.props.getCurrentBoard(id)} 
-            boards={this.props.boards} 
+          <Fragment>
+            <Boards
+              handleRoute={id => this.props.getCurrentBoard(id)}
+              boards={this.props.boards}
+            />
+            <BoardCard
+              handleClick={() => this.setState({ showingModal: true })}
+              createNew={true}
+            >
+              Create a new board...
+            </BoardCard>
+          </Fragment>
+        )}
+        {this.state.showingModal && (
+          <Modal
+            handleClose={() => this.setState({ showingModal: false })}
+            handleChange={e => this.setState({ title: e.target.value })}
+            title={this.state.title}
+            handleSubmit={this.handleSubmit}
           />
         )}
-        <div onClick={() => this.setState({ showingModal: true })}>
-        <BoardCard
-          text={"Create a new board..."}
-          createNew={true}
-        />
-        </div>
-        {this.state.showingModal && <Modal
-          handleClose={() => this.setState({ showingModal: false })}
-          handleChange={e => this.setState({ title: e.target.value })}
-          title={this.state.title}
-          handleSubmit={this.handleSubmit}
-        />}
       </BoardWrapper>
     );
   }
@@ -69,10 +80,10 @@ const mapStateToProps = state => ({
   fetchingBoards: state.boardReducer.fetchingBoards,
   boardAdded: state.boardReducer.addingBoardSuccess,
   currentBoard: state.boardReducer.currentBoard,
-  fetchingItems: state.itemReducer.fetchingItems
+  fetchingItems: state.itemReducer.fetchingItems,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchBoards, addBoard, getCurrentBoard, fetchLists }
+  { fetchBoards, addBoard, getCurrentBoard, fetchLists },
 )(HomeContainer);

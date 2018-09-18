@@ -1,15 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import Button from './Button';
-import MoveModalContainer from "../containers/MoveModalContainer";
-import close from "../assets/close.svg";
+import MoveModalContainer from '../containers/MoveModalContainer';
+import close from '../assets/close.svg';
 
 const ModalWrapper = styled.div`
   position: absolute;
   left: 0;
-  bottom: ${props => (props.board ? "-173px" : props.move ? "-101px" : "-90px")};
+  bottom: ${props =>
+    props.board ? '-173px' : props.move ? '-101px' : '-90px'};
   width: 300px;
-  display: ${props => (props.show ? "block" : "none")};
+  display: ${props => (props.show ? 'block' : 'none')};
   background: white;
   border: 1px solid #d6dadc;
   border-radius: 3px;
@@ -28,7 +29,7 @@ const ModalHeader = styled.div`
   p {
     color: #8c8c8c;
     line-height: 24px;
-    left: ${props => (props.board ? "32%" : "38%")};
+    left: ${props => (props.board ? '32%' : '38%')};
     position: absolute;
     font-weight: normal;
   }
@@ -88,13 +89,8 @@ const ListModal = ({
     <ModalHeader board={board}>
       <p>{title}</p> <img src={close} onClick={handleClose} />
     </ModalHeader>
-    {board ? (
-      <Form onSubmit={handleSubmit}>
-        <Label>Name</Label>
-        <Input type="text" value={value} onChange={handleChange} />
-        <Button value="Rename" />
-      </Form>
-    ) : move ? (
+
+    {move ? (
       <MoveModalContainer />
     ) : (
       <ModalOptions onClick={handleDelete}>Delete List</ModalOptions>
