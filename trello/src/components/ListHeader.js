@@ -1,6 +1,6 @@
-import React from "react";
-import ListModal from "../components/ListModal";
-import styled from "styled-components";
+import React from 'react';
+import ListModal from '../components/Modal';
+import styled from 'styled-components';
 
 const Header = styled.div`
   font-size: 10px;
@@ -59,7 +59,7 @@ export default class ListHeader extends React.Component {
         <Actions onClick={() => this.setState({ showingModal: true })}>
           ...
           <ListModal
-            title='List Actions'
+            title="List Actions"
             showing={this.state.showingModal}
             handleClose={this.handleClose}
             handleDelete={this.handleDelete}

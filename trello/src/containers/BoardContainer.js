@@ -11,11 +11,12 @@ import {
   fetchAllLists,
 } from '../actions/listActions';
 import { dismountCurrentBoard } from '../actions/boardActions';
-import ListsContainer from '../containers/ListsContainer';
-import ListModal from '../components/ListModal';
-import BoardHeader from '../components/BoardHeader';
+import AddListContainer from './AddListContainer';
+import ListContainer from './ListContainer';
+import Modal from '../components/Modal';
+import BoardHeader from '../components/Board/BoardHeader';
 import styled from 'styled-components';
-import UpdateBoardName from '../components/UpdateBoardName';
+import UpdateBoardName from '../components/Board/UpdateBoardName';
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -25,25 +26,12 @@ const BoardWrapper = styled.div`
   padding-top: 40px;
 `;
 
-const Form = styled.form`
-  width: 100%;
-  padding: 0 12px 12px;
-`;
-
-const Label = styled.label`
-  color: #8c8c8c;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  background-color: #e2e4e6;
-  border: 1px solid #cdd2d4;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin: 0 0 12px;
+const ListWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 class BoardContainer extends React.Component {
@@ -75,39 +63,43 @@ class BoardContainer extends React.Component {
   };
 
   render() {
+    if (!this.props.board) {
+      return <p>loading...</p>;
+    }
+
     return (
-      <Fragment>
-        {this.props.board && (
-          <BoardWrapper>
-            <BoardHeader
-              handleClick={() => this.setState({ showingModal: true })}
+      <BoardWrapper>
+        <BoardHeader handleClick={() => this.setState({ showingModal: true })}>
+          {this.props.board.name}
+          {this.state.showingModal && (
+            <Modal
+              handleClose={this.handleClose}
+              title="Rename Board"
+              showing={this.state.showingModal}
+              board={true}
             >
-              {this.props.board.name}
-              {this.state.showingModal && (
-                <ListModal
-                  handleClose={this.handleClose}
-                  title="Rename Board"
-                  showing={this.state.showingModal}
-                  board={true}
-                >
-                  <UpdateBoardName
-                    handleSubmit={this.handleChangeName}
-                    value={this.state.value}
-                    handleChange={e => this.setState({ value: e.target.value })}
-                  />
-                </ListModal>
-              )}
-            </BoardHeader>
-            <ListsContainer />
-          </BoardWrapper>
-        )}
-      </Fragment>
+              <UpdateBoardName
+                handleSubmit={this.handleChangeName}
+                value={this.state.value}
+                handleChange={e => this.setState({ value: e.target.value })}
+              />
+            </Modal>
+          )}
+        </BoardHeader>
+        <ListWrapper>
+          {this.props.lists.map(list => (
+            <ListContainer key={list.id} list={list} />
+          ))}
+          <AddListContainer />
+        </ListWrapper>
+      </BoardWrapper>
     );
   }
 }
 
 const mapStateToProps = state => ({
   board: state.boardReducer.currentBoard,
+  lists: state.listReducer.lists,
 });
 
 export default connect(

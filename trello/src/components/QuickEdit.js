@@ -1,5 +1,5 @@
 import React from 'react';
-import ListModal from './ListModal';
+import ListModal from './Modal';
 import styled from 'styled-components';
 import garbage from '../assets/garbage.svg';
 import arrow from '../assets/arrow.svg';
