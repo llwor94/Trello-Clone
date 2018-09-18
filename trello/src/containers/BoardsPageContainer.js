@@ -16,7 +16,7 @@ const BoardWrapper = styled.div`
   margin: 80px auto 40px;
 `;
 
-class HomeContainer extends React.Component {
+class BoardsPage extends React.Component {
   state = {
     showingModal: false,
     title: '',
@@ -86,4 +86,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchBoards, addBoard, getCurrentBoard, fetchLists },
-)(HomeContainer);
+)(BoardsPage);
