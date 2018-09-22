@@ -12,7 +12,7 @@ server.use(cors());
 configureRoutes(server);
 
 server.get('/', (req, res) => {
-  res.send('ya made it mon');
+  res.json('ya made it mon');
 });
 
 module.exports = server;

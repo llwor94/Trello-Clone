@@ -1,7 +1,10 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('boards', table => {
     table.increments();
-    table.string('title', 128).notNullable();
+    table
+      .string('title', 128)
+      .notNullable()
+      .unique();
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };

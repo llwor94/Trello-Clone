@@ -1,20 +1,13 @@
 module.exports = {
   errorHandler: function(err, req, res, next) {
     console.log(err);
-    if (err.errno === 19)
-      return res.json({ error: true, msg: 'Username is already taken' });
+    if (err.errno === 19) return res.status(405).json('Title is already taken');
     switch (err.code) {
       case 404:
-        res.json({
-          error: true,
-          msg: 'The requested file does not exist.',
-        });
+        res.status(404).json('The requested file does not exist.');
         break;
       case 400:
-        res.json({
-          error: true,
-          msg: 'Please complete all the required fields',
-        });
+        res.status(400).json('Please complete all the required fields');
         break;
       case 403:
         res.json({
