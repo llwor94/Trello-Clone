@@ -1,11 +1,12 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { deleteList } from "../actions/listActions";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { deleteList } from '../actions/listActions';
 import { moveItemToNewList } from '../actions/itemActions';
-import { filteredItems } from '../reducers/itemReducer'
-import styled from "styled-components";
-import List from "../components/List";
-import ListHeader from '../components/ListHeader';
+import { filteredItems } from '../reducers/itemReducer';
+import styled from 'styled-components';
+import ListItemContainer from '../containers/ListItemContainer';
+import AddCardContainer from '../containers/AddCardContainer';
+import ListHeader from '../components/List/ListHeader';
 
 const ListWrapper = styled.div`
   width: 272px;
@@ -20,17 +21,26 @@ const ListWrapper = styled.div`
 class ListContainer extends Component {
   handleDragOver = e => {
     e.preventDefault();
-  }
+  };
 
   handleDrop = e => {
-    this.props.moveItemToNewList(e.dataTransfer.getData('id'), this.props.list.id)
-  }
+    this.props.moveItemToNewList(
+      e.dataTransfer.getData('id'),
+      this.props.list.id,
+    );
+  };
   render() {
     return (
       <ListWrapper onDragOver={this.handleDragOver} onDrop={this.handleDrop}>
         <Fragment>
-          <ListHeader name={this.props.list.name} handleDelete={() => this.props.deleteList(this.props.list.id)} />
-          <List items={this.props.items} list={this.props.list} />
+          <ListHeader
+            name={this.props.list.name}
+            handleDelete={() => this.props.deleteList(this.props.list.id)}
+          />
+          {this.props.items.map(item => (
+            <ListItemContainer key={item.id} item={item} />
+          ))}
+          <AddCardContainer items={this.props.items} list={this.props.list} />
         </Fragment>
       </ListWrapper>
     );
@@ -38,10 +48,10 @@ class ListContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {items: filteredItems(state, ownProps.list)}
-}
+  return { items: filteredItems(state, ownProps.list) };
+};
 
 export default connect(
   mapStateToProps,
-  { deleteList, moveItemToNewList }
+  { deleteList, moveItemToNewList },
 )(ListContainer);

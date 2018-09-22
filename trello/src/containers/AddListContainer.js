@@ -2,27 +2,7 @@ import React, { Component } from 'react';
 import { addList } from '../actions/listActions';
 import Form from '../components/Form';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import create from '../assets/create.svg';
-
-const AddListSelect = styled.div`
-  line-height: 24px;
-  padding: 8px 0;
-  font-weight: normal;
-  color: hsla(0, 0%, 100%, 0.7);
-  width: 272px;
-  flex-shrink: 0;
-  background-color: rgba(0, 0, 0, 0.12);
-  margin: 0 5px;
-  border-radius: 3px;
-  cursor: pointer;
-`;
-
-const Img = styled.img`
-  display: inline;
-  height: 17px;
-  padding-top: 5px;
-`;
+import AddList from '../components/Board/AddList';
 
 class AddListContainer extends Component {
   state = {
@@ -42,18 +22,12 @@ class AddListContainer extends Component {
   addNewList = e => {
     e.preventDefault();
     this.props.addList(this.state.value);
+    this.setState({ selected: false, value: '' });
   };
 
   render() {
     if (!this.state.selected) {
-      return (
-        <AddListSelect
-          style={{ paddingLeft: '10px' }}
-          onClick={() => this.setState({ selected: true })}
-        >
-          <Img src={create} /> Add another list
-        </AddListSelect>
-      );
+      return <AddList handleClick={() => this.setState({ selected: true })} />;
     }
 
     return (

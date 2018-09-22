@@ -1,0 +1,751 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/Users/lauren/Lambda-School/Trello-Clone",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2018-09-18 15:37:46",
+            "filesum": 60,
+            "codesum": 9508,
+            "commentsum": 603,
+            "blanksum": 1706,
+            "filelist": [
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "trello/.gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "trello/package.json"
+                },
+                {
+                    "filename": "trello/public/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 23,
+                    "filename": "trello/public/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "trello/public/manifest.json"
+                },
+                {
+                    "blank": 294,
+                    "code": 733,
+                    "comment": 569,
+                    "filename": "trello/README.md"
+                },
+                {
+                    "blank": 10,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/actions/boardActions.js"
+                },
+                {
+                    "blank": 12,
+                    "code": 109,
+                    "comment": 0,
+                    "filename": "trello/src/actions/itemActions.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "trello/src/actions/listActions.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "trello/src/AppRouter.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/arrow.svg"
+                },
+                {
+                    "filename": "trello/src/assets/background.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "trello/src/assets/background.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "trello/src/assets/card.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/check.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "trello/src/assets/clock.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/close.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/create.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "trello/src/assets/description.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/edit.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "trello/src/assets/garbage.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/labels.svg"
+                },
+                {
+                    "filename": "trello/src/assets/trello-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "trello/src/assets/trello-logo-white.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "trello/src/assets/user-regular.svg"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/BoardCard.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/Boards.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/BoardWrapper.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 99,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/Modal.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/AddList.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/BoardHeader.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/UpdateBoardName.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "trello/src/components/Button.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "trello/src/components/DropDownSelect.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "trello/src/components/EditDescription.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 107,
+                    "comment": 0,
+                    "filename": "trello/src/components/Form.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "trello/src/components/Header.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 150,
+                    "comment": 0,
+                    "filename": "trello/src/components/ItemModal.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "trello/src/components/List/ListHeader.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "trello/src/components/ListItem.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "trello/src/components/Modal.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "trello/src/components/ModalSidebar.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "trello/src/components/QuickEdit.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 83,
+                    "comment": 0,
+                    "filename": "trello/src/components/QuickEditModal.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "trello/src/containers/AddCardContainer.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "trello/src/containers/AddListContainer.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "trello/src/containers/BoardContainer.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "trello/src/containers/BoardsPageContainer.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "trello/src/containers/ListContainer.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 121,
+                    "comment": 0,
+                    "filename": "trello/src/containers/ListItemContainer.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/containers/MoveModalContainer.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "trello/src/firebase.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "trello/src/index.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/boardReducer.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/itemReducer.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/listReducer.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "trello/src/store/index.js"
+                },
+                {
+                    "blank": 1182,
+                    "code": 6327,
+                    "comment": 0,
+                    "filename": "trello/yarn.lock"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2018-09-18 16:06:53",
+            "filesum": 59,
+            "codesum": 3181,
+            "commentsum": 603,
+            "blanksum": 524,
+            "filelist": [
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "trello/.gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "trello/package.json"
+                },
+                {
+                    "filename": "trello/public/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 23,
+                    "filename": "trello/public/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "trello/public/manifest.json"
+                },
+                {
+                    "blank": 294,
+                    "code": 733,
+                    "comment": 569,
+                    "filename": "trello/README.md"
+                },
+                {
+                    "blank": 10,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/actions/boardActions.js"
+                },
+                {
+                    "blank": 12,
+                    "code": 109,
+                    "comment": 0,
+                    "filename": "trello/src/actions/itemActions.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "trello/src/actions/listActions.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "trello/src/AppRouter.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/arrow.svg"
+                },
+                {
+                    "filename": "trello/src/assets/background.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "trello/src/assets/background.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "trello/src/assets/card.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/check.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "trello/src/assets/clock.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/close.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/create.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "trello/src/assets/description.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "trello/src/assets/edit.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "trello/src/assets/garbage.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "trello/src/assets/labels.svg"
+                },
+                {
+                    "filename": "trello/src/assets/trello-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "trello/src/assets/trello-logo-white.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "trello/src/assets/user-regular.svg"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/BoardCard.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/Boards.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/BoardWrapper.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 99,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board-Page/Modal.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/AddList.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/BoardHeader.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "trello/src/components/Board/UpdateBoardName.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "trello/src/components/Button.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "trello/src/components/DropDownSelect.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "trello/src/components/EditDescription.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 107,
+                    "comment": 0,
+                    "filename": "trello/src/components/Form.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "trello/src/components/Header.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 150,
+                    "comment": 0,
+                    "filename": "trello/src/components/ItemModal.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "trello/src/components/List/ListHeader.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "trello/src/components/ListItem.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "trello/src/components/Modal.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "trello/src/components/ModalSidebar.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "trello/src/components/QuickEdit.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 83,
+                    "comment": 0,
+                    "filename": "trello/src/components/QuickEditModal.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "trello/src/containers/AddCardContainer.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "trello/src/containers/AddListContainer.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "trello/src/containers/BoardContainer.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "trello/src/containers/BoardsPageContainer.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "trello/src/containers/ListContainer.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 121,
+                    "comment": 0,
+                    "filename": "trello/src/containers/ListItemContainer.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/containers/MoveModalContainer.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "trello/src/firebase.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "trello/src/index.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/boardReducer.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/itemReducer.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "trello/src/reducers/listReducer.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "trello/src/store/index.js"
+                }
+            ]
+        }
+    ]
+}

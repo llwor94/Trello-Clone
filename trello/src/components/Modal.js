@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import MoveModalContainer from '../containers/MoveModalContainer';
 import close from '../assets/close.svg';
 
@@ -39,40 +38,13 @@ const ModalHeader = styled.div`
     cursor: pointer;
   }
 `;
-const ModalOptions = styled.div`
-  color: #444;
-  text-align: left;
-  line-height: 10px;
-  font-weight: bold;
-  padding: 12px;
-  margin: 5px 0;
 
-  &:hover {
-    background-color: #298fca;
-    color: white;
-  }
-`;
-
-const ListModal = ({
-  children,
-  board,
-  title,
-  showing,
-  handleClose,
-  handleDelete,
-  move,
-}) => (
+const ListModal = ({ children, board, title, showing, handleClose, move }) => (
   <ModalWrapper board={board} move={move} show={showing}>
     <ModalHeader board={board}>
       <p>{title}</p> <img src={close} onClick={handleClose} />
     </ModalHeader>
-    {children ? (
-      children
-    ) : move ? (
-      <MoveModalContainer />
-    ) : (
-      <ModalOptions onClick={handleDelete}>Delete List</ModalOptions>
-    )}
+    {children ? children : <MoveModalContainer />}
   </ModalWrapper>
 );
 

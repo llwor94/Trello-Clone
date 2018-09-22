@@ -1,0 +1,22 @@
+{
+  "name": "trello-clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/llwor94/Trello-Clone.git",
+  "author": "Lauren <llwor94@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.0.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

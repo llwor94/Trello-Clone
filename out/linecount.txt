@@ -1,0 +1,143 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2018-09-18 15:37:46
+count workspace : /Users/lauren/Lambda-School/Trello-Clone
+total files : 60
+total code lines : 9508
+total comment lines : 603
+total blank lines : 1706
+
+LICENSE, code is 17, comment is 0, blank is 4.
+README.md, code is 2, comment is 0, blank is 0.
+trello/.gitignore, code is 16, comment is 1, blank is 5.
+trello/package.json, code is 24, comment is 0, blank is 0.
+trello/public/favicon.ico, it is a binary file.
+trello/public/index.html, code is 17, comment is 23, blank is 0.
+trello/public/manifest.json, code is 15, comment is 0, blank is 0.
+trello/README.md, code is 733, comment is 569, blank is 294.
+trello/src/actions/boardActions.js, code is 81, comment is 0, blank is 10.
+trello/src/actions/itemActions.js, code is 109, comment is 0, blank is 12.
+trello/src/actions/listActions.js, code is 74, comment is 0, blank is 9.
+trello/src/AppRouter.js, code is 56, comment is 0, blank is 2.
+trello/src/assets/arrow.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/background.jpeg, it is a binary file.
+trello/src/assets/background.png, it is a binary file.
+trello/src/assets/card.svg, code is 16, comment is 1, blank is 0.
+trello/src/assets/check.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/clock.svg, code is 15, comment is 1, blank is 0.
+trello/src/assets/close.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/create.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/description.svg, code is 17, comment is 1, blank is 0.
+trello/src/assets/edit.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/garbage.svg, code is 17, comment is 1, blank is 0.
+trello/src/assets/labels.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/trello-icon.png, it is a binary file.
+trello/src/assets/trello-logo-white.png, it is a binary file.
+trello/src/assets/user-regular.svg, code is 1, comment is 0, blank is 0.
+trello/src/components/Board-Page/BoardCard.js, code is 20, comment is 0, blank is 3.
+trello/src/components/Board-Page/Boards.js, code is 38, comment is 0, blank is 3.
+trello/src/components/Board-Page/BoardWrapper.js, code is 8, comment is 0, blank is 3.
+trello/src/components/Board-Page/Modal.js, code is 99, comment is 0, blank is 9.
+trello/src/components/Board/AddList.js, code is 26, comment is 0, blank is 4.
+trello/src/components/Board/BoardHeader.js, code is 21, comment is 0, blank is 4.
+trello/src/components/Board/UpdateBoardName.js, code is 29, comment is 0, blank is 5.
+trello/src/components/Button.js, code is 24, comment is 0, blank is 5.
+trello/src/components/DropDownSelect.js, code is 59, comment is 0, blank is 4.
+trello/src/components/EditDescription.js, code is 74, comment is 0, blank is 7.
+trello/src/components/Form.js, code is 107, comment is 0, blank is 8.
+trello/src/components/Header.js, code is 54, comment is 0, blank is 4.
+trello/src/components/ItemModal.js, code is 150, comment is 0, blank is 15.
+trello/src/components/List/ListHeader.js, code is 76, comment is 0, blank is 10.
+trello/src/components/ListItem.js, code is 71, comment is 0, blank is 7.
+trello/src/components/Modal.js, code is 47, comment is 0, blank is 4.
+trello/src/components/ModalSidebar.js, code is 47, comment is 0, blank is 5.
+trello/src/components/QuickEdit.js, code is 57, comment is 0, blank is 6.
+trello/src/components/QuickEditModal.js, code is 83, comment is 0, blank is 9.
+trello/src/containers/AddCardContainer.js, code is 62, comment is 0, blank is 8.
+trello/src/containers/AddListContainer.js, code is 48, comment is 0, blank is 7.
+trello/src/containers/BoardContainer.js, code is 106, comment is 0, blank is 10.
+trello/src/containers/BoardsPageContainer.js, code is 78, comment is 0, blank is 7.
+trello/src/containers/ListContainer.js, code is 52, comment is 0, blank is 5.
+trello/src/containers/ListItemContainer.js, code is 121, comment is 0, blank is 11.
+trello/src/containers/MoveModalContainer.js, code is 81, comment is 0, blank is 8.
+trello/src/firebase.js, code is 16, comment is 0, blank is 3.
+trello/src/index.js, code is 14, comment is 0, blank is 2.
+trello/src/reducers/boardReducer.js, code is 55, comment is 0, blank is 3.
+trello/src/reducers/itemReducer.js, code is 81, comment is 0, blank is 5.
+trello/src/reducers/listReducer.js, code is 72, comment is 0, blank is 3.
+trello/src/store/index.js, code is 17, comment is 0, blank is 1.
+trello/yarn.lock, code is 6327, comment is 0, blank is 1182.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2018-09-18 16:06:53
+count workspace : /Users/lauren/Lambda-School/Trello-Clone
+total files : 59
+total code lines : 3181
+total comment lines : 603
+total blank lines : 524
+
+LICENSE, code is 17, comment is 0, blank is 4.
+README.md, code is 2, comment is 0, blank is 0.
+trello/.gitignore, code is 16, comment is 1, blank is 5.
+trello/package.json, code is 24, comment is 0, blank is 0.
+trello/public/favicon.ico, it is a binary file.
+trello/public/index.html, code is 17, comment is 23, blank is 0.
+trello/public/manifest.json, code is 15, comment is 0, blank is 0.
+trello/README.md, code is 733, comment is 569, blank is 294.
+trello/src/actions/boardActions.js, code is 81, comment is 0, blank is 10.
+trello/src/actions/itemActions.js, code is 109, comment is 0, blank is 12.
+trello/src/actions/listActions.js, code is 74, comment is 0, blank is 9.
+trello/src/AppRouter.js, code is 56, comment is 0, blank is 2.
+trello/src/assets/arrow.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/background.jpeg, it is a binary file.
+trello/src/assets/background.png, it is a binary file.
+trello/src/assets/card.svg, code is 16, comment is 1, blank is 0.
+trello/src/assets/check.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/clock.svg, code is 15, comment is 1, blank is 0.
+trello/src/assets/close.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/create.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/description.svg, code is 17, comment is 1, blank is 0.
+trello/src/assets/edit.svg, code is 12, comment is 1, blank is 0.
+trello/src/assets/garbage.svg, code is 17, comment is 1, blank is 0.
+trello/src/assets/labels.svg, code is 14, comment is 1, blank is 0.
+trello/src/assets/trello-icon.png, it is a binary file.
+trello/src/assets/trello-logo-white.png, it is a binary file.
+trello/src/assets/user-regular.svg, code is 1, comment is 0, blank is 0.
+trello/src/components/Board-Page/BoardCard.js, code is 20, comment is 0, blank is 3.
+trello/src/components/Board-Page/Boards.js, code is 38, comment is 0, blank is 3.
+trello/src/components/Board-Page/BoardWrapper.js, code is 8, comment is 0, blank is 3.
+trello/src/components/Board-Page/Modal.js, code is 99, comment is 0, blank is 9.
+trello/src/components/Board/AddList.js, code is 26, comment is 0, blank is 4.
+trello/src/components/Board/BoardHeader.js, code is 21, comment is 0, blank is 4.
+trello/src/components/Board/UpdateBoardName.js, code is 29, comment is 0, blank is 5.
+trello/src/components/Button.js, code is 24, comment is 0, blank is 5.
+trello/src/components/DropDownSelect.js, code is 59, comment is 0, blank is 4.
+trello/src/components/EditDescription.js, code is 74, comment is 0, blank is 7.
+trello/src/components/Form.js, code is 107, comment is 0, blank is 8.
+trello/src/components/Header.js, code is 54, comment is 0, blank is 4.
+trello/src/components/ItemModal.js, code is 150, comment is 0, blank is 15.
+trello/src/components/List/ListHeader.js, code is 76, comment is 0, blank is 10.
+trello/src/components/ListItem.js, code is 71, comment is 0, blank is 7.
+trello/src/components/Modal.js, code is 47, comment is 0, blank is 4.
+trello/src/components/ModalSidebar.js, code is 47, comment is 0, blank is 5.
+trello/src/components/QuickEdit.js, code is 57, comment is 0, blank is 6.
+trello/src/components/QuickEditModal.js, code is 83, comment is 0, blank is 9.
+trello/src/containers/AddCardContainer.js, code is 62, comment is 0, blank is 8.
+trello/src/containers/AddListContainer.js, code is 48, comment is 0, blank is 7.
+trello/src/containers/BoardContainer.js, code is 106, comment is 0, blank is 10.
+trello/src/containers/BoardsPageContainer.js, code is 78, comment is 0, blank is 7.
+trello/src/containers/ListContainer.js, code is 52, comment is 0, blank is 5.
+trello/src/containers/ListItemContainer.js, code is 121, comment is 0, blank is 11.
+trello/src/containers/MoveModalContainer.js, code is 81, comment is 0, blank is 8.
+trello/src/firebase.js, code is 16, comment is 0, blank is 3.
+trello/src/index.js, code is 14, comment is 0, blank is 2.
+trello/src/reducers/boardReducer.js, code is 55, comment is 0, blank is 3.
+trello/src/reducers/itemReducer.js, code is 81, comment is 0, blank is 5.
+trello/src/reducers/listReducer.js, code is 72, comment is 0, blank is 3.
+trello/src/store/index.js, code is 17, comment is 0, blank is 1.
+===============================================================================
