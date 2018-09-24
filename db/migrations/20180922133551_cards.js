@@ -4,7 +4,10 @@ exports.up = function(knex, Promise) {
     table.string('title', 128).notNullable();
     table.integer('list_id').unsigned();
     table.timestamp('created_at').defaultTo(knex.fn.now());
-    table.foreign('list_id').references('lists.id');
+    table
+      .foreign('list_id')
+      .references('lists.id')
+      .onDelete('CASCADE');
   });
 };
 

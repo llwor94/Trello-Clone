@@ -15,13 +15,4 @@ module.exports = {
       .where('l.id', id)
       .first();
   },
-
-  // addList(board_id, title) {
-  //   return db('lists')
-  //     .insert({ title })
-  //     .then(ids => {
-  //       list_id = ids[0];
-  //       return db('board_lists').insert({ board_id, list_id });
-  //     });
-  // },
 };

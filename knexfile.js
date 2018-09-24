@@ -3,8 +3,13 @@
 module.exports = {
   development: {
     client: 'sqlite3',
-    connection: { filename: './db/db.sqlite3' }, // change this if you want a different name for the database
-    useNullAsDefault: true, // used to avoid warning on console
+    connection: { filename: './db/db.sqlite3' },
+    pool: {
+      afterCreate: function(conn, cb) {
+        conn.run('PRAGMA foreign_keys = ON', cb);
+      },
+    },
+    useNullAsDefault: true,
     migrations: {
       directory: './db/migrations',
       tableName: 'dbmigrations',

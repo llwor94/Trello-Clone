@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
   let title = req.body.title;
   let board_id = req.query.board;
 
-  if (!title || title === '') next({ code: 400 });
+  if (!title || title === '' || !board_id) next({ code: 400 });
   db('lists')
     .insert({ title, board_id })
     .then(data => {
