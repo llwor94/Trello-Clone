@@ -27,11 +27,11 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   let title = req.body.title;
-  let id = req.query.board;
+  let board_id = req.query.board;
 
   if (!title || title === '') next({ code: 400 });
-  helpers
-    .addList(id, title)
+  db('lists')
+    .insert({ title, board_id })
     .then(data => {
       return res.status(201).json(data);
     })
