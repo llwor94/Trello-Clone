@@ -18,9 +18,9 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   helpers
     .getList(req.params.id)
-    .then(board => {
-      if (!board) return next({ code: 404 });
-      res.status(200).json(board);
+    .then(list => {
+      if (!list) return next({ code: 404 });
+      res.status(200).json(list);
     })
     .catch(next);
 });
