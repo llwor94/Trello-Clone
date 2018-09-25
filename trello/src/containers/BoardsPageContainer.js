@@ -8,7 +8,6 @@ import {
 import { fetchLists } from '../actions/listActions';
 import Boards from '../components/Board-Page/Boards';
 import BoardCard from '../components/Board-Page/BoardCard';
-import styled from 'styled-components';
 import Modal from '../components/Board-Page/Modal';
 import BoardWrapper from '../components/Board-Page/BoardWrapper';
 

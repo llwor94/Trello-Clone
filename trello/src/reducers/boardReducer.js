@@ -1,4 +1,13 @@
-import { FETCH_BOARDS, BOARD_FETCH_SUCCESS, ADD_BOARD, BOARD_ADD_SUCCESS, FETCH_CURRENT_BOARD, CURRENT_BOARD_FETCHED, DISMOUNT_CURRENT_BOARD, FETCHING_COMPLETE } from '../actions/boardActions'
+import {
+  FETCH_BOARDS,
+  BOARD_FETCH_SUCCESS,
+  ADD_BOARD,
+  BOARD_ADD_SUCCESS,
+  FETCH_CURRENT_BOARD,
+  CURRENT_BOARD_FETCHED,
+  DISMOUNT_CURRENT_BOARD,
+  FETCHING_COMPLETE,
+} from '../actions/boardActions';
 
 const initialState = {
   fetchingBoards: false,
@@ -6,53 +15,52 @@ const initialState = {
   fetchingCurrentBoard: false,
   boards: [],
   currentBoard: null,
-  fetchingComplete: false
-}
+  fetchingComplete: false,
+};
 
 export const boardReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOARDS:
       return {
         ...state,
-        fetchingBoards: true
+        fetchingBoards: true,
       };
     case BOARD_FETCH_SUCCESS:
       return {
         ...state,
-        boards: [
-          ...action.payload
-        ],
+        boards: [...action.payload],
         fetchingBoards: false,
-      }
+      };
     case ADD_BOARD:
       return {
         ...state,
-        addingBoard: true
+        addingBoard: true,
       };
     case BOARD_ADD_SUCCESS:
       return {
         ...state,
+        boards: [...state.boards, action.payload],
         addingBoard: false,
       };
     case FETCH_CURRENT_BOARD:
       return {
         ...state,
-        fetchingCurrentBoard: true
+        fetchingCurrentBoard: true,
       };
     case CURRENT_BOARD_FETCHED:
       return {
         ...state,
         fetchingCurrentBoard: false,
-        currentBoard: action.payload
-      }
+        currentBoard: action.payload,
+      };
     case DISMOUNT_CURRENT_BOARD:
       return {
         ...state,
         currentBoard: null,
-        fetchingComplete: false
-      }
-    
-    default: 
+        fetchingComplete: false,
+      };
+
+    default:
       return state;
   }
-}
+};

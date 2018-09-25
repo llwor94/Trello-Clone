@@ -24,7 +24,7 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   let title = req.body.title;
-
+  console.log(title);
   if (!title || title === '') next({ code: 400 });
 
   db('boards')

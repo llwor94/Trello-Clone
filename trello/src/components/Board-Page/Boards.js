@@ -31,7 +31,7 @@ const Boards = ({ boards, handleRoute }) => (
           handleClick={() => handleRoute(board.id)}
           createNew={false}
         >
-          {board.name}
+          {board.title}
         </BoardCard>
       ))}
     </BoardsWrapper>
