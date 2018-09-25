@@ -10,6 +10,7 @@ export const BOARD_ADD_SUCCESS = 'BOARD_ADD_SUCCESS';
 export const FETCH_CURRENT_BOARD = 'FETCH_CURRENT_BOARD';
 export const CURRENT_BOARD_FETCHED = 'CURRENT_BOARD_FETCHED';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
+export const UPDATE_BOARD_SUCCESS = 'UPDATE_BOARD_SUCCESS';
 export const DISMOUNT_CURRENT_BOARD = 'DISMOUNT_CURRENT_BOARD';
 export const FETCHING_COMPLETE = 'FETCHING_COMPLETE';
 
@@ -28,7 +29,6 @@ export const fetchBoards = () => dispatch => {
 
 export const addBoard = title => dispatch => {
   dispatch({ type: ADD_BOARD });
-  console.log(title);
   axios
     .post(URL, { title })
     .then(response => {
@@ -41,38 +41,31 @@ export const addBoard = title => dispatch => {
     .catch(error => {
       console.log(error);
     });
-  // let docRef = db.collection('boards').doc();
-  // docRef
-  //   .set({
-  //     name: title,
-  //     id: docRef.id,
-  //   })
-  //   .then(() => {
-  //     dispatch({ type: BOARD_ADD_SUCCESS });
-  //   })
-  //   .catch(error => {
-  //     console.log('Error adding document', error);
-  //   });
 };
 
 export const getCurrentBoard = id => dispatch => {
   dispatch({ type: FETCH_CURRENT_BOARD });
-  // axios.get(`URL/${id}`).then()
-
-  let query = db.collection('boards').doc(id);
-  query.onSnapshot(doc => {
-    console.log('current board', doc.data());
-    dispatch({ type: CURRENT_BOARD_FETCHED, payload: doc.data() });
+  axios.get(`${URL}/${id}`).then(response => {
+    dispatch({
+      type: CURRENT_BOARD_FETCHED,
+      payload: response.data,
+    });
     dispatch(fetchLists());
     dispatch(fetchItems());
   });
 };
 
-export const updateBoardName = newName => (dispatch, getState) => {
+export const updateBoardName = title => (dispatch, getState) => {
   dispatch({ type: UPDATE_BOARD });
   let board = getState().boardReducer.currentBoard.id;
-  let boardRef = db.collection('boards').doc(board);
-  boardRef.update({ name: newName }).then(() => console.log(boardRef));
+  axios.put(`${URL}/${board}`, { title }).then(response => {
+    dispatch({
+      type: UPDATE_BOARD_SUCCESS,
+      payload: title,
+    });
+  });
+  // let boardRef = db.collection('boards').doc(board);
+  // boardRef.update({ name: newName }).then(() => console.log(boardRef));
 };
 
 export const getBoardsIfNeeded = () => (dispatch, getState) => {
@@ -81,22 +74,24 @@ export const getBoardsIfNeeded = () => (dispatch, getState) => {
   }
 };
 
-export const getBoardIfNeeded = id => (dispatch, getState) => {
-  if (shouldFetchBoard(getState())) {
+export const getDataIfNeeded = id => (dispatch, getState) => {
+  if (shouldFetchData(getState())) {
     return dispatch(getCurrentBoard(id));
   }
 };
 
 const shouldFetchBoards = state => {
   const boards = state.boardReducer.boards;
+  // const lists = state.listReducer.lists;
+  // const items = state.itemReducer.items;
   if (boards.length < 1) {
     return true;
   } else return false;
 };
 
-const shouldFetchBoard = state => {
+const shouldFetchData = state => {
   const board = state.boardReducer.currentBoard;
-  if (!board) {
+  if (!board.title) {
     return true;
   } else return false;
 };

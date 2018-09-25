@@ -34,7 +34,7 @@ class ListContainer extends Component {
       <ListWrapper onDragOver={this.handleDragOver} onDrop={this.handleDrop}>
         <Fragment>
           <ListHeader
-            name={this.props.list.name}
+            name={this.props.list.title}
             handleDelete={() => this.props.deleteList(this.props.list.id)}
           />
           {this.props.items.map(item => (

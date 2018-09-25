@@ -1,5 +1,15 @@
-import {FETCH_LIST_ITEM, DESELECT_ITEM, FETCH_ITEMS, ITEMS_FETCHED, MOVE_ITEM, ITEM_MOVED, ITEM_FETCHED, ADD_DESCRIPTION, ADD_DESCRIPTION_SUCCESS } from '../actions/itemActions';
-import {DISMOUNT_CURRENT_BOARD} from '../actions/boardActions'
+import {
+  FETCH_LIST_ITEM,
+  DESELECT_ITEM,
+  FETCH_ITEMS,
+  ITEMS_FETCHED,
+  MOVE_ITEM,
+  ITEM_MOVED,
+  ITEM_FETCHED,
+  ADD_DESCRIPTION,
+  ADD_DESCRIPTION_SUCCESS,
+} from '../actions/itemActions';
+import { DISMOUNT_CURRENT_BOARD } from '../actions/boardActions';
 
 const initialState = {
   fetchingItems: false,
@@ -9,11 +19,11 @@ const initialState = {
   movingItem: false,
   addingDescription: false,
   items: [],
-  currentItem: {name: ''},
-}
+  currentItem: { title: '' },
+};
 
 export const itemReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_LIST_ITEM:
       return {
         ...state,
@@ -23,64 +33,62 @@ export const itemReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingItem: false,
-        currentItem: action.payload
-      }
+        currentItem: action.payload,
+      };
     case FETCH_ITEMS:
       return {
         ...state,
         fetchingItems: true,
-      }
+      };
     case ITEMS_FETCHED:
       return {
         ...state,
         fetchingItems: false,
-        items: [
-          ...action.payload
-        ]
-      }
+        items: [...action.payload],
+      };
     case DESELECT_ITEM:
       return {
         ...state,
-        currentItem: {name: ''}
-      }
+        currentItem: { title: '' },
+      };
     case DISMOUNT_CURRENT_BOARD:
       return {
         ...state,
-        items: []
-      }
+        items: [],
+      };
     case MOVE_ITEM:
       return {
         ...state,
-        movingItem: true
-      }
+        movingItem: true,
+      };
     case ITEM_MOVED:
       return {
         ...state,
-        movingItem: false
-      }
+        movingItem: false,
+      };
     case ADD_DESCRIPTION:
       return {
         ...state,
-        addingDescription: true
-      }
+        addingDescription: true,
+      };
     case ADD_DESCRIPTION_SUCCESS:
       return {
         ...state,
-        addingDescription: false
-      }
-    default: 
+        addingDescription: false,
+      };
+    default:
       return state;
   }
-}
+};
 
 export const filteredItems = (state, list) => {
-  return state.itemReducer.items.filter(item => item.list === list.id )
-}
+  return state.itemReducer.items.filter(item => item.list_id === list.id);
+};
 
 export const listByItem = (state, item) => {
-  return state.listReducer.lists.find(list => list.id === item.list)
-}
+  return state.listReducer.lists.find(list => list.id === item.list_id);
+};
 
 export const getCurrentItem = (state, id) => {
-  return state.itemReducer.items.find(item => item.id === id)
-}
+  return state.itemReducer.items.find(item => item.id === id);
+};

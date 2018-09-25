@@ -69,7 +69,7 @@ const ListItem = ({
     onDrop={onDrop}
     onDragStart={e => onDragStart(e, item.id)}
   >
-    <Name onClick={handleMainClick}>{item.name}</Name>
+    <Name onClick={handleMainClick}>{item.title}</Name>
     {item.description && <Icon src={description} />}
     <Edit src={edit} onClick={handleEditClick} />
   </StyledItem>

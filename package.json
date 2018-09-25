@@ -6,8 +6,11 @@
   "author": "Lauren <llwor94@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@feathersjs/express": "^1.2.7",
+    "@feathersjs/feathers": "^3.2.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "feathers-knex": "^3.3.0",
     "knex": "^0.15.2",
     "morgan": "^1.9.1",
     "sqlite3": "^4.0.2"

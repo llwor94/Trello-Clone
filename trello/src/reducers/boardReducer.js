@@ -5,6 +5,7 @@ import {
   BOARD_ADD_SUCCESS,
   FETCH_CURRENT_BOARD,
   CURRENT_BOARD_FETCHED,
+  UPDATE_BOARD_SUCCESS,
   DISMOUNT_CURRENT_BOARD,
   FETCHING_COMPLETE,
 } from '../actions/boardActions';
@@ -14,7 +15,7 @@ const initialState = {
   addingBoard: false,
   fetchingCurrentBoard: false,
   boards: [],
-  currentBoard: null,
+  currentBoard: { title: '' },
   fetchingComplete: false,
 };
 
@@ -52,6 +53,11 @@ export const boardReducer = (state = initialState, action) => {
         ...state,
         fetchingCurrentBoard: false,
         currentBoard: action.payload,
+      };
+    case UPDATE_BOARD_SUCCESS:
+      return {
+        ...state,
+        currentBoard: { ...state.currentBoard, title: action.payload },
       };
     case DISMOUNT_CURRENT_BOARD:
       return {

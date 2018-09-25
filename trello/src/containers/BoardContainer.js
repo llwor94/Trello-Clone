@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
-  getBoardIfNeeded,
+  getDataIfNeeded,
   updateBoardName,
   getBoardsIfNeeded,
 } from '../actions/boardActions';
-import {
-  clearList,
-  getListsIfNeeded,
-  fetchAllLists,
-} from '../actions/listActions';
+import { clearList, fetchAllLists } from '../actions/listActions';
 import { dismountCurrentBoard } from '../actions/boardActions';
 import AddListContainer from './AddListContainer';
 import ListContainer from './ListContainer';
@@ -36,19 +32,18 @@ const ListWrapper = styled.div`
 
 class BoardContainer extends React.Component {
   state = {
-    value: this.props.board.name,
+    value: '',
     showingModal: false,
   };
   componentDidMount() {
     console.log('mounted');
-    this.props.fetchAllLists();
-    this.props.getBoardsIfNeeded();
-    this.props.getBoardIfNeeded(this.props.match.params.id);
+    this.props.getDataIfNeeded(this.props.match.params.id);
+    this.setState({ value: this.props.board.title });
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.board.name !== prevProps.board.name) {
-      this.setState({ showingModal: false });
+    if (this.props.board.title !== prevProps.board.title) {
+      this.setState({ showingModal: false, value: this.props.board.title });
     }
   }
 
@@ -70,7 +65,7 @@ class BoardContainer extends React.Component {
     return (
       <BoardWrapper>
         <BoardHeader handleClick={() => this.setState({ showingModal: true })}>
-          {this.props.board.name}
+          {this.props.board.title}
           {this.state.showingModal && (
             <Modal
               handleClose={this.handleClose}
@@ -105,10 +100,9 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getBoardIfNeeded,
+    getDataIfNeeded,
     clearList,
     updateBoardName,
-    getListsIfNeeded,
     dismountCurrentBoard,
     getBoardsIfNeeded,
     fetchAllLists,

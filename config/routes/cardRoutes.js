@@ -4,6 +4,7 @@ const db = require('../../db/dbConfig');
 const helpers = require('../../db/helpers');
 
 router.get('/', (req, res, next) => {
+  console.log(req.query);
   let id = req.query.board;
 
   helpers
