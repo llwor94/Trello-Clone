@@ -63,27 +63,22 @@ export const addList = title => (dispatch, getState) => {
     });
     dispatch(fetchLists());
   });
-  // let listRef = db.collection('lists').doc();
-  // listRef
-  //   .set({
-  //     id: listRef.id,
-  //     name: name,
-  //     board: board,
-  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  //   })
-  //   .then(() => {
-  //     dispatch({ type: ADD_LIST_SUCCESS });
-  //   });
 };
 
 export const deleteList = id => dispatch => {
   dispatch({ type: DELETING_LIST });
-  db.collection('lists')
-    .doc(id)
-    .delete()
-    .then(() => {
-      dispatch({ type: LIST_DELETED });
+  axios.delete(`${URL}/${id}`).then(res => {
+    dispatch({
+      type: LIST_DELETED,
+      payload: id,
     });
+  });
+  // db.collection('lists')
+  //   .doc(id)
+  //   .delete()
+  //   .then(() => {
+  //     dispatch({ type: LIST_DELETED });
+  //   });
 };
 
 export const clearList = () => ({
