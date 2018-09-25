@@ -83,21 +83,21 @@ export const updateName = (item, name) => dispatch => {
   });
 };
 
-export const addItem = (list, item) => (dispatch, getState) => {
+export const addItem = (list, title) => dispatch => {
   dispatch({ type: ADD_ITEM });
-  let board = getState().boardReducer.currentBoard.id;
-  let itemRef = db.collection('listItems').doc();
-  itemRef
-    .set({
-      id: itemRef.id,
-      name: item,
-      board: board,
-      list: list,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-    .then(() => {
-      dispatch({ type: ADD_ITEM_SUCCESS });
-    });
+  axios({
+    method: 'POST',
+    url: URL,
+    params: {
+      list,
+    },
+    data: {
+      title,
+    },
+  }).then(() => {
+    dispatch({ type: ADD_ITEM_SUCCESS });
+    dispatch(fetchItems());
+  });
 };
 
 export const addDescription = (id, description) => dispatch => {

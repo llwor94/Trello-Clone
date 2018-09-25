@@ -73,12 +73,6 @@ export const deleteList = id => dispatch => {
       payload: id,
     });
   });
-  // db.collection('lists')
-  //   .doc(id)
-  //   .delete()
-  //   .then(() => {
-  //     dispatch({ type: LIST_DELETED });
-  //   });
 };
 
 export const clearList = () => ({

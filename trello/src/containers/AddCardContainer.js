@@ -26,9 +26,9 @@ class AddCardContainer extends Component {
     if (this.props.items !== prevProps.items) {
       this.setState({ selected: false, value: '' });
     }
-    if (this.state.selected !== prevState.selected && this.state.selected) {
-      this.divRef.focus();
-    }
+    // if (this.state.selected !== prevState.selected && this.state.selected) {
+    //   this.divRef.focus();
+    // }
   }
 
   addNewCard = e => {
@@ -47,7 +47,7 @@ class AddCardContainer extends Component {
     }
     return (
       <Form
-        divRef={el => (this.divRef = el)}
+        // divRef={el => (this.divRef = el)}
         handleBlur={() => this.setState({ selected: false })}
         handleChange={e => this.setState({ value: e.target.value })}
         handleClose={() => this.setState({ selected: false })}
