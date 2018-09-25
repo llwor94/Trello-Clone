@@ -36,7 +36,6 @@ class BoardContainer extends React.Component {
     showingModal: false,
   };
   componentDidMount() {
-    console.log('mounted');
     this.props.getDataIfNeeded(this.props.match.params.id);
     this.setState({ value: this.props.board.title });
   }

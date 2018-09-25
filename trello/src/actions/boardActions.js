@@ -64,8 +64,6 @@ export const updateBoardName = title => (dispatch, getState) => {
       payload: title,
     });
   });
-  // let boardRef = db.collection('boards').doc(board);
-  // boardRef.update({ name: newName }).then(() => console.log(boardRef));
 };
 
 export const getBoardsIfNeeded = () => (dispatch, getState) => {
@@ -82,8 +80,6 @@ export const getDataIfNeeded = id => (dispatch, getState) => {
 
 const shouldFetchBoards = state => {
   const boards = state.boardReducer.boards;
-  // const lists = state.listReducer.lists;
-  // const items = state.itemReducer.items;
   if (boards.length < 1) {
     return true;
   } else return false;

@@ -76,10 +76,10 @@ const Form = ({
   return (
     <StyledForm
       tabIndex="0"
-      innerRef={divRef}
+      // innerRef={divRef}
       type={type}
       onSubmit={handleSubmit}
-      onBlur={handleBlur}
+      // onBlur={handleBlur}
     >
       {type === 'Card' || type === 'Edit' ? (
         <TextareaWrapper>
