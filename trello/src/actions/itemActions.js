@@ -49,15 +49,17 @@ export const fetchCurrentItem = id => dispatch => {
   });
 };
 
-export const clearCurrentItem = () => ({
-  type: DESELECT_ITEM,
-});
+export const clearCurrentItem = () => dispatch => {
+  dispatch({ type: DESELECT_ITEM });
+  dispatch(fetchItems());
+};
 
 export const moveItemToNewList = (item, list) => dispatch => {
   dispatch({ type: MOVE_ITEM });
   let itemRef = db.collection('listItems').doc(item);
   itemRef.update({ list: list }).then(() => {
     dispatch({ type: ITEM_MOVED });
+    dispatch(fetchItems());
   });
 };
 
@@ -103,15 +105,21 @@ export const addItem = (list, title) => dispatch => {
 
 export const addDescription = (id, description) => dispatch => {
   dispatch({ type: ADD_DESCRIPTION });
-  let itemRef = db.collection('listItems').doc(id);
-  itemRef
-    .update({ description: description })
-    .then(() => {
-      dispatch({ type: ADD_DESCRIPTION_SUCCESS });
-    })
-    .catch(err => {
-      console.log(err);
+  axios.put(`${URL}/${id}`, { description }).then(response => {
+    dispatch({
+      type: ADD_DESCRIPTION_SUCCESS,
+      payload: description,
     });
+  });
+  // let itemRef = db.collection('listItems').doc(id);
+  // itemRef
+  //   .update({ description: description })
+  //   .then(() => {
+  //     dispatch({ type: ADD_DESCRIPTION_SUCCESS });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
 };
 
 export const addTag = (item, tags) => {};

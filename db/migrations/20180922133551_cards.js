@@ -2,6 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('cards', table => {
     table.increments();
     table.string('title', 128).notNullable();
+    table.text('description');
     table.integer('list_id').unsigned();
     table.integer('board_id').unsigned();
     table.timestamp('created_at').defaultTo(knex.fn.now());

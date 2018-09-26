@@ -88,6 +88,7 @@ export const itemReducer = (state = initialState, action) => {
       return {
         ...state,
         addingDescription: false,
+        currentItem: { ...state.currentItem, description: action.payload },
       };
     default:
       return state;

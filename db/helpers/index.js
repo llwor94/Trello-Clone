@@ -23,6 +23,7 @@ module.exports = {
       .select(
         'c.id',
         'c.title',
+        'c.description',
         'c.board_id',
         'c.list_id',
         'b.title as board',
@@ -39,6 +40,7 @@ module.exports = {
         'c.id',
         'c.title',
         'c.board_id',
+        'c.description',
         'c.list_id',
         'b.title as board',
         'l.title as list',

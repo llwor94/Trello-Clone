@@ -41,8 +41,20 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   let title = req.body.title;
+  let description = req.body.description;
   let board_id = req.query.board;
   let list_id = req.query.list;
+  console.log(description);
+  if (description) {
+    db('cards')
+      .where({ id: req.params.id })
+      .update({ description })
+      .then(response => {
+        if (!response) return next({ code: 404 });
+        res.status(200).json('Update successful');
+      })
+      .catch(next);
+  }
   if (!title || title === '') {
     db('cards')
       .where({ id: req.params.id })
