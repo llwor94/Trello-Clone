@@ -46,7 +46,8 @@ class AppRouter extends React.Component {
         <Header transparent={boardPage} />
         <AppWrapper background={boardPage}>
           <Switch>
-            <Route exact path="/" component={BoardsPageContainer} />
+            <Route exact path="/" />
+            <Route exact path="/boards" component={BoardsPageContainer} />
             <Route exact path="/board/:id" component={BoardContainer} />
           </Switch>
         </AppWrapper>

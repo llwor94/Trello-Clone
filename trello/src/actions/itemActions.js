@@ -120,10 +120,4 @@ export const deleteItem = id => dispatch => {
       payload: id,
     });
   });
-  // db.collection('listItems')
-  //   .doc(id)
-  //   .delete()
-  //   .then(() => {
-  //     dispatch({ type: ITEM_DELETED });
-  //   });
 };

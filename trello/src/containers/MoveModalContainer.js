@@ -40,18 +40,19 @@ class MoveModalContainer extends Component {
   };
 
   handleChange = e => {
-    console.log(e.target.value);
+    console.log(e.target.value, e.target.name);
     let value = '';
-    let name = e.target.value.title.toLowerCase();
+    let name = e.target.name.toLowerCase();
     let lists = [];
     if (e.target.name === 'Board') {
+      console.log(this.props.boards, e.target.value);
       lists = this.props.allLists.filter(
-        list => list.board_id === e.target.value,
+        list => list.board_id == e.target.value,
       );
-      value = this.props.boards.find(board => board.id === e.target.value);
+      value = this.props.boards.find(board => board.id == e.target.value);
     } else {
       lists = [...this.state.lists];
-      value = this.state.lists.find(list => list.id === e.target.value);
+      value = this.state.lists.find(list => list.id == e.target.value);
     }
     console.log(name, value);
     this.setState({ [name]: value, lists: lists });

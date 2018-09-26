@@ -1,14 +1,14 @@
-import React from "react";
-import logo from "../assets/trello-logo-white.png";
-import icon from "../assets/trello-icon.png";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import logo from '../assets/trello-logo-white.png';
+import icon from '../assets/trello-icon.png';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.div`
   width: 100vw;
   position: fixed;
   top: 0;
-  background: ${props => props.transparent ? 'rgba(0,0,0,.15)' : '#026aa7'};
+  background: ${props => (props.transparent ? 'rgba(0,0,0,.15)' : '#026aa7')};
   padding: 4px;
   height: 40px;
   display: flex;
@@ -44,7 +44,7 @@ class Header extends React.Component {
   render() {
     return (
       <HeaderWrapper transparent={this.props.transparent}>
-        <BoardLink to="/">
+        <BoardLink to="/boards">
           <img src={icon} />
           <p>Boards</p>
         </BoardLink>
