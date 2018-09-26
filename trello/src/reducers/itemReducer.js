@@ -7,7 +7,10 @@ import {
   ITEM_MOVED,
   ITEM_FETCHED,
   ADD_DESCRIPTION,
+  NAME_UPDATED,
   ADD_DESCRIPTION_SUCCESS,
+  ITEM_DELETED,
+  UPDATE_NAME,
 } from '../actions/itemActions';
 import { DISMOUNT_CURRENT_BOARD } from '../actions/boardActions';
 
@@ -65,6 +68,16 @@ export const itemReducer = (state = initialState, action) => {
       return {
         ...state,
         movingItem: false,
+      };
+    case ITEM_DELETED:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload),
+      };
+    case NAME_UPDATED:
+      return {
+        ...state,
+        currentItem: { ...state.currentItem, title: action.payload },
       };
     case ADD_DESCRIPTION:
       return {

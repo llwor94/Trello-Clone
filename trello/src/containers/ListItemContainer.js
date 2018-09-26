@@ -104,7 +104,7 @@ class ListItemContainer extends Component {
                 left={this.state.left}
                 handleClick={this.handleClick}
                 handleEdit={name => {
-                  this.props.updateName(this.props.currentItem, name);
+                  this.props.updateName(this.props.currentItem.id, name);
                   this.handleClose();
                 }}
               />

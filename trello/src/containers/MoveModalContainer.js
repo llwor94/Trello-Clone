@@ -20,9 +20,11 @@ class MoveModalContainer extends Component {
   componentDidMount() {
     this.setState({
       board: this.props.currentBoard,
-      list: this.props.allLists.find(list => list.id === this.props.item.list),
+      list: this.props.allLists.find(
+        list => list.id === this.props.item.list_id,
+      ),
       lists: this.props.allLists.filter(
-        list => list.board === this.props.currentBoard.id,
+        list => list.board_id === this.props.currentBoard.id,
       ),
     });
   }
@@ -40,10 +42,12 @@ class MoveModalContainer extends Component {
   handleChange = e => {
     console.log(e.target.value);
     let value = '';
-    let name = e.target.name.toLowerCase();
+    let name = e.target.value.title.toLowerCase();
     let lists = [];
     if (e.target.name === 'Board') {
-      lists = this.props.allLists.filter(list => list.board === e.target.value);
+      lists = this.props.allLists.filter(
+        list => list.board_id === e.target.value,
+      );
       value = this.props.boards.find(board => board.id === e.target.value);
     } else {
       lists = [...this.state.lists];
@@ -58,14 +62,14 @@ class MoveModalContainer extends Component {
       <Form onSubmit={this.handleSubmit}>
         <DropDownSelect
           label="Board"
-          name={this.state.board.name}
+          name={this.state.board.title}
           value={this.state.board}
           handleChange={this.handleChange}
           array={this.props.boards}
         />
         <DropDownSelect
           label="List"
-          name={this.state.list.name}
+          name={this.state.list.title}
           value={this.state.list}
           handleChange={this.handleChange}
           array={this.state.lists}

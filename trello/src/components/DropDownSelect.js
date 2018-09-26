@@ -45,13 +45,13 @@ const Display = styled.span`
 const DropDownSelect = ({ label, name, value, handleChange, array }) => (
   <Wrapper>
     <Label>{label}</Label>
-    <Display>{value.name}</Display>
+    <Display>{value.title}</Display>
     <Select value={value.id} onChange={handleChange} name={label}>
       <optgroup label={label}>
         {array.map(element => {
           return (
             <option key={element.id} value={element.id}>
-              {element.name}
+              {element.title}
             </option>
           );
         })}

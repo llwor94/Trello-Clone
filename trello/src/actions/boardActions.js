@@ -1,4 +1,3 @@
-import db from '../firebase';
 import { fetchLists } from './listActions';
 import { fetchItems } from './itemActions';
 import axios from 'axios';
@@ -52,6 +51,7 @@ export const getCurrentBoard = id => dispatch => {
     });
     dispatch(fetchLists());
     dispatch(fetchItems());
+    dispatch(fetchBoards());
   });
 };
 

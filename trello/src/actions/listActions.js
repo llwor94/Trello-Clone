@@ -1,5 +1,5 @@
 import db from '../firebase';
-import firebase from 'firebase/app';
+
 import axios from 'axios';
 
 export const FETCH_LISTS = 'FETCH_LISTS';
@@ -34,14 +34,21 @@ export const fetchLists = () => (dispatch, getState) => {
 
 export const fetchAllLists = () => dispatch => {
   dispatch({ type: FETCH_ALL_LISTS });
-  db.collection('lists').onSnapshot(querySnapshot => {
+
+  axios.get(URL).then(response => {
     dispatch({
       type: FETCH_ALL_LISTS_SUCCESS,
-      payload: querySnapshot.docs.map(doc => {
-        return { ...doc.data() };
-      }),
+      payload: response.data,
     });
   });
+  // db.collection('lists').onSnapshot(querySnapshot => {
+  //   dispatch({
+  //     type: FETCH_ALL_LISTS_SUCCESS,
+  //     payload: querySnapshot.docs.map(doc => {
+  //       return { ...doc.data() };
+  //     }),
+  //   });
+  // });
 };
 
 export const addList = title => (dispatch, getState) => {

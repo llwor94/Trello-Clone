@@ -1,5 +1,4 @@
 import db from '../firebase';
-import firebase from 'firebase/app';
 import axios from 'axios';
 
 export const FETCH_LIST_ITEM = 'FETCH_LIST_ITEM';
@@ -41,16 +40,12 @@ export const fetchItems = () => (dispatch, getState) => {
 };
 
 export const fetchCurrentItem = id => dispatch => {
-  console.log(id);
   dispatch({ type: FETCH_LIST_ITEM });
-  let itemRef = db.collection('listItems').doc(id);
-  itemRef.get().then(doc => {
-    if (doc.exists) {
-      dispatch({
-        type: ITEM_FETCHED,
-        payload: doc.data(),
-      });
-    }
+  axios.get(`${URL}/${id}`).then(response => {
+    dispatch({
+      type: ITEM_FETCHED,
+      payload: response.data,
+    });
   });
 };
 
@@ -75,12 +70,15 @@ export const updateItem = (item, list, board) => dispatch => {
   });
 };
 
-export const updateName = (item, name) => dispatch => {
+export const updateName = (id, title) => dispatch => {
   dispatch({ type: UPDATE_NAME });
-  let itemRef = db.collection('listItems').doc(item.id);
-  itemRef.update({ name: name }).then(() => {
-    dispatch({ type: NAME_UPDATED });
+  axios.put(`${URL}/${id}`, { title }).then(response => {
+    dispatch({ type: NAME_UPDATED, payload: title });
   });
+  // let itemRef = db.collection('listItems').doc(item.id);
+  // itemRef.update({ name: name }).then(() => {
+  //   dispatch({ type: NAME_UPDATED });
+  // });
 };
 
 export const addItem = (list, title) => dispatch => {
@@ -116,10 +114,16 @@ export const addDescription = (id, description) => dispatch => {
 export const addTag = (item, tags) => {};
 
 export const deleteItem = id => dispatch => {
-  db.collection('listItems')
-    .doc(id)
-    .delete()
-    .then(() => {
-      dispatch({ type: ITEM_DELETED });
+  axios.delete(`${URL}/${id}`).then(res => {
+    dispatch({
+      type: ITEM_DELETED,
+      payload: id,
     });
+  });
+  // db.collection('listItems')
+  //   .doc(id)
+  //   .delete()
+  //   .then(() => {
+  //     dispatch({ type: ITEM_DELETED });
+  //   });
 };

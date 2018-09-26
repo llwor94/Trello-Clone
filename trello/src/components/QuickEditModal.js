@@ -32,13 +32,13 @@ class QuickEditModal extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props.item.name);
+    console.log(this.props.item.title);
     this.inputRef.focus();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.item !== prevProps.item) {
-      this.setState({ value: this.props.item.name });
+      this.setState({ value: this.props.item.title });
     }
   }
 

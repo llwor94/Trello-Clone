@@ -5,14 +5,22 @@ const helpers = require('../../db/helpers');
 
 router.get('/', (req, res, next) => {
   let id = req.query.board;
-
-  helpers
-    .getBoardLists(id)
-    .then(data => {
-      if (data) return res.status(200).json(data);
-      return res.status(200).json([]);
-    })
-    .catch(next);
+  if (!id) {
+    return db('lists')
+      .then(data => {
+        if (data) return res.status(200).json(data);
+        return res.status(200).json([]);
+      })
+      .catch(next);
+  } else {
+    helpers
+      .getBoardLists(id)
+      .then(data => {
+        if (data) return res.status(200).json(data);
+        return res.status(200).json([]);
+      })
+      .catch(next);
+  }
 });
 
 router.get('/:id', (req, res, next) => {

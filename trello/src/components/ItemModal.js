@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import EditDescription from "./EditDescription";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import EditDescription from './EditDescription';
 import ModalSidebar from './ModalSidebar';
-import card from "../assets/card.svg";
-import close from "../assets/close.svg";
-import descript from "../assets/description.svg";
+import card from '../assets/card.svg';
+import close from '../assets/close.svg';
+import descript from '../assets/description.svg';
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -84,7 +84,7 @@ class ItemModal extends React.Component {
   state = {
     isDescription: false,
     editDescription: false,
-    description: "",
+    description: '',
   };
 
   componentDidMount() {
@@ -96,7 +96,10 @@ class ItemModal extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.state.editDescription !== prevState.editDescription && this.state.editDescription) {
+    if (
+      this.state.editDescription !== prevState.editDescription &&
+      this.state.editDescription
+    ) {
       this.inputRef.focus();
     }
   }
@@ -108,13 +111,13 @@ class ItemModal extends React.Component {
   };
 
   handleFocus = () => {
-    this.setState({ editDescription: true })
-  }
+    this.setState({ editDescription: true });
+  };
 
   componentWillUnmount() {
     this.setState({
       editDescription: false,
-      description: "",
+      description: '',
       isDescription: false,
     });
   }
@@ -126,22 +129,24 @@ class ItemModal extends React.Component {
           <Wrapper>
             <Icon src={card} />
             <Title>
-              <h2>{this.props.item.name}</h2>
+              <h2>{this.props.item.title}</h2>
               <p>
-                in list <u>{this.props.list.name}</u>
+                in list <u>{this.props.list.title}</u>
               </p>
             </Title>
           </Wrapper>
-          <ModalSidebar/>
+          <ModalSidebar />
           <MainContent>
             <Wrapper>
               <Icon src={descript} />
               <Description onSubmit={this.handleSubmit}>
                 <h3>Description</h3>
                 {!this.state.editDescription &&
-                  this.state.description && <span onClick={this.handleFocus}>Edit</span>}
+                  this.state.description && (
+                    <span onClick={this.handleFocus}>Edit</span>
+                  )}
                 <EditDescription
-                  inputRef={el => this.inputRef = el}
+                  inputRef={el => (this.inputRef = el)}
                   isDescription={this.state.isDescription}
                   handleFocus={this.handleFocus}
                   edit={this.state.editDescription}
@@ -153,9 +158,7 @@ class ItemModal extends React.Component {
                 />
               </Description>
             </Wrapper>
-            
           </MainContent>
-          
         </ModalContent>
       </ModalWrapper>
     );

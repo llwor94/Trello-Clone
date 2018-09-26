@@ -37,6 +37,7 @@ class BoardContainer extends React.Component {
   };
   componentDidMount() {
     this.props.getDataIfNeeded(this.props.match.params.id);
+    this.props.fetchAllLists();
     this.setState({ value: this.props.board.title });
   }
 
