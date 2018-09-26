@@ -41,16 +41,27 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   let title = req.body.title;
-  if (!title || title === '') next({ code: 400 });
-
-  db('cards')
-    .where({ id: req.params.id })
-    .update({ title })
-    .then(response => {
-      if (!response) return next({ code: 404 });
-      res.status(200).json('Update successful');
-    })
-    .catch(next);
+  let board_id = req.query.board;
+  let list_id = req.query.list;
+  if (!title || title === '') {
+    db('cards')
+      .where({ id: req.params.id })
+      .update({ board_id, list_id })
+      .then(response => {
+        if (!response) return next({ code: 404 });
+        res.status(200).json('Update successful');
+      })
+      .catch(next);
+  } else {
+    db('cards')
+      .where({ id: req.params.id })
+      .update({ title })
+      .then(response => {
+        if (!response) return next({ code: 404 });
+        res.status(200).json('Update successful');
+      })
+      .catch(next);
+  }
 });
 
 router.delete('/:id', (req, res, next) => {

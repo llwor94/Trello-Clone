@@ -61,13 +61,24 @@ export const moveItemToNewList = (item, list) => dispatch => {
   });
 };
 
-export const updateItem = (item, list, board) => dispatch => {
-  console.log(item, list, board);
+export const updateItem = (id, list, board) => dispatch => {
+  // console.log(item, list, board);
   dispatch({ type: UPDATE_ITEM });
-  let itemRef = db.collection('listItems').doc(item);
-  itemRef.update({ list: list.id, board: board.id }).then(() => {
+  axios({
+    method: 'PUT',
+    url: `${URL}/${id}`,
+    params: {
+      list,
+      board,
+    },
+  }).then(response => {
     dispatch({ type: ITEM_UPDATED });
+    dispatch(fetchItems());
   });
+  // let itemRef = db.collection('listItems').doc(item);
+  // itemRef.update({ list: list.id, board: board.id }).then(() => {
+  //   dispatch({ type: ITEM_UPDATED });
+  // });
 };
 
 export const updateName = (id, title) => dispatch => {

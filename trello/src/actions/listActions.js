@@ -41,14 +41,6 @@ export const fetchAllLists = () => dispatch => {
       payload: response.data,
     });
   });
-  // db.collection('lists').onSnapshot(querySnapshot => {
-  //   dispatch({
-  //     type: FETCH_ALL_LISTS_SUCCESS,
-  //     payload: querySnapshot.docs.map(doc => {
-  //       return { ...doc.data() };
-  //     }),
-  //   });
-  // });
 };
 
 export const addList = title => (dispatch, getState) => {

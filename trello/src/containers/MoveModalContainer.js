@@ -34,18 +34,16 @@ class MoveModalContainer extends Component {
     console.log(this.state);
     this.props.updateItem(
       this.props.item.id,
-      this.state.list,
-      this.state.board,
+      this.state.list.id,
+      this.state.board.id,
     );
   };
 
   handleChange = e => {
-    console.log(e.target.value, e.target.name);
     let value = '';
     let name = e.target.name.toLowerCase();
     let lists = [];
     if (e.target.name === 'Board') {
-      console.log(this.props.boards, e.target.value);
       lists = this.props.allLists.filter(
         list => list.board_id == e.target.value,
       );
@@ -54,7 +52,6 @@ class MoveModalContainer extends Component {
       lists = [...this.state.lists];
       value = this.state.lists.find(list => list.id == e.target.value);
     }
-    console.log(name, value);
     this.setState({ [name]: value, lists: lists });
   };
 
