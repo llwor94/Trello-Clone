@@ -1,5 +1,3 @@
-import db from '../firebase';
-
 import axios from 'axios';
 
 export const FETCH_LISTS = 'FETCH_LISTS';
