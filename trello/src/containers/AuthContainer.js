@@ -21,6 +21,7 @@ const Wrapper = styled.div`
     font-size: 20px;
     color: #52a7d6;
     text-decoration: underline;
+    cursor: pointer;
   }
 `;
 
@@ -67,14 +68,7 @@ class AuthContainer extends Component {
     username: '',
     password: '',
     logIn: true,
-    loggedIn: false,
   };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.loggedIn !== prevProps.loggedIn && this.props.loggedIn) {
-      this.setState({ loggedIn: true });
-    }
-  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -90,7 +84,13 @@ class AuthContainer extends Component {
     return (
       <Wrapper>
         {this.state.logIn ? <h1>Log In to Trello</h1> : <h1>Sign Up</h1>}
-        {this.state.logIn ? <p>or create an account</p> : <p>or login</p>}
+        {this.state.logIn ? (
+          <p onClick={() => this.setState({ logIn: false })}>
+            or create an account
+          </p>
+        ) : (
+          <p onClick={() => this.setState({ logIn: true })}>or login</p>
+        )}
         <Form onSubmit={this.handleSubmit}>
           <div>
             <Label for="username">Username</Label>

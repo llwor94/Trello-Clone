@@ -15,7 +15,7 @@ export const register = (username, password) => dispatch => {
 
   axios.post(`${URL}/register`, { username, password }).then(response => {
     console.log(response.data);
-    if (!response.data) {
+    if (response.data) {
       dispatch({ type: SIGN_UP_SUCCESS, payload: response.data });
     } else {
       dispatch({ type: SIGN_UP_FAILURE, payload: response.data });
@@ -28,8 +28,8 @@ export const login = (username, password) => dispatch => {
   console.log(username, password);
   axios.post(`${URL}/login`, { username, password }).then(response => {
     if (response.data) {
-      dispatch({ type: LOG_IN_SUCCESS, payload: response.data });
       localStorage.setItem('token', response.data.token);
+      dispatch({ type: LOG_IN_SUCCESS, payload: response.data });
     } else {
       dispatch({ type: LOG_IN_FAILURE, payload: response.data });
     }

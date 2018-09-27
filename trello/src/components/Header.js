@@ -56,10 +56,9 @@ const Logout = styled.div`
 
 class Header extends React.Component {
   render() {
-    let token = localStorage.getItem('token');
     return (
       <HeaderWrapper transparent={this.props.transparent}>
-        {token && (
+        {this.props.loggedIn && (
           <BoardLink to="/boards">
             <img src={icon} />
             <p>Boards</p>
@@ -67,7 +66,7 @@ class Header extends React.Component {
         )}
 
         <Logo src={logo} />
-        {token && (
+        {this.props.loggedIn && (
           <Logout
             onClick={() => {
               localStorage.removeItem('token');
@@ -82,7 +81,11 @@ class Header extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  loggedIn: state.authReducer.loggedIn,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { logout },
 )(Header);
