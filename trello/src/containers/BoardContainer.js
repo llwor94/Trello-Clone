@@ -5,6 +5,7 @@ import {
   updateBoardName,
   getBoardsIfNeeded,
 } from '../actions/boardActions';
+import { Redirect } from 'react-router-dom';
 import { clearList, fetchAllLists } from '../actions/listActions';
 import { dismountCurrentBoard } from '../actions/boardActions';
 import AddListContainer from './AddListContainer';
@@ -61,7 +62,8 @@ class BoardContainer extends React.Component {
     if (!this.props.board) {
       return <p>loading...</p>;
     }
-
+    let token = localStorage.getItem('token');
+    if (!this.props.loggedIn) return <Redirect to="/" />;
     return (
       <BoardWrapper>
         <BoardHeader handleClick={() => this.setState({ showingModal: true })}>
@@ -95,6 +97,7 @@ class BoardContainer extends React.Component {
 const mapStateToProps = state => ({
   board: state.boardReducer.currentBoard,
   lists: state.listReducer.lists,
+  loggedIn: state.authReducer.loggedIn,
 });
 
 export default connect(

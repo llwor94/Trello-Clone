@@ -24,12 +24,14 @@ let URL = 'http://localhost:3400/api/cards';
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: FETCH_ITEMS });
   let board = getState().boardReducer.currentBoard.id;
-
   axios({
     method: 'GET',
     url: URL,
     params: {
       board,
+    },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
     },
   }).then(response => {
     dispatch({
@@ -41,7 +43,13 @@ export const fetchItems = () => (dispatch, getState) => {
 
 export const fetchCurrentItem = id => dispatch => {
   dispatch({ type: FETCH_LIST_ITEM });
-  axios.get(`${URL}/${id}`).then(response => {
+  axios({
+    method: 'GET',
+    url: `${URL}/${id}`,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({
       type: ITEM_FETCHED,
       payload: response.data,
@@ -72,6 +80,9 @@ export const updateItem = (id, list, board) => dispatch => {
       list,
       board,
     },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
   }).then(response => {
     dispatch({ type: ITEM_UPDATED });
     dispatch(fetchItems());
@@ -80,7 +91,14 @@ export const updateItem = (id, list, board) => dispatch => {
 
 export const updateName = (id, title) => dispatch => {
   dispatch({ type: UPDATE_NAME });
-  axios.put(`${URL}/${id}`, { title }).then(response => {
+  axios({
+    method: 'PUT',
+    url: `${URL}/${id}`,
+    data: { title },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({ type: NAME_UPDATED, payload: title });
     dispatch(fetchItems());
   });
@@ -97,6 +115,9 @@ export const addItem = (list, title) => dispatch => {
     data: {
       title,
     },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
   }).then(() => {
     dispatch({ type: ADD_ITEM_SUCCESS });
     dispatch(fetchItems());
@@ -105,7 +126,14 @@ export const addItem = (list, title) => dispatch => {
 
 export const addDescription = (id, description) => dispatch => {
   dispatch({ type: ADD_DESCRIPTION });
-  axios.put(`${URL}/${id}`, { description }).then(response => {
+  axios({
+    method: 'PUT',
+    url: `${URL}/${id}`,
+    data: { description },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({
       type: ADD_DESCRIPTION_SUCCESS,
       payload: description,
@@ -125,7 +153,13 @@ export const addDescription = (id, description) => dispatch => {
 export const addTag = (item, tags) => {};
 
 export const deleteItem = id => dispatch => {
-  axios.delete(`${URL}/${id}`).then(res => {
+  axios({
+    method: 'DELETE',
+    url: `${URL}/${id}`,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(res => {
     dispatch({
       type: ITEM_DELETED,
       payload: id,

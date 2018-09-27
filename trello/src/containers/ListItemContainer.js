@@ -92,9 +92,7 @@ class ListItemContainer extends Component {
                 item={this.props.currentItem}
                 list={this.props.list}
                 handleClose={this.handleClick}
-              >
-                <ItemDescription />
-              </ItemModal>
+              />
             )}
           {this.state.editModalShowing &&
             this.props.currentItem.id && (

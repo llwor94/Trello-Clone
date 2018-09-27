@@ -2,7 +2,9 @@ import React from 'react';
 import logo from '../assets/trello-logo-white.png';
 import icon from '../assets/trello-icon.png';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { logout } from '../actions/authActions';
+import { connect } from 'react-redux';
 
 const HeaderWrapper = styled.div`
   width: 100vw;
@@ -13,6 +15,7 @@ const HeaderWrapper = styled.div`
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   z-index: 100;
 `;
 const Logo = styled.img`
@@ -40,19 +43,46 @@ const BoardLink = styled(Link)`
   }
 `;
 
+const Logout = styled.div`
+  height: 32px;
+  width: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
 class Header extends React.Component {
   render() {
+    let token = localStorage.getItem('token');
     return (
       <HeaderWrapper transparent={this.props.transparent}>
-        <BoardLink to="/boards">
-          <img src={icon} />
-          <p>Boards</p>
-        </BoardLink>
+        {token && (
+          <BoardLink to="/boards">
+            <img src={icon} />
+            <p>Boards</p>
+          </BoardLink>
+        )}
 
         <Logo src={logo} />
+        {token && (
+          <Logout
+            onClick={() => {
+              localStorage.removeItem('token');
+              this.props.logout();
+            }}
+          >
+            LW
+          </Logout>
+        )}
       </HeaderWrapper>
     );
   }
 }
 
-export default Header;
+export default connect(
+  null,
+  { logout },
+)(Header);

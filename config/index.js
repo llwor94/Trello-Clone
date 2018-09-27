@@ -2,7 +2,7 @@ const boardRoutes = require('./routes/boardRoutes');
 const listRoutes = require('./routes/listRoutes');
 const cardRoutes = require('./routes/cardRoutes');
 const authRoutes = require('./routes/authRoutes');
-require('../passport');
+const passport = require('../passport');
 const { errorHandler } = require('./middleware');
 
 module.exports = server => {

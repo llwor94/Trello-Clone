@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   fetchBoards,
   addBoard,
@@ -39,6 +40,8 @@ class BoardsPage extends React.Component {
   };
 
   render() {
+    let token = localStorage.getItem('token');
+    if (!this.props.loggedIn) return <Redirect to="/" />;
     return (
       <BoardWrapper>
         {this.props.fetchingBoards ? (
@@ -76,6 +79,7 @@ const mapStateToProps = state => ({
   boardAdded: state.boardReducer.addingBoardSuccess,
   currentBoard: state.boardReducer.currentBoard,
   fetchingItems: state.itemReducer.fetchingItems,
+  loggedIn: state.authReducer.loggedIn,
 });
 
 export default connect(

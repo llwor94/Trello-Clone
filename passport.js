@@ -5,7 +5,6 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const db = require('./db/dbConfig');
 
 passport.use(
-  'login',
   new JWTStrategy(
     {
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -23,3 +22,13 @@ passport.use(
     },
   ),
 );
+
+module.exports = passport;
+
+// const authenticate = (req, res, next) => {
+//   let authenticated = passport.authenticate('jwt', (err, user) => {
+//     if (err || !user) return res.json(err);
+//     next();
+//   });
+//   authenticated(req, res, next);
+// };

@@ -17,7 +17,13 @@ let URL = 'http://localhost:3400/api/boards';
 
 export const fetchBoards = () => dispatch => {
   dispatch({ type: FETCH_BOARDS });
-  axios.get(URL).then(response => {
+  axios({
+    method: 'GET',
+    url: URL,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     console.log(response);
     dispatch({
       type: BOARD_FETCH_SUCCESS,
@@ -28,8 +34,14 @@ export const fetchBoards = () => dispatch => {
 
 export const addBoard = title => dispatch => {
   dispatch({ type: ADD_BOARD });
-  axios
-    .post(URL, { title })
+  axios({
+    method: 'PUT',
+    url: URL,
+    data: { title },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  })
     .then(response => {
       let id = response.data[0];
       dispatch({
@@ -44,7 +56,13 @@ export const addBoard = title => dispatch => {
 
 export const getCurrentBoard = id => dispatch => {
   dispatch({ type: FETCH_CURRENT_BOARD });
-  axios.get(`${URL}/${id}`).then(response => {
+  axios({
+    method: 'GET',
+    url: `${URL}/${id}`,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({
       type: CURRENT_BOARD_FETCHED,
       payload: response.data,
@@ -58,7 +76,14 @@ export const getCurrentBoard = id => dispatch => {
 export const updateBoardName = title => (dispatch, getState) => {
   dispatch({ type: UPDATE_BOARD });
   let board = getState().boardReducer.currentBoard.id;
-  axios.put(`${URL}/${board}`, { title }).then(response => {
+  axios({
+    method: 'PUT',
+    url: `${URL}/${board}`,
+    data: { title },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({
       type: UPDATE_BOARD_SUCCESS,
       payload: title,

@@ -22,6 +22,9 @@ export const fetchLists = () => (dispatch, getState) => {
     params: {
       board,
     },
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
   }).then(response => {
     dispatch({
       type: LIST_FETCH_SUCCESS,
@@ -33,7 +36,13 @@ export const fetchLists = () => (dispatch, getState) => {
 export const fetchAllLists = () => dispatch => {
   dispatch({ type: FETCH_ALL_LISTS });
 
-  axios.get(URL).then(response => {
+  axios({
+    method: 'GET',
+    url: URL,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(response => {
     dispatch({
       type: FETCH_ALL_LISTS_SUCCESS,
       payload: response.data,
@@ -64,7 +73,13 @@ export const addList = title => (dispatch, getState) => {
 
 export const deleteList = id => dispatch => {
   dispatch({ type: DELETING_LIST });
-  axios.delete(`${URL}/${id}`).then(res => {
+  axios({
+    method: 'DELETE',
+    url: `${URL}/${id}`,
+    headers: {
+      authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }).then(res => {
     dispatch({
       type: LIST_DELETED,
       payload: id,

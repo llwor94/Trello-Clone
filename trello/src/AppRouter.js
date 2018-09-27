@@ -4,6 +4,7 @@ import styled, { injectGlobal } from 'styled-components';
 import Header from './components/Header';
 import BoardsPageContainer from './containers/BoardsPageContainer';
 import BoardContainer from './containers/BoardContainer';
+import AuthContainer from './containers/AuthContainer';
 import background from './assets/background.png';
 
 injectGlobal` 
@@ -46,7 +47,7 @@ class AppRouter extends React.Component {
         <Header transparent={boardPage} />
         <AppWrapper background={boardPage}>
           <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" component={AuthContainer} />
             <Route exact path="/boards" component={BoardsPageContainer} />
             <Route exact path="/board/:id" component={BoardContainer} />
           </Switch>
