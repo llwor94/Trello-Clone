@@ -9,6 +9,7 @@ import {
 } from '../actions/itemActions';
 import { listByItem } from '../reducers/itemReducer';
 import ListItem from '../components/ListItem';
+import ItemDescription from '../components/ItemDescription';
 import ItemModal from '../components/ItemModal';
 import QuickEditModal from '../components/QuickEditModal';
 
@@ -91,7 +92,9 @@ class ListItemContainer extends Component {
                 item={this.props.currentItem}
                 list={this.props.list}
                 handleClose={this.handleClick}
-              />
+              >
+                <ItemDescription />
+              </ItemModal>
             )}
           {this.state.editModalShowing &&
             this.props.currentItem.id && (

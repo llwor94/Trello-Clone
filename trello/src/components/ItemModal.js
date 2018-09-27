@@ -33,6 +33,21 @@ const ModalContent = styled.section`
   padding: 6px 6px 16px 16px;
 `;
 
+const Description = styled.form`
+  width: 100%;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  span {
+    text-decoration: underline;
+    color: #8c8c8c;
+    cursor: pointer;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   margin: 10px 0;
@@ -57,21 +72,6 @@ const Title = styled.div`
   }
   p {
     color: #8c8c8c;
-  }
-`;
-
-const Description = styled.form`
-  width: 100%;
-  h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    display: inline-block;
-    margin-right: 5px;
-  }
-  span {
-    text-decoration: underline;
-    color: #8c8c8c;
-    cursor: pointer;
   }
 `;
 

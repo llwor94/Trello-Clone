@@ -4,7 +4,7 @@ const morgan = require('morgan');
 // const express = require('@feathersjs/express');
 const cors = require('cors');
 // const service = require('feathers-knex');
-
+require('./passport');
 const configureRoutes = require('./config');
 const db = require('./db/dbConfig');
 
