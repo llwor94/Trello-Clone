@@ -12,6 +12,7 @@ function generateToken(payload) {
 }
 
 router.post('/register', (req, res, next) => {
+  console.log(req.body);
   let { username, password } = req.body;
   console.log(username, password);
   if (!username || !password) return next({ code: 400 });
